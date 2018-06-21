@@ -1,4 +1,4 @@
-# explorer-app
+# explorer-app [![CircleCI](https://circleci.com/gh/CMUCloudComputing/explorer-app.svg?style=svg)](https://circleci.com/gh/CMUCloudComputing/explorer-app)
 ReactNative application for Explorer
 
 ## Development
