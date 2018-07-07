@@ -5,11 +5,12 @@ ReactNative application for Explorer
 ### Pre-Requisites
 These pre-requisites only need to be performed once.  Just skip any that you have
 already completed.
-- Install [NodeJS](https://nodejs.org/en/download/) *(version >= 8.x.x recommended)*.
-- Install [XCode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) (Mac required)
+- Install [NodeJS](https://nodejs.org/en/download/) *(version >= 8.x.x required)*.
+- Install [XCode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) (OS X required)
 - Install [Android Studio](https://developer.android.com/studio/)
 - Install the `Expo` app on your mobile device (from [AppStore](https://itunes.apple.com/us/app/expo-client/id982107779?mt=8) or [PlayStore](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en_US)).
 - Open the `Expo` app, and either sign-up or sign-in.
+- Install [react-native-cli](https://www.npmjs.com/package/react-native-cli) for help with logging
 
 ### Installation & Setup
 - `cd explorer-app`
@@ -27,6 +28,15 @@ already completed.
   - *Android:*&nbsp;&nbsp;scan barcode, and follow the prompts.
 
 *NOTE: to run on mobile device, your development machine & device must be on the same WiFi network.*
+
+### Debugging
+There are several different methods of debugging & obtaining logs while developing.  These methods are outlined here: https://facebook.github.io/react-native/docs/debugging.html.  We have some of these dependencies installed in the project for convenience.
+
+- Launch standalone [React DevTools](https://github.com/facebook/react-devtools):
+  - `npm run devtools`
+- Accessing Console Logs:
+  - `react-native log-ios`
+  - `react-native log-android`
 
 ### Running Tests
 - `npm run test`
