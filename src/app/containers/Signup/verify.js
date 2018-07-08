@@ -22,7 +22,7 @@ class SignupVerifyScreen extends React.Component {
     };
   }
   validate() {
-    //console.log('VALIDATING');
+    // TODO: Validate the code & then go to the profile settings page.
   }
   render() {
     return (
@@ -57,7 +57,7 @@ class SignupVerifyScreen extends React.Component {
         </View>
         <Button 
           title="Verify"
-          onPress={this.validate}
+          onPress={this.validate.bind(this)}
         />
       </View>
     );
