@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation';
 import HomeScreen from './containers/Home';
 import SignupScreen from './containers/Signup';
 import SignupVerifyScreen from './containers/Signup/verify';
+import MapScreen from './containers/Map';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +18,8 @@ const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
     Signup: SignupScreen,
-    SignupVerify: SignupVerifyScreen
+    SignupVerify: SignupVerifyScreen,
+    Map: MapScreen
   },
   {
     initialRouteName: 'Home'
