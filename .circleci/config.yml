@@ -9,11 +9,40 @@ jobs:
 
     steps:
       - checkout
+      - setup_remote_docker
 
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
+
+      - restore_cache:
+          keys:
+          - v1-{{ .Branch }}
+          paths:
+          - ~/explorer-app/caches/explorer_app_repo.tar
+
+      - run:
+          name: Load Docker image layer cache
+          command: |
+            set +o pipefail
+            docker load -i ~/explorer-app/caches/explorer_app_repo.tar | true
+
+      - run:
+          name: Build application Docker image
+          command: |
+            docker build --cache-from=explorer_app_repo -t explorer_app_repo .
+
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p ~/explorer-app/caches
+            docker save -o ~/explorer-app/caches/explorer_app_repo.tar explorer_app_repo
+
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
+            - ~/explorer-app/caches/explorer_app_repo.tar
 
       - run: yarn install
 
@@ -22,5 +51,25 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run:
+          name: Install dependencies
+          working_directory: ~/explorer-app
+          command: |
+             sudo apt-get update
+             sudo apt-get install -y python3-pip
+             sudo apt-get install -y libpython-dev
+             sudo pip3 install awscli
+
       - run: yarn lint
       - run: yarn test
+
+            - run:
+          name: "Log in to AWS ECR"
+          command: $(aws ecr get-login --no-include-email --region us-east-1)
+
+      - run:
+          name: "Build & Push Docker Image"
+          command: |
+            docker tag explorer_app_repo 751958071466.dkr.ecr.us-east-1.amazonaws.com/explorer_app_repo:latest
+            docker push 751958071466.dkr.ecr.us-east-1.amazonaws.com/explorer_app_repo:latest
+
