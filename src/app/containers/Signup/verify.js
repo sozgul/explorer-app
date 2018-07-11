@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 const styles = StyleSheet.create({
   code: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  //codeInput: {}
+  }
 });
 
 class SignupVerifyScreen extends React.Component {
@@ -65,7 +66,12 @@ class SignupVerifyScreen extends React.Component {
 }
 
 SignupVerifyScreen.propTypes = {
-  phoneNumber: PropTypes.string
+  phoneNumber: PropTypes.string,
+  navigateToMap: PropTypes.func.isRequired
 };
 
-export default SignupVerifyScreen;
+const mapStateToProps = state => (state);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupVerifyScreen);
