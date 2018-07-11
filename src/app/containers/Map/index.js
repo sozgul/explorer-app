@@ -1,11 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import MapComponent from '../../components/Map';
 import {connect} from 'react-redux';
 
 class MapScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(location => {
+      this.setState({
+        userLocation: location.coords
+      });
+    });
+  }
+
   render() {
-    const {userLocation} = this.props;
+    const {userLocation} = this.state;
 
     return (
       <MapComponent 
@@ -15,9 +28,7 @@ class MapScreen extends React.Component {
   }
 }
 
-MapScreen.propTypes = {
-  userLocation: PropTypes.object
-};
+MapScreen.propTypes = {};
 
 const mapStateToProps = state => (state);
 const mapDispatchToProps = () => ({});
