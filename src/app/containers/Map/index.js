@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MapComponent from '../../components/Map';
+import {connect} from 'react-redux';
 
 class MapScreen extends React.Component {
   render() {
@@ -18,4 +19,7 @@ MapScreen.propTypes = {
   userLocation: PropTypes.object
 };
 
-export default MapScreen;
+const mapStateToProps = state => (state);
+const mapDispatchToProps = () => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapScreen);

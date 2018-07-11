@@ -6,6 +6,7 @@
     "jest/globals": true
   },
   "parserOptions": {
+    "ecmaVersion": 2017,
     "ecmaFeatures": {
         "experimentalObjectRestSpread": true,
         "jsx": true
@@ -44,6 +45,6 @@
     "react-native/split-platform-components": 2,
     "react-native/no-inline-styles": 2,
     "react-native/no-color-literals": 0,
-    "react/prop-types": ["error", { "ignore": ["navigation"] }]
+    "react/prop-types": ["error", { "ignore": ["children", "dispatch", "navigation"] }]
   }
 }

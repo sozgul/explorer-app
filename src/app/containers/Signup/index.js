@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
+import {connect} from 'react-redux';
 
 class SignupScreen extends React.Component {
   constructor(props) {
@@ -39,4 +40,7 @@ class SignupScreen extends React.Component {
   }
 }
 
-export default SignupScreen;
+const mapStateToProps = state => (state);
+const mapDispatchToProps = () => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);
