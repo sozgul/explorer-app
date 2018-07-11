@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {navigateToMap} from '../../actions/navigation';
 
 const styles = StyleSheet.create({
   code: {
@@ -24,6 +25,9 @@ class SignupVerifyScreen extends React.Component {
   }
   validate() {
     // TODO: Validate the code & then go to the profile settings page.
+
+    // FOR DEMO: Temporarily going straight to the map screen.  This WILL change.
+    this.props.navigateToMap();
   }
   render() {
     return (
@@ -72,6 +76,6 @@ SignupVerifyScreen.propTypes = {
 
 const mapStateToProps = state => (state);
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({}, dispatch);
+  bindActionCreators({navigateToMap}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupVerifyScreen);
