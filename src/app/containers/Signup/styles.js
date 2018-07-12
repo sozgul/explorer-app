@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 15
   },
+  countryCodePrefix: {
+    fontSize: 24,
+    paddingTop: 6
+  },
   countryCode: {
     marginRight: 15
   },
