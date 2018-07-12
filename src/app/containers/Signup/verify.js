@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
+import CustomButton from '../../components/Button';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {navigateToMap} from '../../actions/navigation';
-
-const styles = StyleSheet.create({
-  code: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-});
+import styles from './styles';
+import commonStyles from '../../common/styles';
 
 class SignupVerifyScreen extends React.Component {
   constructor(props) {
@@ -31,37 +26,43 @@ class SignupVerifyScreen extends React.Component {
   }
   render() {
     return (
-      <View>
-        <Text>please enter the 4-digit code to verify we sent an SMS to the number below</Text>
-        <View style={styles.code}>
-          <TextInput 
-            value={this.props.phoneNumber}
-            textContentType="telephoneNumber"
-            editable={false}
-          />
+      <View style={commonStyles.container}>
+        <Text style={[commonStyles.text, styles.subTitle, styles.verify]}>please enter the 4-digit code to verify we sent an SMS to the number below</Text>
+        <TextInput 
+          value={this.props.phoneNumber}
+          placeholder="mobile number"
+          textContentType="telephoneNumber"
+          editable={false}
+          style={[commonStyles.textInput, styles.phoneInput]}
+        />
+        <View style={styles.codeWrapper}>
           <TextInput
             value={this.state.codeNum1}
             maxLength={1}
             onChangeText={num => this.setState({codeNum1: num})}
+            style={[commonStyles.textInput, styles.codeInput]}
           />
           <TextInput
             value={this.state.codeNum2}
             maxLength={1}
             onChangeText={num => this.setState({codeNum2: num})}
+            style={[commonStyles.textInput, styles.codeInput]}
           />
           <TextInput
             value={this.state.codeNum3}
             maxLength={1}
             onChangeText={num => this.setState({codeNum3: num})}
+            style={[commonStyles.textInput, styles.codeInput]}
           />
           <TextInput
             value={this.state.codeNum4}
             maxLength={1}
             onChangeText={num => this.setState({codeNum4: num})}
+            style={[commonStyles.textInput, styles.codeInput]}
           />
         </View>
-        <Button 
-          title="Verify"
+        <CustomButton 
+          text="Verify"
           onPress={this.validate.bind(this)}
         />
       </View>
