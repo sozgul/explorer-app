@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
+import CustomButtonComponent from '../../components/Button';
 import {navigateToSignup} from '../../actions/navigation';
+import commonStyles from '../../common/styles';
+import styles from './styles';
 
 class HomeScreen extends React.Component {
   navigateToSignup() {
@@ -12,12 +15,12 @@ class HomeScreen extends React.Component {
   }
   render() {
     return (
-      <View>
-        <Text>Welcome to</Text>
-        <Text>Explorer</Text>
-        <Text>GPS Sharing</Text>
-        <Button 
-          title="Continue"
+      <View style={commonStyles.container}>
+        <Text style={[commonStyles.text, styles.welcomeText]}>Welcome to</Text>
+        <Text style={[commonStyles.text, styles.explorerText]}>Explorer</Text>
+        <Text style={[commonStyles.text, styles.descriptionText]}>group GPS sharing</Text>
+        <CustomButtonComponent 
+          text="Continue"
           onPress={this.navigateToSignup.bind(this)}
         />
       </View>

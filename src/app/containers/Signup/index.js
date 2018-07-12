@@ -1,6 +1,9 @@
 import React from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput} from 'react-native';
+import CustomButton from '../../components/Button';
 import {connect} from 'react-redux';
+import commonStyles from '../../common/styles';
+import styles from './styles';
 
 class SignupScreen extends React.Component {
   constructor(props) {
@@ -14,25 +17,29 @@ class SignupScreen extends React.Component {
     const {navigate} = this.props.navigation;
 
     return (
-      <View>
-        <Text>Verify Phone #</Text>
-        <Text>Please confirm your country code, and enter your phone number</Text>
-        <Text>United States</Text>
-        <TextInput
-          value={this.state.countryCode}
-          maxLength={3}
-          onChangeText={value => this.setState({countryCode: value})}
-        />
-        <TextInput 
-          placeholder="mobile number"
-          value={this.state.phoneNumber}
-          onChangeText={value => this.setState({phoneNumber: value})}
-          keyboardType="phone-pad"
-          textContentType="telephoneNumber"
-          autoFocus={true}
-        />
-        <Button 
-          title="Send SMS"
+      <View style={[commonStyles.container, styles.container]}>
+        <Text style={[commonStyles.text, styles.title]}>Verify Phone #</Text>
+        <Text style={[commonStyles.text, styles.subTitle]}>Please confirm your country code,{'\n'}and enter your phone number</Text>
+        
+        <View style={[styles.phoneWrapper]}>
+          <TextInput
+            style={[commonStyles.textInput, styles.countryCode]}
+            value={this.state.countryCode}
+            maxLength={3}
+            onChangeText={value => this.setState({countryCode: value})}
+          />
+          <TextInput 
+            style={[commonStyles.textInput, styles.phoneNumber]}
+            placeholder="mobile number"
+            value={this.state.phoneNumber}
+            onChangeText={value => this.setState({phoneNumber: value})}
+            keyboardType="phone-pad"
+            textContentType="telephoneNumber"
+            autoFocus={true}
+          />
+        </View>
+        <CustomButton 
+          text="Send SMS"
           onPress={() => navigate('SignupVerify')}
         />
       </View>
