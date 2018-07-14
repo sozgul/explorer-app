@@ -1,5 +1,6 @@
 
 import { StyleSheet, Dimensions } from 'react-native';
+import {WHITE, MEDIUM_GREY, LIGHT_GREY} from '../../common/colors';
 
 const padding = 15;
 const fullWidth = Dimensions.get('window').width;
@@ -25,7 +26,7 @@ export default StyleSheet.create({
     width: fullWidth,
     paddingLeft: padding,
     paddingRight: padding,
-    backgroundColor: '#fff',
+    backgroundColor: WHITE,
     height: pickerHeight
   },
   inputWrapper: {
@@ -34,8 +35,9 @@ export default StyleSheet.create({
     alignSelf: 'center'
   },
   textInput: {
-    width: 200,
-    borderColor: '#999',
+    minWidth: 200,
+    maxWidth: 280,
+    borderColor: MEDIUM_GREY,
     borderBottomWidth: 1,
   },
   pickerHeader: {
@@ -45,7 +47,7 @@ export default StyleSheet.create({
     alignSelf: 'stretch',
     paddingLeft: padding,
     paddingRight: padding,
-    backgroundColor: '#d2d5da',
+    backgroundColor: LIGHT_GREY,
     paddingTop: 5,
     paddingBottom: 5,
     height: pickerHeaderHeight
@@ -55,7 +57,7 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   dropdownIcon: {
-    borderColor: '#999',
+    borderColor: MEDIUM_GREY,
     borderBottomWidth: 1,
     fontSize: 18,
   }

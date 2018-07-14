@@ -45,24 +45,28 @@ class SignupVerifyScreen extends React.Component {
             maxLength={1}
             onChangeText={num => this.setState({codeNum1: num})}
             style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
           <TextInput
             value={this.state.codeNum2}
             maxLength={1}
             onChangeText={num => this.setState({codeNum2: num})}
             style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
           <TextInput
             value={this.state.codeNum3}
             maxLength={1}
             onChangeText={num => this.setState({codeNum3: num})}
             style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
           <TextInput
             value={this.state.codeNum4}
             maxLength={1}
             onChangeText={num => this.setState({codeNum4: num})}
             style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
         </View>
         <CustomButton 

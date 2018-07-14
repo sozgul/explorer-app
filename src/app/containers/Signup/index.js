@@ -91,16 +91,15 @@ class SignupScreen extends React.Component {
           />
 
           <View style={[styles.phoneWrapper]}>
-            <Text style={[commonStyles.text, styles.countryCodePrefix]}>+</Text>
             <TextInput
-              style={[commonStyles.textInput, styles.countryCode]}
-              value={this.state.countryCode}
+              style={[commonStyles.textInput, styles.countryCodeInput]}
+              value={`+ ${this.state.countryCode}`}
               maxLength={3}
               editable={false}
             />
             <TextInput 
               ref={ref => this._phoneInput = ref}
-              style={[commonStyles.textInput, styles.phoneNumber]}
+              style={[commonStyles.textInput, styles.phoneInput]}
               placeholder="mobile number"
               value={formattedPhoneNumber}
               onChangeText={value => this.setState({phoneNumber:value})}

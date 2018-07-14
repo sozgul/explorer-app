@@ -5,12 +5,15 @@ let initialState = {
   country: null,
   countryCode: null,
   phoneNumber: null,
-  verificationStatus: null
+  verificationStatus: null,
+  termsAccepted: false
 };
 
 const accountData = (state = initialState, action = {}) => {
-
   switch(action.type) {
+  case ActionTypes.USER_ACCEPTED_TERMS:
+    state.termsAccepted = true;
+    break;
   case ActionTypes.PHONE_NUMBER_UPDATED:
     state.country = action.country;
     state.countryCode = action.countryCode;
@@ -28,7 +31,7 @@ const accountData = (state = initialState, action = {}) => {
   default:
     break;
   }
-
+  
   return state;
 };
 
