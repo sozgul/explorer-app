@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import {navigateToMap} from '../../actions/navigation';
 import styles from './styles';
 import commonStyles from '../../common/styles';
+import {formatNumber} from 'libphonenumber-js';
 
 class SignupVerifyScreen extends React.Component {
   constructor(props) {
@@ -25,11 +26,14 @@ class SignupVerifyScreen extends React.Component {
     this.props.navigateToMap();
   }
   render() {
+    const {account} = this.props;
+    const phoneNumber = formatNumber({ country: account.country, phone: account.phoneNumber }, 'National');
+
     return (
       <View style={commonStyles.container}>
         <Text style={[commonStyles.text, styles.subTitle, styles.verify]}>please enter the 4-digit code to verify we sent an SMS to the number below</Text>
         <TextInput 
-          value={this.props.phoneNumber}
+          value={phoneNumber}
           placeholder="mobile number"
           textContentType="telephoneNumber"
           editable={false}
@@ -41,24 +45,28 @@ class SignupVerifyScreen extends React.Component {
             maxLength={1}
             onChangeText={num => this.setState({codeNum1: num})}
             style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
           <TextInput
             value={this.state.codeNum2}
             maxLength={1}
             onChangeText={num => this.setState({codeNum2: num})}
             style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
           <TextInput
             value={this.state.codeNum3}
             maxLength={1}
             onChangeText={num => this.setState({codeNum3: num})}
             style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
           <TextInput
             value={this.state.codeNum4}
             maxLength={1}
             onChangeText={num => this.setState({codeNum4: num})}
             style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
         </View>
         <CustomButton 
@@ -71,11 +79,13 @@ class SignupVerifyScreen extends React.Component {
 }
 
 SignupVerifyScreen.propTypes = {
-  phoneNumber: PropTypes.string,
+  account: PropTypes.object.isRequired,
   navigateToMap: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => (state);
+const mapStateToProps = state => ({
+  account: state.accountData
+});
 const mapDispatchToProps = dispatch =>
   bindActionCreators({navigateToMap}, dispatch);
 

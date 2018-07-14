@@ -1,53 +1,133 @@
 import React from 'react';
-import { View, Text, TextInput} from 'react-native';
+import PropTypes from 'prop-types';
+import { View, Text, TextInput, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native';
 import CustomButton from '../../components/Button';
+import PickerInput from '../../components/PickerInput';
+import countries from '../../utilities/countries';
 import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 import commonStyles from '../../common/styles';
 import styles from './styles';
+import {navigateToSignupVerify} from '../../actions/navigation';
+import {phoneNumberUpdated} from './actions';
+import {getCountryCallingCode, AsYouType, isValidNumber, parseNumber} from 'libphonenumber-js';
 
 class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
+
+    const {account} = this.props;
     this.state = {
-      countryCode: '1',
-      phoneNumber: ''
+      countryCode: account.countryCode || '1',
+      country: account.country || 'US',
+      phoneNumber: account.phoneNumber || ''
     };
   }
+
+  sendSMSPressed() {
+    if (isValidNumber(this.state.phoneNumber, this.state.country)) {
+      Alert.alert(
+        'Confirm phone number', 
+        'please confirm that your number is correct',
+        [
+          {text: 'Cancel', onPress: () => {}},
+          {text: 'OK', onPress: this.onPhoneNumberCorrect.bind(this)}
+        ]
+      );
+    } else {
+      Alert.alert(
+        'Invalid phone number',
+        'please revise the phone number',
+        [
+          {text: 'OK', onPress: () => {}}
+        ]
+      );
+    }
+  }
+
+  onPhoneNumberCorrect() {
+    const {phoneNumberUpdated, navigateToSignupVerify} = this.props;
+    const phoneNumber = parseNumber(this.state.phoneNumber, this.state.country);
+    phoneNumberUpdated(phoneNumber.phone, this.state.countryCode, phoneNumber.country);
+    navigateToSignupVerify();
+  }
+
+  countryChanged(country) {
+    this.setState({countryCode: getCountryCallingCode(country), country});
+  }
+
+  phoneNumberChanged(phoneNumber) {
+    this.setState({phoneNumber});
+  }
+
+  countryFocused() {
+    this._phoneInput.blur();
+  }
+
+  phoneFocused() {
+    this._countryPicker.blur();
+  }
+
+  viewTapped() {
+    Keyboard.dismiss();
+    this._countryPicker.blur();
+  }
+
   render() {
-    const {navigate} = this.props.navigation;
+    const formattedPhoneNumber = new AsYouType(this.state.country).input(this.state.phoneNumber);
 
     return (
-      <View style={[commonStyles.container, styles.container]}>
-        <Text style={[commonStyles.text, styles.title]}>Verify Phone #</Text>
-        <Text style={[commonStyles.text, styles.subTitle]}>Please confirm your country code,{'\n'}and enter your phone number</Text>
-        
-        <View style={[styles.phoneWrapper]}>
-          <TextInput
-            style={[commonStyles.textInput, styles.countryCode]}
-            value={this.state.countryCode}
-            maxLength={3}
-            onChangeText={value => this.setState({countryCode: value})}
+      <TouchableWithoutFeedback onPress={this.viewTapped.bind(this)}>
+        <View style={[commonStyles.container, styles.container]}>
+          <Text style={[commonStyles.text, styles.title]}>Verify Phone #</Text>
+          <Text style={[commonStyles.text, styles.subTitle]}>Please confirm your country code,{'\n'}and enter your phone number</Text>
+          
+          <PickerInput
+            ref={ref => this._countryPicker = ref}
+            options={countries.map(item => ({label: item.country, value: item.code}))} 
+            onChange={this.countryChanged.bind(this)}
+            selectedValue={this.state.country}
+            onFocus={this.countryFocused.bind(this)}
           />
-          <TextInput 
-            style={[commonStyles.textInput, styles.phoneNumber]}
-            placeholder="mobile number"
-            value={this.state.phoneNumber}
-            onChangeText={value => this.setState({phoneNumber: value})}
-            keyboardType="phone-pad"
-            textContentType="telephoneNumber"
-            autoFocus={true}
+
+          <View style={[styles.phoneWrapper]}>
+            <TextInput
+              style={[commonStyles.textInput, styles.countryCodeInput]}
+              value={`+ ${this.state.countryCode}`}
+              maxLength={3}
+              editable={false}
+            />
+            <TextInput 
+              ref={ref => this._phoneInput = ref}
+              style={[commonStyles.textInput, styles.phoneInput]}
+              placeholder="mobile number"
+              value={formattedPhoneNumber}
+              onChangeText={value => this.setState({phoneNumber:value})}
+              keyboardType="phone-pad"
+              textContentType="telephoneNumber"
+              onFocus={this.phoneFocused.bind(this)}
+            />
+          </View>
+          <CustomButton 
+            text="Send SMS"
+            onPress={this.sendSMSPressed.bind(this)}
           />
         </View>
-        <CustomButton 
-          text="Send SMS"
-          onPress={() => navigate('SignupVerify')}
-        />
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
 
-const mapStateToProps = state => (state);
-const mapDispatchToProps = () => ({});
+const mapStateToProps = state => ({
+  account: state.accountData
+});
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({phoneNumberUpdated, navigateToSignupVerify}, dispatch);
+
+SignupScreen.propTypes = {
+  phoneNumberUpdated: PropTypes.func.isRequired,
+  navigateToSignupVerify: PropTypes.func.isRequired,
+  account: PropTypes.object
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);

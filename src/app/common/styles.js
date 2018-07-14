@@ -1,6 +1,7 @@
-const FONT_FAMILY_REGULAR = 'Helvetica Neue';
 
 import {StyleSheet} from 'react-native';
+import {REGULAR_FONT} from './fonts';
+import {MEDIUM_GREY} from './colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,13 +9,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontFamily: FONT_FAMILY_REGULAR,
+    fontFamily: REGULAR_FONT,
   },
   textInput: {
     borderBottomWidth: 1,
-    borderColor: '#999',
+    borderColor: MEDIUM_GREY,
     padding: 8,
-    fontFamily: FONT_FAMILY_REGULAR,
+    fontFamily: REGULAR_FONT,
     fontSize: 24
   }
 });

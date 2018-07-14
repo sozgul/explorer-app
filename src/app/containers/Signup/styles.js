@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {MEDIUM_GREY} from '../../common/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,9 +9,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginTop: 15
-  },
-  countryCode: {
-    marginRight: 15
   },
   title: {
     fontSize: 32,
@@ -25,17 +23,33 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row'
   },
-  codeInput: {
-    marginRight: 10,
-    width: 40
+  countryCodePrefix: {
+    fontSize: 24,
+    marginTop: 15,
+    borderBottomWidth: 1,
+    borderColor: MEDIUM_GREY,
+    marginBottom: 15
+  },
+  countryCodeInput: {
+    marginRight: 5,
+    maxWidth: 80,
+    textAlign: 'center',
+    marginTop: 15,
+    marginBottom: 15,
   },
   phoneInput: {
-    width: 200,
+    width: 180,
     marginTop: 15,
-    marginBottom: 15
+    marginBottom: 15,
+    textAlign: 'center'
   },
   verify: {
     marginTop: 100
+  },
+  codeInput: {
+    marginRight: 10,
+    width: 30,
+    textAlign: 'center'
   }
 });
 
