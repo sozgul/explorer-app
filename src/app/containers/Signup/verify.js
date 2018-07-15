@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
+import CustomButton from '../../components/Button';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {navigateToMap} from '../../actions/navigation';
-
-const styles = StyleSheet.create({
-  code: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-});
+import styles from './styles';
+import commonStyles from '../../common/styles';
+import {formatNumber} from 'libphonenumber-js';
 
 class SignupVerifyScreen extends React.Component {
   constructor(props) {
@@ -30,38 +26,51 @@ class SignupVerifyScreen extends React.Component {
     this.props.navigateToMap();
   }
   render() {
+    const {account} = this.props;
+    const phoneNumber = formatNumber({ country: account.country, phone: account.phoneNumber }, 'National');
+
     return (
-      <View>
-        <Text>please enter the 4-digit code to verify we sent an SMS to the number below</Text>
-        <View style={styles.code}>
-          <TextInput 
-            value={this.props.phoneNumber}
-            textContentType="telephoneNumber"
-            editable={false}
-          />
+      <View style={commonStyles.container}>
+        <Text style={[commonStyles.text, styles.subTitle, styles.verify]}>please enter the 4-digit code to verify we sent an SMS to the number below</Text>
+        <TextInput 
+          value={phoneNumber}
+          placeholder="mobile number"
+          textContentType="telephoneNumber"
+          editable={false}
+          style={[commonStyles.textInput, styles.phoneInput]}
+        />
+        <View style={styles.codeWrapper}>
           <TextInput
             value={this.state.codeNum1}
             maxLength={1}
             onChangeText={num => this.setState({codeNum1: num})}
+            style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
           <TextInput
             value={this.state.codeNum2}
             maxLength={1}
             onChangeText={num => this.setState({codeNum2: num})}
+            style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
           <TextInput
             value={this.state.codeNum3}
             maxLength={1}
             onChangeText={num => this.setState({codeNum3: num})}
+            style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
           <TextInput
             value={this.state.codeNum4}
             maxLength={1}
             onChangeText={num => this.setState({codeNum4: num})}
+            style={[commonStyles.textInput, styles.codeInput]}
+            keyboardType="numeric"
           />
         </View>
-        <Button 
-          title="Verify"
+        <CustomButton 
+          text="Verify"
           onPress={this.validate.bind(this)}
         />
       </View>
@@ -70,11 +79,13 @@ class SignupVerifyScreen extends React.Component {
 }
 
 SignupVerifyScreen.propTypes = {
-  phoneNumber: PropTypes.string,
+  account: PropTypes.object.isRequired,
   navigateToMap: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => (state);
+const mapStateToProps = state => ({
+  account: state.accountData
+});
 const mapDispatchToProps = dispatch =>
   bindActionCreators({navigateToMap}, dispatch);
 
