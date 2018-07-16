@@ -6,7 +6,7 @@ let initialState = {
   phoneNumber: null
 };
 
-const userProfileData = (state = {initialState}, action = {}) => {
+const userProfileData = (state = initialState, action = {}) => {
   switch (action.type) {
   case ActionTypes.PROFILE_UPDATED:
     state.displayUserName = action.displayUserName;
