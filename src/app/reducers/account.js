@@ -14,7 +14,7 @@ const accountData = (state = initialState, action = {}) => {
   case ActionTypes.USER_ACCEPTED_TERMS:
     return { ...state, termsAccepted:true };
   case ActionTypes.PHONE_NUMBER_UPDATED:
-    return { ...state, country: action.country,ccountryCode: action.countryCode, phoneNumber: action.phoneNumber };
+    return { ...state, country: action.country, countryCode: action.countryCode, phoneNumber: action.phoneNumber };
   case ActionTypes.SMS_VERIFICATION_SENT:
     return { ...state, verificationStatus:'pending' };
   case ActionTypes.SMS_VERIFICATION_ACCEPTED:
