@@ -19,15 +19,17 @@ class SignupVerifyScreen extends React.Component {
       codeNum4: ''
     };
   }
+
   validate() {
     // TODO: Validate the code & then go to the profile settings page.
 
     // FOR DEMO: Temporarily going straight to the map screen.  This WILL change.
     this.props.navigateToProfile();
   }
+
   render() {
     const {account} = this.props;
-    const phoneNumber = formatNumber({ country: account.country, phone: account.phoneNumber }, 'National');
+    const phoneNumber = account.phoneNumber ? formatNumber({ country: account.country, phone: account.phoneNumber }, 'National') : account.phoneNumber;
 
     return (
       <View style={commonStyles.container}>

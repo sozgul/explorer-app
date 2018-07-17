@@ -2,8 +2,9 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import Layout from './components/Layout';
 import {AppNavigator} from './navigators/index';
-import Store from './store';
-import { Font } from 'expo';
+import {store, persistor} from './store';
+import { AppLoading, Font } from 'expo';
+import { PersistGate } from 'redux-persist/integration/react';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,21 +12,37 @@ export default class App extends React.Component {
     this.state = {
       fontsLoaded: false
     };
+    this._loadFonts();
   }
-  async componentDidMount() {
+  async _loadFonts() {
     await Font.loadAsync({
       FontAwesome: require('./assets/fonts/FontAwesome.otf')
     });
     this.setState({fontsLoaded: true});
   }
-  render() {
+
+  _renderAppLoading() {
     return (
-      <Provider store={Store}>
-        <Layout>
-          {this.state.fontsLoaded ? (
-            <AppNavigator />
-          ) : null}
-        </Layout>
+      <AppLoading />
+    );
+  }
+
+  _renderApp() {
+    return (
+      <AppNavigator />
+    );
+  }
+
+  render() {
+    const {fontsLoaded} = this.state;
+
+    return (
+      <Provider store={store}>
+        <PersistGate loading={this._renderAppLoading()} persistor={persistor}>
+          <Layout>
+            {fontsLoaded ? (this._renderApp()) : (this._renderAppLoading())}
+          </Layout>
+        </PersistGate>
       </Provider>
     );
   }

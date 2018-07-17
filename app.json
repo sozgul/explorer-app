@@ -2,6 +2,11 @@
   "name": "explorer-app",
   "displayName": "explorer-app",
   "expo": {
-    "sdkVersion": "28.0.0"
+    "sdkVersion": "28.0.0",
+    "splash": {
+      "image": "./src/app/assets/images/explorer-splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
+    }
   }
 }
