@@ -1,19 +1,27 @@
 
 import {StyleSheet} from 'react-native';
-import {WHITE} from '../../common/colors';
+import {PURPLE, MEDIUM_GREY} from '../../common/colors';
+import {REGULAR_FONT} from '../../common/fonts';
 
 const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
-    borderColor: WHITE,
+    borderColor: PURPLE,
     borderRadius: 4,
     padding: 18,
     marginTop: 30
   },
+  buttonDisabled: {
+    borderColor: MEDIUM_GREY
+  },
   buttonText: {
+    fontFamily: REGULAR_FONT,
     fontSize: 20,
-    fontWeight: 'bold',
-    color: WHITE
+    fontWeight: '600',
+    color: PURPLE
+  },
+  buttonTextDisabled: {
+    color: MEDIUM_GREY
   }
 });
 

@@ -6,7 +6,7 @@
     "splash": {
       "image": "./src/app/assets/images/explorer-splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#210a68"
     }
   }
 }

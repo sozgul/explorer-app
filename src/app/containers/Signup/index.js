@@ -11,8 +11,14 @@ import styles from './styles';
 import {navigateToSignupVerify} from '../../actions/navigation';
 import {phoneNumberUpdated} from './actions';
 import {getCountryCallingCode, AsYouType, isValidNumber, parseNumber} from 'libphonenumber-js';
+import LoadingOverlay from '../../components/LoadingOverlay';
 
 class SignupScreen extends React.Component {
+  static navigationOptions = {
+    headerTitle: 'phone number',
+    headerBackTitle: 'phone'
+  };
+
   constructor(props) {
     super(props);
 
@@ -20,12 +26,13 @@ class SignupScreen extends React.Component {
     this.state = {
       countryCode: account.countryCode || '1',
       country: account.country || 'US',
-      phoneNumber: account.phoneNumber || ''
+      phoneNumber: account.phoneNumber || '',
+      initiatingAccount: false
     };
   }
 
   sendSMSPressed() {
-    if (isValidNumber(this.state.phoneNumber, this.state.country)) {
+    if (this._isPhoneNumberValid()) {
       Alert.alert(
         'Confirm phone number',
         'please confirm that your number is correct',
@@ -73,6 +80,10 @@ class SignupScreen extends React.Component {
     this._countryPicker.blur();
   }
 
+  _isPhoneNumberValid() {
+    return isValidNumber(this.state.phoneNumber, this.state.country);
+  }
+
   render() {
     const formattedPhoneNumber = new AsYouType(this.state.country).input(this.state.phoneNumber);
 
@@ -89,7 +100,6 @@ class SignupScreen extends React.Component {
             selectedValue={this.state.country}
             onFocus={this.countryFocused.bind(this)}
           />
-
           <View style={[styles.phoneWrapper]}>
             <TextInput
               style={[commonStyles.textInput, styles.countryCodeInput]}
@@ -111,7 +121,12 @@ class SignupScreen extends React.Component {
           <CustomButton
             text="Send SMS"
             onPress={this.sendSMSPressed.bind(this)}
+            disabled={!this._isPhoneNumberValid()}
           />
+
+          {this.state.initiatingAccount && (
+            <LoadingOverlay message="initiating account" />
+          )}
         </View>
       </TouchableWithoutFeedback>
     );

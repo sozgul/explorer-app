@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   phoneInput: {
-    width: 180,
+    width: 200,
     marginTop: 15,
     marginBottom: 15,
     textAlign: 'center'
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   codeInput: {
     marginRight: 10,
-    width: 30,
+    width: 50,
     textAlign: 'center'
   }
 });

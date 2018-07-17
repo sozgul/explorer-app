@@ -54,8 +54,8 @@ class PickerInputComponent extends Component {
           >
             <Text style={[commonStyles.text, styles.dropdown]}>{selectedItem.label}</Text>
           </TouchableOpacity>
-          <FontAwesome style = {styles.dropdownIcon}>
-            {Icons.caretDown}
+          <FontAwesome style={styles.dropdownIcon}>
+            {Icons.angleDown}
           </FontAwesome>
         </View>
         {pickerOpen && (

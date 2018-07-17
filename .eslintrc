@@ -6,13 +6,15 @@
     "jest/globals": true
   },
   "parserOptions": {
-    "ecmaVersion": 2017,
+    "ecmaVersion": 2018,
     "ecmaFeatures": {
         "experimentalObjectRestSpread": true,
+        "impliedStrict": true,
         "jsx": true
     },
     "sourceType": "module"
   },
+  "parser": "babel-eslint",
   "plugins": [
     "react",
     "react-native",
@@ -32,19 +34,17 @@
       "error",
       "unix"
     ],
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "varsIgnorePattern": "React"}],
     "quotes": [
       "error",
       "single"
-    ],
-    "semi": [
-      "error",
-      "always"
     ],
     "react/jsx-uses-vars": "warn",
     "react-native/no-unused-styles": 2,
     "react-native/split-platform-components": 2,
     "react-native/no-inline-styles": 2,
     "react-native/no-color-literals": 0,
-    "react/prop-types": ["error", { "ignore": ["children", "dispatch", "navigation"] }]
+    "react/prop-types": ["warn", { "ignore": ["children", "dispatch", "navigation"] }],
+    "react/display-name": [0]
   }
 }

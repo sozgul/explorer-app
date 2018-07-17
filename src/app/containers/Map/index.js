@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
 //import PropTypes from 'prop-types';
 import MapComponent from '../../components/Map';
 import {connect} from 'react-redux';
 
-class MapScreen extends React.Component {
+class MapScreen extends Component {
+  static navigationOptions = () => {
+    // TODO: Customize the header title for map based on contact/group.
+    return {
+      headerTitle: 'map'
+    };
+  }
+  
   constructor(props) {
     super(props);
     this.state = {};

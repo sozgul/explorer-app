@@ -37,7 +37,7 @@ class LoaderComponent extends Component {
     return (
       <Animated.View style={{transform: [{rotate}]}}>
         <FontAwesome style={iconStyles}>
-          {Icons.circleONotch}
+          {Icons.spinner}
         </FontAwesome>
       </Animated.View>
     );
