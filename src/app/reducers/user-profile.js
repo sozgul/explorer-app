@@ -1,8 +1,17 @@
-//let initialState = {};
+import ActionTypes from '../actions/types';
 
-const userProfileData = (state = {}/*,action*/) => {
-  //initialState = state;
+let initialState = {
+  displayUserName: null,
+  gpsTimeLimit: null
+};
 
+const userProfileData = (state = initialState, action) => {
+  switch (action.type) {
+  case ActionTypes.PROFILE_UPDATED:
+    return { ...state, displayUserName: action.displayUserName, gpsTimeLimit: action.gpsTimeLimit };
+  default:
+    break;
+  }
   return state;
 };
 

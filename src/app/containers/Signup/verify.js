@@ -4,7 +4,7 @@ import { View, Text, TextInput } from 'react-native';
 import CustomButton from '../../components/Button';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {navigateToMap} from '../../actions/navigation';
+import {navigateToProfile} from '../../actions/navigation';
 import styles from './styles';
 import commonStyles from '../../common/styles';
 import {formatNumber} from 'libphonenumber-js';
@@ -23,7 +23,7 @@ class SignupVerifyScreen extends React.Component {
     // TODO: Validate the code & then go to the profile settings page.
 
     // FOR DEMO: Temporarily going straight to the map screen.  This WILL change.
-    this.props.navigateToMap();
+    this.props.navigateToProfile();
   }
   render() {
     const {account} = this.props;
@@ -32,7 +32,7 @@ class SignupVerifyScreen extends React.Component {
     return (
       <View style={commonStyles.container}>
         <Text style={[commonStyles.text, styles.subTitle, styles.verify]}>please enter the 4-digit code to verify we sent an SMS to the number below</Text>
-        <TextInput 
+        <TextInput
           value={phoneNumber}
           placeholder="mobile number"
           textContentType="telephoneNumber"
@@ -69,7 +69,7 @@ class SignupVerifyScreen extends React.Component {
             keyboardType="numeric"
           />
         </View>
-        <CustomButton 
+        <CustomButton
           text="Verify"
           onPress={this.validate.bind(this)}
         />
@@ -80,13 +80,13 @@ class SignupVerifyScreen extends React.Component {
 
 SignupVerifyScreen.propTypes = {
   account: PropTypes.object.isRequired,
-  navigateToMap: PropTypes.func.isRequired
+  navigateToProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   account: state.accountData
 });
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({navigateToMap}, dispatch);
+  bindActionCreators({navigateToProfile}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupVerifyScreen);

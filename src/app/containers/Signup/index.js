@@ -27,7 +27,7 @@ class SignupScreen extends React.Component {
   sendSMSPressed() {
     if (isValidNumber(this.state.phoneNumber, this.state.country)) {
       Alert.alert(
-        'Confirm phone number', 
+        'Confirm phone number',
         'please confirm that your number is correct',
         [
           {text: 'Cancel', onPress: () => {}},
@@ -81,10 +81,10 @@ class SignupScreen extends React.Component {
         <View style={[commonStyles.container, styles.container]}>
           <Text style={[commonStyles.text, styles.title]}>Verify Phone #</Text>
           <Text style={[commonStyles.text, styles.subTitle]}>Please confirm your country code,{'\n'}and enter your phone number</Text>
-          
+
           <PickerInput
             ref={ref => this._countryPicker = ref}
-            options={countries.map(item => ({label: item.country, value: item.code}))} 
+            options={countries.map(item => ({label: item.country, value: item.code}))}
             onChange={this.countryChanged.bind(this)}
             selectedValue={this.state.country}
             onFocus={this.countryFocused.bind(this)}
@@ -97,7 +97,7 @@ class SignupScreen extends React.Component {
               maxLength={3}
               editable={false}
             />
-            <TextInput 
+            <TextInput
               ref={ref => this._phoneInput = ref}
               style={[commonStyles.textInput, styles.phoneInput]}
               placeholder="mobile number"
@@ -108,7 +108,7 @@ class SignupScreen extends React.Component {
               onFocus={this.phoneFocused.bind(this)}
             />
           </View>
-          <CustomButton 
+          <CustomButton
             text="Send SMS"
             onPress={this.sendSMSPressed.bind(this)}
           />

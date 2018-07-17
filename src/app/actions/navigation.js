@@ -24,6 +24,11 @@ export const navigateToMap = () =>
     routeName: ScreenNames.MAP
   });
 
+export const navigateToProfile = () =>
+  NavigationActions.navigate({
+    routeName: ScreenNames.USER_PROFILE
+  });
+
 export const exitApp = () => {
   RNExitApp.exitApp();
 };
