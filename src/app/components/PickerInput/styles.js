@@ -59,6 +59,6 @@ export default StyleSheet.create({
   dropdownIcon: {
     borderColor: MEDIUM_GREY,
     borderBottomWidth: 1,
-    fontSize: 18,
+    fontSize: 20,
   }
 });

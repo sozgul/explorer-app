@@ -12,26 +12,21 @@ let initialState = {
 const accountData = (state = initialState, action = {}) => {
   switch(action.type) {
   case ActionTypes.USER_ACCEPTED_TERMS:
-    state.termsAccepted = true;
-    break;
+    return { ...state, termsAccepted:true };
   case ActionTypes.PHONE_NUMBER_UPDATED:
-    state.country = action.country;
-    state.countryCode = action.countryCode;
-    state.phoneNumber = action.phoneNumber;
-    break;
+    return { ...state, country: action.country,ccountryCode: action.countryCode, phoneNumber: action.phoneNumber };
   case ActionTypes.SMS_VERIFICATION_SENT:
-    state.verificationStatus = 'pending';
-    break;
+    return { ...state, verificationStatus:'pending' };
   case ActionTypes.SMS_VERIFICATION_ACCEPTED:
-    state.verificationStatus = 'verified';
-    break;
+    return { ...state, verificationStatus:'verified' };
   case ActionTypes.SMS_VERIFICATION_REJECTED:
-    state.verificationStatus = 'rejected';
-    break;
+    return { ...state, verificationStatus: 'rejected' };
+  case ActionTypes.PROFILE_UPDATED:
+    return { ...state, phoneNumber: action.phoneNumber };
   default:
     break;
   }
-  
+
   return state;
 };
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {View, Text, TouchableOpacity, Button, Picker} from 'react-native';
 import commonStyles from '../../common/styles';
 import styles from './styles';
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 class PickerInputComponent extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class PickerInputComponent extends Component {
     return (
       <View style={styles.wrapper}>
         <View style={styles.inputWrapper}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.textInput]}
             onPress={this.onFocusInput.bind(this)}
             caretHidden={true}
@@ -53,7 +54,9 @@ class PickerInputComponent extends Component {
           >
             <Text style={[commonStyles.text, styles.dropdown]}>{selectedItem.label}</Text>
           </TouchableOpacity>
-          <Text style={[commonStyles.textInput, styles.dropdownIcon]}>V</Text>
+          <FontAwesome style = {styles.dropdownIcon}>
+            {Icons.caretDown}
+          </FontAwesome>
         </View>
         {pickerOpen && (
           <View style={styles.pickerWrapper}>
@@ -87,7 +90,7 @@ class PickerInputComponent extends Component {
 
 PickerInputComponent.propTypes = {
   options: PropTypes.array.isRequired,
-  selectedValue: PropTypes.string,
+  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func
 };

@@ -1,6 +1,6 @@
 export default [
-  {gpsTimeLimit: '2 hour'},
-  {gpsTimeLimit: '1 hour'},
-  {gpsTimeLimit: '15 minutes'},
-  {gpsTimeLimit: 'Never'}
+  {label: '2 hours', value: 60*60*2},
+  {label: '1 hour', value: 60*60},
+  {label: '15 minutes', value: 15*60},
+  {label: 'Never', value: -1}
 ];

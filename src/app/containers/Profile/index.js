@@ -29,8 +29,8 @@ class ProfileScreen extends React.Component {
     navigateToMap();
   }
 
-  gpsValueChanged(gpsTimeLimit) {
-    this.setState({gpsTimeLimit: gpsTimeLimit});
+  gpsValueChanged(time) {
+    this.setState({gpsTimeLimit: time});
   }
   viewTapped() {
     Keyboard.dismiss();
@@ -53,7 +53,7 @@ class ProfileScreen extends React.Component {
           <Text style={[styles.textBox]}>GPS permissions default expiration</Text>
           <PickerInput
             ref={ref => this._gpsTimeLimit = ref}
-            options={gpsExpirationTime.map(item => ({label: item.gpsTimeLimit, value: item.gpsTimeLimit}))}
+            options={gpsExpirationTime.map(item => ({label: item.label, value: item.value}))}
             onChange={this.gpsValueChanged.bind(this)}
             selectedValue={this.state.gpsTimeLimit}
           />
