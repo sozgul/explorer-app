@@ -1,7 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
 import {reduxifyNavigator, createReactNavigationReduxMiddleware} from 'react-navigation-redux-helpers';
 import { connect } from 'react-redux';
-
 import * as ScreenNames from './screen_names';
 import HomeScreen from '../containers/Home';
 import SignupScreen from '../containers/Signup';
@@ -29,13 +28,14 @@ const RootNavigator = createStackNavigator(
     [ScreenNames.USER_PROFILE]: {screen:ProfileScreen}
 =======
     [ScreenNames.CONTACTS]: {screen:ContactsScreen}
+<<<<<<< HEAD
 
 >>>>>>> Added contacts screen and linear gradient to home page
+=======
+>>>>>>> Changes based on PR review
   },
   {
     initialRouteName: ScreenNames.HOME
-    // initialRouteName: ScreenNames.CONTACTS
-
   }
 );
 

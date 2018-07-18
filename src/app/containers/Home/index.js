@@ -10,10 +10,10 @@ import commonStyles from '../../common/styles';
 import styles from './styles';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 import { Linking } from 'react-native';
-
-// import LinearGradient from 'react-native-linear-gradient';
 import { LinearGradient } from 'expo';
-// #f6e672
+import {YELLOW, PURPLE} from '../../common/colors';
+
+
 class HomeScreen extends React.Component {
   async continuePressed() {
     const {userAcceptedTerms, navigateToSignup} = this.props;
@@ -22,7 +22,7 @@ class HomeScreen extends React.Component {
   }
   render() {
     return (
-      <LinearGradient colors={['#f7ed72','#210368']}
+      <LinearGradient colors={[YELLOW,PURPLE]}
         start={{x: 0.0, y: 0.0}} end={{x: 1.0, y: 1.0}} style = {commonStyles.container_home}
       >
         <View style={commonStyles.container}>
