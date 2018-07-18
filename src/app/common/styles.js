@@ -8,6 +8,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  container_home: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
   text: {
     fontFamily: REGULAR_FONT,
   },
