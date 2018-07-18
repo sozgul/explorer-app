@@ -34,7 +34,6 @@
     "react": "^16.3.1",
     "react-devtools": "^3.2.3",
     "react-native": "0.55.2",
-    "react-native-contacts": "^2.2.2",
     "react-native-exit-app": "^1.0.0",
     "react-native-fontawesome": "^5.7.0",
     "react-native-linear-gradient": "^2.4.0",
@@ -45,14 +44,12 @@
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
-    "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1"
   },
   "rnpm": {
     "assets": [
-      "./src/app/assets/fonts",
-      "./src/app/assets/images"
+      "./src/app/assets/fonts"
     ]
   }
 }

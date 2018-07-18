@@ -11,34 +11,34 @@ const styles = StyleSheet.create({
   },
   rocketIcon: {
     fontSize: 48,
-    color: 'white'
+    color: WHITE
   },
   welcomeText: {
     fontSize: 28,
     marginTop: 5,
-    color: 'white'
+    color: WHITE
   },
   explorerText: {
     fontSize: 58,
     fontWeight: 'bold',
     marginTop: 1,
-    color: 'white'
+    color: WHITE
   },
   descriptionText: {
     fontSize: 22,
     marginTop: 10,
-    color: 'white'
+    color: WHITE
   },
   continueText: {
     fontSize: 14,
     marginTop: 95,
-    color: 'white'
+    color: WHITE
   },
   termsText: {
     textDecorationLine: 'underline',
     fontSize: 14,
     marginTop: 5,
-    color: 'white'
+    color: WHITE
   },
   continueButton: {
     borderWidth: 1,
@@ -50,8 +50,7 @@ const styles = StyleSheet.create({
   continueButtonText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'white'
+    color: WHITE
   }
 });
-
 export default styles;
