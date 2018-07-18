@@ -23,6 +23,11 @@ export const navigateToMap = () =>
   NavigationActions.navigate({
     routeName: ScreenNames.MAP
   });
+export const navigateToContacts = () =>
+  NavigationActions.navigate({
+    routeName: ScreenNames.CONTACTS
+  });
+
 
 export const navigateToProfile = () =>
   NavigationActions.navigate({

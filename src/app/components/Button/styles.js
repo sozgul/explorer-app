@@ -1,17 +1,19 @@
 
 import {StyleSheet} from 'react-native';
+import {WHITE} from '../../common/colors';
 
 const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
-    borderColor: '#333',
+    borderColor: WHITE,
     borderRadius: 4,
     padding: 18,
     marginTop: 30
   },
   buttonText: {
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: WHITE
   }
 });
 

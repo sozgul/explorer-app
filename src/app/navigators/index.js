@@ -8,6 +8,7 @@ import SignupScreen from '../containers/Signup';
 import SignupVerifyScreen from '../containers/Signup/verify';
 import MapScreen from '../containers/Map';
 import ProfileScreen from '../containers/Profile';
+import ContactsScreen from '../containers/Contacts';
 
 const navMiddleware = createReactNavigationReduxMiddleware(
   'root',
@@ -20,10 +21,12 @@ const RootNavigator = createStackNavigator(
     [ScreenNames.SIGNUP]: {screen:SignupScreen},
     [ScreenNames.SIGNUP_VERIFY]: {screen:SignupVerifyScreen},
     [ScreenNames.MAP]: {screen:MapScreen},
-    [ScreenNames.USER_PROFILE]: {screen:ProfileScreen}
+    [ScreenNames.USER_PROFILE]: {screen:ProfileScreen},
+    [ScreenNames.CONTACTS]: {screen:ContactsScreen}
   },
   {
     initialRouteName: ScreenNames.HOME
+
   }
 );
 
