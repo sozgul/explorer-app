@@ -45,6 +45,7 @@ class ContactsScreen extends React.Component {
         return 0;
       })
     });
+    //console.log(this.state.contacts);
   }
 
   _getContactFullName(contact) {
