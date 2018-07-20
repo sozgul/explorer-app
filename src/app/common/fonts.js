@@ -1,2 +1,2 @@
 
-export const REGULAR_FONT = 'Helvetica Neue';
+export const REGULAR_FONT = 'Avenir Next';

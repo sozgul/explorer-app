@@ -2,7 +2,7 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import rootReducer from './reducers';
-import {navMiddleware} from './navigators/index';
+import {navMiddleware} from './navigators';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -13,7 +13,8 @@ let logger = createLogger({
 
 const persistConfig = {
   key: 'root',
-  storage
+  storage,
+  blacklist: ['navigationData']
 };
 
 export const store = createStore(

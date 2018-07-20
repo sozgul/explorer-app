@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import Layout from './components/Layout';
-import {AppNavigator} from './navigators/index';
+import {AppNavigator} from './navigators';
 import {store, persistor} from './store';
 import { AppLoading, Font } from 'expo';
 import { PersistGate } from 'redux-persist/integration/react';

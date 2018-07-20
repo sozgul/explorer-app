@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Text } from 'react-native';
-import CustomButtonComponent from '../../components/Button';
+import CustomButton from '../../components/Button';
 import {navigateToSignup} from '../../actions/navigation';
 import {userAcceptedTerms} from './actions';
 import commonStyles from '../../common/styles';
@@ -14,7 +14,11 @@ import { LinearGradient } from 'expo';
 import {YELLOW, PURPLE} from '../../common/colors';
 
 
-class HomeScreen extends React.Component {
+class WelcomeScreen extends React.Component {
+  static navigationOptions = {
+    headerTitle: 'welcome'
+  };
+
   async continuePressed() {
     const {userAcceptedTerms, navigateToSignup} = this.props;
     await userAcceptedTerms();
@@ -38,7 +42,9 @@ class HomeScreen extends React.Component {
           <Text style={[commonStyles.text, styles.termsText]} onPress={() => Linking.openURL('#')}>
 Terms of Service and Privacy Policy </Text>
 
-          <CustomButtonComponent style={[styles.continueButton, styles.continueButtonText]}
+          <CustomButton
+            style={styles.continueButton}
+            textStyle={styles.continueButtonText}
             text="Continue"
             onPress={this.continuePressed.bind(this)}
           />
@@ -48,7 +54,7 @@ Terms of Service and Privacy Policy </Text>
   }
 }
 
-HomeScreen.propTypes = {
+WelcomeScreen.propTypes = {
   account: PropTypes.object,
   userAcceptedTerms: PropTypes.func.isRequired,
   navigateToSignup: PropTypes.func.isRequired
@@ -62,4 +68,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   userAcceptedTerms
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen);
