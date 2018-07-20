@@ -39,6 +39,10 @@
       "error",
       "single"
     ],
+    "semi": [
+      "error",
+      "always"
+    ],
     "react/jsx-uses-vars": "warn",
     "react-native/no-unused-styles": 2,
     "react-native/split-platform-components": 2,

@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import settingsData from './settings';
-import userProfileData from './user-profile';
 import navigationData from './navigation';
 import accountData from './account';
+import userProfileData from './user-profile';
+import messagesData from './messages';
+import mapsData from './maps';
 
 export default combineReducers({
   navigationData,
-  settingsData,
+  accountData,
   userProfileData,
-  accountData
+  mapsData,
+  messagesData
 });
