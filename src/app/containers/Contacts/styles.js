@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   phoneContainer: {
-    padding: 15
+    padding: 10
   },
   titleWrapper: {
     fontSize: 32,
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   iconWrapper: {
     marginTop: 10,
     fontSize: 20,
-    paddingStart: 20,
+    paddingStart: 20
   },
   lastcontactWrapper: {
     padding: 15,
