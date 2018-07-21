@@ -19,7 +19,7 @@ export default createBottomTabNavigator({
     {
       [ScreenNames.CONTACTS]: {screen:ContactsScreen},
       [ScreenNames.CONTACT_DETAILS]: {screen:ContactDetailsScreen},
-    }, 
+    },
     {
       initialRouteName: ScreenNames.CONTACTS,
       navigationOptions: {

@@ -7,7 +7,7 @@ import {listStyles} from './styles';
 class ContactList extends Component {
   _onItemPressed(contact) {
     const {onContactPressed = () => {}} = this.props;
-    
+
     onContactPressed(contact);
   }
 
@@ -22,7 +22,7 @@ class ContactList extends Component {
 
   render() {
     let {contacts} = this.props;
-    
+
     contacts = contacts.map(item => {
       item.key = item.id;
       return item;
