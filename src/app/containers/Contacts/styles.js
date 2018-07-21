@@ -1,8 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {PURPLE} from '../../common/colors';
-import {LIGHT_GREY} from '../../common/colors';
-import {MEDIUM_GREY} from '../../common/colors';
-import {BLACK} from '../../common/colors';
+import {LIGHT_GREY, MEDIUM_GREY, PURPLE, BLACK} from '../../common/colors';
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -32,25 +29,31 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: BLACK
   },
-  textWrapper: {
-    color: PURPLE,
-    fontSize: 20,
-    paddingStart: 10,
-  },
-  iconWrapper: {
-    marginTop: 10,
-    fontSize: 20,
-    paddingStart: 20
-  },
   lastcontactWrapper: {
     padding: 15,
     borderWidth: 1,
     borderColor: LIGHT_GREY
   },
-  navIconWrapper: {
-    fontSize: 25,
-    paddingStart: 20,
-    marginTop: 10
+  iconButtonWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignContent: 'center',
+    paddingLeft: 15,
+    paddingTop: 12,
+    paddingBottom: 6
+  },
+  icon: {
+    color: PURPLE,
+    fontSize: 36
+  },
+  textWrapper: {
+    color: PURPLE,
+    fontSize: 20,
+    marginLeft: 10,
+    paddingTop: 4
+  },
+  blockText: {
+    color: MEDIUM_GREY
   }
 });
 
