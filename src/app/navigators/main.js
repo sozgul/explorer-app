@@ -23,10 +23,7 @@ export default createBottomTabNavigator({
     {
       initialRouteName: ScreenNames.CONTACTS,
       navigationOptions: {
-        ...commonStackNavigationOptions,
-        title: 'contacts',
-        tabBarLabel: 'contacts',
-        headerTitle: 'contacts'
+        ...commonStackNavigationOptions
       }
     }
   ),
@@ -38,10 +35,7 @@ export default createBottomTabNavigator({
     {
       initialRouteName: ScreenNames.MAP,
       navigationOptions: {
-        ...commonStackNavigationOptions,
-        title: 'maps',
-        tabBarLabel: 'maps',
-        headerTitle: 'maps'
+        ...commonStackNavigationOptions
       }
     }
   ),
@@ -53,10 +47,7 @@ export default createBottomTabNavigator({
     {
       initialRouteName: ScreenNames.USER_PROFILE,
       navigationOptions: {
-        ...commonStackNavigationOptions,
-        title: 'profile',
-        tabBarLabel: 'profile',
-        headerTitle: 'profile'
+        ...commonStackNavigationOptions
       }
     }
   ),
@@ -64,10 +55,10 @@ export default createBottomTabNavigator({
 {
   initialRouteName: ScreenNames.CONTACTS_TAB,
   navigationOptions: ({navigation}) => ({
-    tabBarIcon: ({tintColor}) => {
+    tabBarIcon: props => {
       const {routeName} = navigation.state;
 
-      return (<NavTabItem routeName={routeName} tintColor={tintColor} />)
+      return (<NavTabItem {...props} routeName={routeName} />);
     },
     title: tabTitles[navigation.state.routeName]
   }),
