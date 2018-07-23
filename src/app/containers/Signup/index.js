@@ -10,7 +10,7 @@ import commonStyles from '../../common/styles';
 import styles from './styles';
 import {navigateToSignupVerify} from '../../actions/navigation';
 import {phoneNumberUpdated} from './actions';
-import {getCountryCallingCode, AsYouType, isValidNumber, parseNumber} from 'libphonenumber-js';
+import {getCountryCallingCode, AsYouType, isValidNumber, parseNumber, formatNumber} from 'libphonenumber-js';
 import LoadingOverlay from '../../components/LoadingOverlay';
 
 class SignupScreen extends React.Component {
@@ -33,9 +33,11 @@ class SignupScreen extends React.Component {
 
   sendSMSPressed() {
     if (this._isPhoneNumberValid()) {
+      const {phoneNumber: phone, country, countryCode} = this.state;
+      const formattedPhone = `+${countryCode} ${formatNumber({phone, country}, 'National')}`;
       Alert.alert(
         'Confirm phone number',
-        'please confirm that your number is correct',
+        `please confirm that your number \n${formattedPhone} is correct`,
         [
           {text: 'Cancel', onPress: () => {}},
           {text: 'OK', onPress: this.onPhoneNumberCorrect.bind(this)}
