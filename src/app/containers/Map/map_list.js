@@ -10,7 +10,6 @@ import commonStyles from '../../common/styles';
 
 class MapListScreen extends React.Component {
   static navigationOptions = () => {
-    // TODO: Customize the header title for map based on contact/group.
     return {
       headerTitle: 'select a contact to start a map'
     };

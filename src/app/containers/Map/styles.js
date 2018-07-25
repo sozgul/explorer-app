@@ -1,5 +1,4 @@
 import {StyleSheet } from 'react-native';
-//import {REGULAR_FONT} from '../../common/fonts';
 import {PURPLE, LIGHT_GREY_2, MEDIUM_GREY} from '../../common/colors';
 
 const styles = StyleSheet.create({
