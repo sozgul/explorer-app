@@ -18,7 +18,7 @@ const RootNavigator = createStackNavigator(
     [ScreenNames.MAP_FLOW]: MapNavigator
   },
   {
-    initialRouteName: ScreenNames.SIGNUP_FLOW,
+    initialRouteName: ScreenNames.MAIN_FLOW,
     headerMode: 'none'
   }
 );

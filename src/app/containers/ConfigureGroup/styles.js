@@ -1,5 +1,5 @@
 import {StyleSheet } from 'react-native';
-import {LIGHT_GREY_2, LIGHTER_GREY, BLACK, MEDIUM_GREY} from '../../common/colors';
+import {LIGHT_GREY_2, LIGHTER_GREY, BLACK, MEDIUM_GREY, LIGHT_YELLOW } from '../../common/colors';
 
 const styles = StyleSheet.create({
   listItem: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     margin: 20
   },
   participantWrapper: {
-    backgroundColor: '#FAFAD2',
+    backgroundColor: LIGHT_YELLOW,
     paddingLeft: 10
   },
   title: {

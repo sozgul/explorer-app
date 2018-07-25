@@ -5,7 +5,7 @@ import * as ScreenNames from '../../navigators/screen_names';
 import {HeaderBackButton} from 'react-navigation';
 import commonstyles from '../../common/styles';
 import PropTypes from 'prop-types';
-import {navigateToMap} from '../../actions/navigation';
+import {navigateToMapList} from '../../actions/navigation';
 import {bindActionCreators} from 'redux';
 import commonStyles from '../../common/styles';
 import styles from './styles';
@@ -36,10 +36,10 @@ class ConfirmGroupScreen extends React.Component {
 
 
   _createMapPressed() {
-    const {navigateToMap} = this.props;
+    const {navigateToMapList} = this.props;
     const {params: contactsSelected} = this.props.navigation.state;
     createMap('', '', contactsSelected.map((item) => (item.id)), this.state.groupName, '', this.state.messages );
-    navigateToMap();
+    navigateToMapList();
   }
 
   render() {
@@ -76,12 +76,12 @@ class ConfirmGroupScreen extends React.Component {
 }
 
 ConfirmGroupScreen.propTypes = {
-  navigateToMap: PropTypes.func.isRequired,
+  navigateToMapList: PropTypes.func.isRequired,
   createMap: PropTypes.func.isRequired
 };
 const mapStateToProps = state => (state);
 
 const mapDispatchToProps = (dispatch) => 
-  bindActionCreators({navigateToMap, createMap}, dispatch);
+  bindActionCreators({navigateToMapList, createMap}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConfirmGroupScreen);

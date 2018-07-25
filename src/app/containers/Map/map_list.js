@@ -28,6 +28,7 @@ class MapListScreen extends React.Component {
   }
   _openMapPressed(map) {
     // to do display map.
+    console.log(map);
   }
 
   render() {

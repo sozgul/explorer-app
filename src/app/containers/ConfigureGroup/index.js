@@ -11,11 +11,10 @@ import * as ScreenNames from '../../navigators/screen_names';
 import {HeaderBackButton} from 'react-navigation';
 import commonStyles from '../../common/styles';
 import {createMap} from '../Map/actions';
-import {navigateToMap} from '../../actions/navigation';
+import {navigateToMapList} from '../../actions/navigation';
 
 class CreateGroupScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
-    // TODO: Customize the header title for map based on contact/group.
     return {
       headerTitle: 'add participants',
       headerLeft: (
@@ -68,13 +67,13 @@ class CreateGroupScreen extends React.Component {
   }
 
   _continuePressed() {
-    const {navigateToMap} = this.props;
+    const {navigateToMapList} = this.props;
     if (this.state.selectedContactIDs.length > 1) {
       const {navigateToConfirmGroup} = this.props;
       navigateToConfirmGroup(this.state.selectedContactIDs);
     } else if (this.state.selectedContactIDs.length == 1) {
       createMap('', '', this.state.selectedContactIDs[0].id, this.state.selectedContactIDs[0].firstName, '', '' );
-      navigateToMap();
+      navigateToMapList();
     } else
       return;
   }
@@ -124,12 +123,12 @@ class CreateGroupScreen extends React.Component {
 
 CreateGroupScreen.propTypes = {
   navigateToConfirmGroup: PropTypes.func.isRequired,
-  navigateToMap: PropTypes.func.isRequired,
+  navigateToMapList: PropTypes.func.isRequired,
   createMap: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => (state);
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({navigateToConfirmGroup, navigateToMap, createMap}, dispatch);
+  bindActionCreators({navigateToConfirmGroup, navigateToMapList, createMap}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateGroupScreen);
