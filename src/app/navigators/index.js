@@ -13,7 +13,8 @@ const navMiddleware = createReactNavigationReduxMiddleware(
 const RootNavigator = createStackNavigator(
   {
     [ScreenNames.SIGNUP_FLOW]: SignupNavigator,
-    [ScreenNames.MAIN_FLOW]: MainNavigator
+    [ScreenNames.MAIN_FLOW]: MainNavigator,
+    
   },
   {
     initialRouteName: ScreenNames.SIGNUP_FLOW,

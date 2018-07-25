@@ -13,3 +13,4 @@ export const MAP = 'Map';
 export const USER_PROFILE = 'UserProfile';
 export const CONTACTS = 'Contacts';
 export const CONTACT_DETAILS = 'ContactDetails';
+export const WELCOME_MAP = 'WelcomeMap';

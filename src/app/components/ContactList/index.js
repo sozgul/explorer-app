@@ -40,7 +40,7 @@ class ContactList extends Component {
 
     return (
       <View style={listStyles.wrapper}>
-        <View style={commonStyles.wrapper_button} createContact={createContact}>
+        <View style={buttonStyles} createContact={createContact}>
           <Text style={commonStyles.purple_text} onPress={() => Linking.openURL('app-settings:')}>Create new contact
           </Text>
           <FontAwesome style={[commonStyles.plus]}>
