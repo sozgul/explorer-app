@@ -1,7 +1,7 @@
 
 import {StyleSheet} from 'react-native';
 import {REGULAR_FONT} from './fonts';
-import {MEDIUM_GREY} from './colors';
+import {MEDIUM_GREY,PURPLE} from './colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,13 +16,50 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: REGULAR_FONT,
   },
+  purple_text: {
+    paddingLeft: 15,
+    paddingTop: 15,
+    paddingRight: 15,
+    color: PURPLE,
+    fontSize: 24,
+  },
   textInput: {
     borderBottomWidth: 1,
     borderColor: MEDIUM_GREY,
     padding: 8,
     fontFamily: REGULAR_FONT,
     fontSize: 24
-  }
+  },
+  plus: {
+    paddingTop: 25,
+    paddingLeft: 95,
+
+    color: PURPLE,
+  },
+  wrapper:{
+    flex: 0.1,
+    flexDirection: 'row',
+  },
+  wrapper_button:{
+    flex: 0.1,
+    flexDirection: 'row',
+  },
+  hidden:{
+    display: 'none',
+  },
+  continueButton: {
+    borderWidth: 0,
+    borderColor: PURPLE,
+    borderRadius: 0,
+    padding: 18,
+    marginTop: 30
+  },
+  continueText: {
+    fontSize: 14,
+    marginTop: 95,
+    color: PURPLE
+  },
+
 });
 
 export default styles;

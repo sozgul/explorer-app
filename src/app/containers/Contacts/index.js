@@ -58,7 +58,8 @@ class ContactsScreen extends React.Component {
       <View style={commonStyles.container}>
         <ContactList
           onContactPressed={navigateToContactDetails}
-          contacts={this.state.contacts} />
+          contacts={this.state.contacts}
+          createContact={false} />
       </View>
     );
   }
