@@ -71,6 +71,32 @@ export const navigateToProfile = params =>
     params
   });
 
+export const navigateToCreateMap = params =>
+  NavigationActions.navigate({
+    routeName: ScreenNames.CREATE_MAP,
+    params
+  });
+
+export const navigateToMapList = params =>
+  NavigationActions.navigate({
+    routeName: ScreenNames.MAP_LIST,
+    params
+  });
+
+export const navigateToCreateGroup = params =>
+  NavigationActions.navigate({
+    routeName: ScreenNames.CREATE_GROUP,
+    params
+  });
+
+export const navigateToConfirmGroup = params =>
+  NavigationActions.navigate({
+    routeName: ScreenNames.CONFIRM_GROUP,
+    params
+  });
+
+
+
 export const exitApp = () => {
   RNExitApp.exitApp();
 };

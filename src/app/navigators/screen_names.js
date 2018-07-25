@@ -13,3 +13,7 @@ export const MAP = 'Map';
 export const USER_PROFILE = 'UserProfile';
 export const CONTACTS = 'Contacts';
 export const CONTACT_DETAILS = 'ContactDetails';
+export const CREATE_MAP = 'CreateMap';
+export const MAP_LIST = 'MapList';
+export const CREATE_GROUP = 'CreateGroup';
+export const CONFIRM_GROUP = 'ConfirmGroup';

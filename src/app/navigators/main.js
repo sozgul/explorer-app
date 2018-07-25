@@ -3,10 +3,11 @@ import * as ScreenNames from './screen_names';
 import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 import ContactsScreen from '../containers/Contacts';
 import ContactDetailsScreen from '../containers/Contacts/details';
-import MapScreen from '../containers/Map';
 import ProfileScreen from '../containers/Profile';
 import NavTabItem from '../components/NavTabItem';
 import {commonStackNavigationOptions, commonTabBarOptions} from './options';
+import CreateMapScreen from '../containers/Map/create_map';
+import MapListScreen from '../containers/Map/map_list';
 
 const tabTitles = {
   [ScreenNames.CONTACTS_TAB]: 'contacts',
@@ -27,13 +28,14 @@ export default createBottomTabNavigator({
       }
     }
   ),
-
+ 
   [ScreenNames.MAPS_TAB]: createStackNavigator(
     {
-      [ScreenNames.MAP]: {screen:MapScreen}
+      [ScreenNames.MAP_LIST]: {screen:MapListScreen},
+      [ScreenNames.CREATE_MAP]: {screen:CreateMapScreen}
     },
     {
-      initialRouteName: ScreenNames.MAP,
+      initialRouteName: ScreenNames.MapListScreen,
       navigationOptions: {
         ...commonStackNavigationOptions
       }
