@@ -35,10 +35,12 @@ class ConfirmGroupScreen extends React.Component {
 
 
   _createMapPressed() {
-    const {navigateToDisplayMap, profile} = this.props;
+    const {navigateToDisplayMap, profile, createMap} = this.props;
     const {params: contactsSelected} = this.props.navigation.state;
     let contactIDs = contactsSelected.map(item => item.id);
-    createMap({ownerUserID: profile.displayUserName, contactIDs: contactIDs, subject: this.state.groupName});
+    let subject = this.state.groupName;
+    let ownerUserID = profile.displayUserName;
+    createMap({ownerUserID, contactIDs, subject});
     navigateToDisplayMap();
   }
 
