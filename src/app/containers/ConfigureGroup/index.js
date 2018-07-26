@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {navigateToDisplayMap} from '../../actions/navigation';
 import CustomButton from '../../components/Button';
 import { bindActionCreators } from 'redux';
-import { Contacts, Permissions } from 'expo';
 import ContactList from '../../components/ContactList';
 import * as ScreenNames from '../../navigators/screen_names';
 import {HeaderBackButton} from 'react-navigation';
