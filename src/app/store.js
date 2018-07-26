@@ -5,7 +5,6 @@ import rootReducer from './reducers';
 import {navMiddleware} from './navigators';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import {setupMockMaps} from '../mockData/factories/map';
 
 let logger = createLogger({
   timestamps: true,
@@ -23,5 +22,3 @@ export const store = createStore(
   compose(applyMiddleware(thunk, logger, navMiddleware))
 );
 export const persistor = persistStore(store);
-
-setupMockMaps();

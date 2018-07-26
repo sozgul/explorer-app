@@ -1,9 +1,9 @@
 import {generators, create, createMany} from 'sharkhorse';
 import uuidV4 from 'uuid/v4';
 import {Message} from './message';
-import {Contacts, Permissions} from 'expo';
 import {store} from '../../app/store';
 import {createMap} from '../../app/containers/Map/actions';
+import {getContactsAsync, getFullName} from '../../app/utilities/contacts';
 
 export const SharedMap = {
   id: null,
@@ -16,7 +16,7 @@ export const SharedMap = {
 
 export function createSharedMap({ownerUserID, contactIDs = []}) {
   const newMap = Object.assign(
-    create(SharedMap), 
+    create(SharedMap),
     {
       id: uuidV4(),
       ownerUserID: ownerUserID,
@@ -41,27 +41,17 @@ function getNRandomContactIDs(n, inputArray) {
   return output;
 }
 
-async function _generateMockMaps(numMaps, numContactsPerMap = []) {
+async function _generateMockMaps({count, contactCountPerMap = []}) {
   // Just setting ownerUserID (which represents the current user's userID) to a mock value..
   const ownerUserID = 'MY-USER-ID';
   const maps = [];
 
-  const permission = await Permissions.askAsync(Permissions.CONTACTS);
-  if (permission.status !== 'granted') {
-    throw 'Could not create mock maps because user denied contact permissions.';
-  }
-
   // Fetch contacts so we can use actual contactIDs...
-  const contactsResponse = await Contacts.getContactsAsync({
-    fields: [
-      Contacts.PHONE_NUMBERS
-    ]
-  });
-  const contacts = contactsResponse.data ? contactsResponse.data : [];
+  const contacts = await getContactsAsync();
   
   // Create the specified number of maps...
-  for (let i = 0; i < numMaps; i++) {
-    const numContacts = numContactsPerMap[i];
+  for (let i = 0; i < count; i++) {
+    const numContacts = contactCountPerMap[i];
     const contactIDs = getNRandomContactIDs(numContacts, contacts);
     // Create the new shared map.
     const newMap = createSharedMap({ownerUserID, contactIDs});
@@ -72,7 +62,7 @@ async function _generateMockMaps(numMaps, numContactsPerMap = []) {
       contacts.some(c => {
         if (c.id === contactID) {
           contact = c;
-          newMap.subject = `${contact.firstName} ${contact.lastName}`;
+          newMap.subject = getFullName(contact);
           return true;
         }
         return false;
@@ -109,7 +99,7 @@ export async function setupMockMaps() {
       // Map 3: has 3 random contacts
       // Map 4: has 2 random contacts
       // Map 5: has 1 random contact
-      return _generateMockMaps(5, [1, 4, 3, 2, 1]);
+      return _generateMockMaps({count: 5, contactCountPerMap: [1, 4, 3, 2, 1]});
     } else {
       return resolve();
     }
