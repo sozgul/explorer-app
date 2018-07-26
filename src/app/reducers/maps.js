@@ -5,6 +5,7 @@ let initialState = {
 };
 
 function addMapToState(state, {id, ownerUserID, contactIDs, subject, lastContact, messages}) {
+  console.log("in addMapTO State");
   const {mapList} = state;
   const newMap = {
     id, // id will be provided by API response
@@ -14,6 +15,7 @@ function addMapToState(state, {id, ownerUserID, contactIDs, subject, lastContact
     subject,
     messages
   };
+  console.log(newMap);
   mapList.unshift(newMap);
   return {
     ...state,

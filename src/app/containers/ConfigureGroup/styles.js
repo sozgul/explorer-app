@@ -3,10 +3,7 @@ import {LIGHT_GREY_2, LIGHTER_GREY, BLACK, MEDIUM_GREY, LIGHT_YELLOW } from '../
 
 const styles = StyleSheet.create({
   listItem: {
-    paddingTop: 15,
-    paddingBottom: 15,
-    paddingLeft: 15,
-    paddingRight: 15,
+    padding: 15,
     borderColor: LIGHT_GREY_2,
     borderBottomWidth: 1,
     backgroundColor: LIGHTER_GREY

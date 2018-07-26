@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 20,
     borderBottomWidth: 1,
     borderColor: MEDIUM_GREY
@@ -15,7 +16,6 @@ const styles = StyleSheet.create({
   },
   plus: {
     color: PURPLE,
-    paddingLeft: 135,
     paddingTop: 10
   },
   container: {

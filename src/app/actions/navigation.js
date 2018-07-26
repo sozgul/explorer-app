@@ -95,6 +95,12 @@ export const navigateToConfirmGroup = params =>
     params
   });
 
+export const navigateToDisplayMap = params =>
+  NavigationActions.navigate({
+    routeName: ScreenNames.DISPLAY_MAP,
+    params
+  });
+
 
 
 export const exitApp = () => {
