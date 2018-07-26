@@ -1,16 +1,13 @@
 
 import ActionTypes from '../../actions/types';
 
-export function createMap({id, ownerUserID, contactIDs, subject, lastContact, messages = []}) {
+export function createMap({ownerUserID, contactIDs, subject}) {
   return {
     type: ActionTypes.MAP_CREATED,
     map: {
-      id,
       ownerUserID,
       contactIDs,
-      subject,
-      lastContact,
-      messages
+      subject
     }
   };
 }

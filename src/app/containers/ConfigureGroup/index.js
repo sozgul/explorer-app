@@ -12,6 +12,7 @@ import {HeaderBackButton} from 'react-navigation';
 import commonStyles from '../../common/styles';
 import {createMap} from '../Map/actions';
 import {navigateToConfirmGroup} from '../../actions/navigation';
+import {getContactsAsync} from '../../utilities/contacts';
 
 class CreateGroupScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
@@ -37,34 +38,12 @@ class CreateGroupScreen extends React.Component {
   }
 
   async getContacts() {
-    const permission = await Permissions.askAsync(Permissions.CONTACTS);
-    if (permission.status !== 'granted') {
-      return;
-    }
-    const contacts = await Contacts.getContactsAsync({
-      fields: [
-        Contacts.PHONE_NUMBERS,
-        Contacts.EMAILS
-      ]
-    });
-
+    const contacts = await getContactsAsync();
     this.setState({
-      contacts: contacts.data.sort((c1, c2) => {
-        const c1Name = this._getContactFullName(c1).toLowerCase();
-        const c2Name = this._getContactFullName(c2).toLowerCase();
-        if (c1Name < c2Name) {
-          return -1;
-        } else if (c1Name > c2Name) {
-          return 1;
-        }
-        return 0;
-      })
+      contacts
     });
   }
 
-  _getContactFullName(contact) {
-    return `${contact.firstName} ${contact.lastName}`;
-  }
   _continuePressed() {
     const {navigateToDisplayMap, profile} = this.props;
     if (this.state.selectedContacts.length > 1) {
