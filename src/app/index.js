@@ -5,6 +5,7 @@ import {AppNavigator} from './navigators';
 import {store, persistor} from './store';
 import { AppLoading, Font } from 'expo';
 import { PersistGate } from 'redux-persist/integration/react';
+import {setupMockMaps} from '../mockData/factories/map';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -33,12 +34,20 @@ export default class App extends React.Component {
     );
   }
 
+  _onPersistedDataLoaded() {
+    setupMockMaps();
+  }
+
   render() {
     const {fontsLoaded} = this.state;
 
     return (
       <Provider store={store}>
-        <PersistGate loading={this._renderAppLoading()} persistor={persistor}>
+        <PersistGate 
+          loading={this._renderAppLoading()}
+          persistor={persistor}
+          onBeforeLift={() => this._onPersistedDataLoaded()}
+        >
           <Layout>
             {fontsLoaded ? (this._renderApp()) : (this._renderAppLoading())}
           </Layout>

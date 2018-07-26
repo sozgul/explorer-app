@@ -1,7 +1,8 @@
 import ActionTypes from '../actions/types';
+import uuidV4 from 'uuid/v4';
 
 let initialState = {
-  userId: null,
+  userId: uuidV4(),
   country: null,
   countryCode: null,
   phoneNumber: null,
