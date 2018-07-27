@@ -36,12 +36,8 @@ const styles = StyleSheet.create({
 
     color: PURPLE,
   },
-  wrapper:{
-    flex: 0.1,
-    flexDirection: 'row',
-  },
   wrapper_button:{
-    flex: 0.1,
+    flex: 1,
     flexDirection: 'row',
   },
   hidden:{

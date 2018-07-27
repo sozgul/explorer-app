@@ -44,13 +44,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     color: WHITE
   },
-  continueButton: {
-    borderWidth: 1,
-    borderColor: WHITE,
-    borderRadius: 4,
-    padding: 18,
-    marginTop: 30,
-  },
   continueButtonText: {
     fontSize: 20,
     color: WHITE
