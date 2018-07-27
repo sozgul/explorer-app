@@ -9,12 +9,12 @@ import commonStyles from '../../common/styles';
 import styles from './styles';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 import { LinearGradient } from 'expo';
-import {YELLOW, PURPLE} from '../../common/colors';
+import {LIGHT_PURPLE, LIGHT_YELLOW} from '../../common/colors';
 
 
 class WelcomeMapScreen extends React.Component {
   static navigationOptions = {
-    headerTitle: 'welcome'
+    headerTitle: 'Create New Map'
   };
 
   async continuePressed() {
@@ -23,11 +23,12 @@ class WelcomeMapScreen extends React.Component {
   }
   render() {
     return (
-      <LinearGradient colors={[YELLOW,PURPLE]}
+      <LinearGradient colors={[LIGHT_YELLOW,LIGHT_PURPLE]}
         start={{x: 1.0, y: 0.0}} end={{x: 1.0, y: 1.0}} style = {commonStyles.container_home}
       >
         <View style={commonStyles.container}>
           <Text style={[commonStyles.text, styles.welcomeText]}>Welcome,</Text>
+          <Text style={[commonStyles.text, styles.welcomeText]}>{this.props.profile.displayUserName}</Text>
           <View style={styles.rocketWrapper}>
             <FontAwesome style={[styles.rocketIcon]}>
               {Icons.map}
@@ -50,11 +51,13 @@ class WelcomeMapScreen extends React.Component {
 
 WelcomeMapScreen.propTypes = {
   account: PropTypes.object,
-  navigateToSignup: PropTypes.func.isRequired
+  navigateToSignup: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  account: state.accountData
+  account: state.accountData,
+  profile: state.userProfileData
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
   navigateToSignup,

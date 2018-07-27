@@ -23,11 +23,7 @@ class ContactList extends Component {
   }
 
   render() {
-    let {contacts,createContact} = this.props;
-    let buttonStyles = [commonStyles.wrapper_button];
-    if(!createContact){
-      buttonStyles.push(commonStyles.hidden);
-    }
+    let {contacts, hideCreateContact} = this.props;
     contacts = contacts.map(item => {
       item.key = item.id;
       return item;
@@ -35,13 +31,14 @@ class ContactList extends Component {
 
     return (
       <View style={listStyles.wrapper}>
-        <View style={buttonStyles} createContact={createContact}>
-          <Text style={commonStyles.purple_text} onPress={() => {}}>Create new contact
-          </Text>
-          <FontAwesome style={[commonStyles.plus]}>
-            {Icons.plus}
-          </FontAwesome>
-        </View>
+        {!hideCreateContact && (
+          <View style={commonStyles.wrapper_button}>
+            <Text style={commonStyles.purple_text} onPress={() => {}}>Create new contact</Text>
+            <FontAwesome style={commonStyles.plus}>
+              {Icons.plus}
+            </FontAwesome>
+          </View>
+        )}
         <FlatList
           style={listStyles.list}
           data={contacts}
@@ -55,7 +52,7 @@ class ContactList extends Component {
 ContactList.propTypes = {
   contacts: PropTypes.array,
   onContactPressed: PropTypes.func,
-  createContact: PropTypes.bool
+  hideCreateContact: PropTypes.bool
 };
 
 export default ContactList;

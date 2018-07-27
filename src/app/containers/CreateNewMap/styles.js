@@ -2,12 +2,12 @@ import {StyleSheet} from 'react-native';
 import {WHITE} from '../../common/colors';
 
 const styles = StyleSheet.create({
-  rocketWrapper: {
+  mapWrapper: {
     marginTop: 30,
     borderColor: WHITE,
     padding: 20
   },
-  rocketIcon: {
+  mapIcon: {
     fontSize: 78,
     color: WHITE
   },

@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   wrapper_button:{
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   hidden:{
     display: 'none',
