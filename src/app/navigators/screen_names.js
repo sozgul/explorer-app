@@ -18,3 +18,4 @@ export const MAP_LIST = 'MapList';
 export const CREATE_GROUP = 'CreateGroup';
 export const CONFIRM_GROUP = 'ConfirmGroup';
 export const DISPLAY_MAP = 'DisplayMap';
+export const HOME_SCREEN = 'HomeScreen'
