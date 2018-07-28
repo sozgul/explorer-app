@@ -1,7 +1,6 @@
-import {StyleSheet } from 'react-native';
-import {PURPLE, LIGHT_GREY_2, MEDIUM_GREY} from '../../common/colors';
+import {PURPLE, LIGHT_GREY_2, MEDIUM_GREY,DARK_PURPLE} from '../../common/colors';
 
-const styles = StyleSheet.create({
+const styles = {
   wrapper: {
     display: 'flex',
     flexDirection: 'row',
@@ -10,9 +9,28 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: MEDIUM_GREY
   },
+  rocketIcon: {
+    fontSize: 30,
+    color: DARK_PURPLE
+  },
+  innerCircleStyle:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 0,
+    borderColor: 'white'
+  },
+  outerCircleStyle:{
+    // marginLeft: -10,
+    // marginLeft: 36
+    // borderWidth: 0,
+    // borderColor: 'white'
+
+  },
   purple_text: {
-    color: PURPLE,
-    fontSize: 20,
+    color: DARK_PURPLE,
+    fontSize: 18,
+    // marginLeft: -40,
+    fontWeight: 'bold',
   },
   plus: {
     color: PURPLE,
@@ -28,8 +46,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   text: {
-    fontSize: 20
+    color: DARK_PURPLE,
+    fontSize: 18,
+    //marginRight:-95,
+    fontWeight: 'bold',
   }
-});
+};
 
 export default styles;

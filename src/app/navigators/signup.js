@@ -6,6 +6,7 @@ import SignupVerifyScreen from '../containers/Signup/verify';
 import ProfileScreen from '../containers/Profile';
 import {commonStackNavigationOptions} from './options';
 
+
 export default createStackNavigator({
   [ScreenNames.WELCOME]: {screen:WelcomeScreen},
   [ScreenNames.SIGNUP]: {screen:SignupScreen},
