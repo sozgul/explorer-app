@@ -31,9 +31,6 @@ const styles = StyleSheet.create({
     fontSize: 24
   },
   plus: {
-    paddingTop: 25,
-    paddingLeft: 95,
-
     color: PURPLE,
   },
   wrapper_button:{
@@ -41,9 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  hidden:{
-    display: 'none',
-  },
+  
   continueButton: {
     borderWidth: 0,
     borderColor: PURPLE,
