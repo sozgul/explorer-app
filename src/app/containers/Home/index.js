@@ -1,13 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-//import WelcomeScreen from '../../containers/Welcome';
 import SignupNavigator from '../../navigators/signup';
 import MainNavigator from '../../navigators/main';
 
 function HomeScreen(props) {
   const {account} = props;
-  console.log(account.verificationStatus);
   return (account.verificationStatus === 'verified' ? (
     <MainNavigator />
   ) : (

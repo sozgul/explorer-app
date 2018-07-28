@@ -2,14 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import MapsList from '../../containers/Map/map_list';
-import CreateMap from '../../containers/Map/create_map';
+import CreateNewMap from '../../containers/CreateNewMap';
 
 function DisplayMaps(props) {
   const {maps, profile} = props;
   return (maps.mapList.length > 0 ? (
     <MapsList mapList={maps} />
   ) : (
-    <CreateMap profile={profile} />
+    <CreateNewMap profile={profile} />
   ));
 }
 DisplayMaps.propTypes = {

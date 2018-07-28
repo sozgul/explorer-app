@@ -88,7 +88,8 @@ class CreateGroupScreen extends React.Component {
       <View style={commonStyles.container}>
         <ContactList
           onContactPressed= {(contact) => this._onContactItemPressed(contact)}
-          contacts={this.state.contacts} />
+          contacts={this.state.contacts}
+          hideCreateContact={true} />
         <CustomButton
           text="Continue"
           onPress={this._continuePressed.bind(this)}
