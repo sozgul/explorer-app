@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Text, TouchableHighlight} from 'react-native';
+import {View, Text, TouchableHighlight} from 'react-native';
 import {listItemStyles} from './styles';
 import commonStyles from '../../common/styles';
+import FontAwesome, {Icons} from 'react-native-fontawesome';
 
 class ContactListItem extends Component {
   render() {
-    const {contact, onPress} = this.props;
+    const {contact, onPress, isSelected} = this.props;
+    const selectedStyle = isSelected ? listItemStyles.selected : null;
 
     return (
       <TouchableHighlight
@@ -14,7 +16,12 @@ class ContactListItem extends Component {
         onPress={() => onPress(contact)}
         underlayColor="#fff"
       >
-        <Text style={[commonStyles.text, listItemStyles.itemText]}>{`${contact.firstName} ${contact.lastName}`}</Text>
+        <View style={listItemStyles.listItemContent}>
+          <Text style={[commonStyles.text, listItemStyles.itemText, selectedStyle]}>{`${contact.firstName} ${contact.lastName}`}</Text>
+          {isSelected && (
+            <FontAwesome style={selectedStyle}>{Icons.minus}</FontAwesome>
+          )}
+        </View>
       </TouchableHighlight>
     );
   }
@@ -22,7 +29,8 @@ class ContactListItem extends Component {
 
 ContactListItem.propTypes = {
   contact: PropTypes.object,
-  onPress: PropTypes.func
+  onPress: PropTypes.func,
+  isSelected: PropTypes.bool
 };
 
 export default ContactListItem;

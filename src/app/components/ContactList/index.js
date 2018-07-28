@@ -14,10 +14,16 @@ class ContactList extends Component {
   }
 
   _renderContactItem({item}) {
+    const {selectedContacts, showSelectedContacts} = this.props;
+
+    const isSelected = showSelectedContacts ? 
+      selectedContacts.some((contact) => (item.id === contact.id)) 
+      : false;
     return (
       <ContactListItem
         contact={item}
         onPress={() => this._onItemPressed(item)}
+        isSelected={isSelected}
       />
     );
   }
@@ -52,7 +58,13 @@ class ContactList extends Component {
 ContactList.propTypes = {
   contacts: PropTypes.array,
   onContactPressed: PropTypes.func,
-  hideCreateContact: PropTypes.bool
+  hideCreateContact: PropTypes.bool,
+  showSelectedContacts: PropTypes.bool,
+  selectedContacts: PropTypes.array
+};
+
+ContactList.defaultProps = {
+  selectedContacts: []
 };
 
 export default ContactList;
