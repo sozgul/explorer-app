@@ -28,9 +28,9 @@ class WelcomeMapScreen extends React.Component {
       >
         <View style={commonStyles.container}>
           <Text style={[commonStyles.text, styles.welcomeText]}>Welcome,</Text>
-          <Text style={[commonStyles.text, styles.welcomeText]}>{this.props.profile.displayUserName}</Text>
-          <View style={styles.rocketWrapper}>
-            <FontAwesome style={[styles.rocketIcon]}>
+          <Text style={[commonStyles.text, styles.usernameText]}>{this.props.profile.displayUserName}</Text>
+          <View style={styles.mapWrapper}>
+            <FontAwesome style={[styles.mapIcon]}>
               {Icons.map}
             </FontAwesome>
           </View>
