@@ -9,7 +9,7 @@ class MapScreen extends Component {
   static navigationOptions = () => {
     // TODO: Customize the header title for map based on contact/group.
     return {
-      headerTitle: 'map'
+    
     };
   }
   

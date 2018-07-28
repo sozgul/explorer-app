@@ -33,6 +33,9 @@ class CreateGroupScreen extends React.Component {
       contacts: [],
       selectedContacts: []
     };
+  }
+
+  componentDidMount() {
     this.getContacts();
   }
 
@@ -63,7 +66,7 @@ class CreateGroupScreen extends React.Component {
 
   _onContactItemPressed(contact) {
     const {contacts, selectedContacts} = this.state;
-    const selectedContactIDsIndex = selectedContacts.findIndex(x => { return x.id == contact.id});
+    const selectedContactIDsIndex = selectedContacts.findIndex(x => x.id == contact.id);
     const contactIndex = contacts.findIndex(c => c.id === contact.id);
     const isContactSelected = selectedContactIDsIndex > -1;
 
@@ -89,7 +92,10 @@ class CreateGroupScreen extends React.Component {
         <ContactList
           onContactPressed= {(contact) => this._onContactItemPressed(contact)}
           contacts={this.state.contacts}
-          hideCreateContact={true} />
+          hideCreateContact={true}
+          showSelectedContacts={true}
+          selectedContacts={this.state.selectedContacts}
+        />
         <CustomButton
           text="Continue"
           onPress={this._continuePressed.bind(this)}
