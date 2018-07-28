@@ -31,14 +31,16 @@ const styles = StyleSheet.create({
     fontSize: 24
   },
   plus: {
+    paddingTop: 15,
     color: PURPLE,
+    fontSize: 18
   },
   wrapper_button:{
-    flex: 1,
+    flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  
+
   continueButton: {
     borderWidth: 0,
     borderColor: PURPLE,
