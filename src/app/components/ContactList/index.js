@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {View, FlatList} from 'react-native';
+import {View, FlatList, Text} from 'react-native';
 import ContactListItem from './item';
 import {listStyles} from './styles';
+import commonStyles from '../../common/styles';
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 class ContactList extends Component {
   _onItemPressed(contact) {
@@ -21,8 +23,7 @@ class ContactList extends Component {
   }
 
   render() {
-    let {contacts} = this.props;
-
+    let {contacts, hideCreateContact} = this.props;
     contacts = contacts.map(item => {
       item.key = item.id;
       return item;
@@ -30,6 +31,14 @@ class ContactList extends Component {
 
     return (
       <View style={listStyles.wrapper}>
+        {!hideCreateContact && (
+          <View style={commonStyles.wrapper_button}>
+            <Text style={commonStyles.purple_text} onPress={() => {}}>Create new contact</Text>
+            <FontAwesome style={commonStyles.plus}>
+              {Icons.plus}
+            </FontAwesome>
+          </View>
+        )}
         <FlatList
           style={listStyles.list}
           data={contacts}
@@ -42,7 +51,8 @@ class ContactList extends Component {
 
 ContactList.propTypes = {
   contacts: PropTypes.array,
-  onContactPressed: PropTypes.func
+  onContactPressed: PropTypes.func,
+  hideCreateContact: PropTypes.bool
 };
 
 export default ContactList;

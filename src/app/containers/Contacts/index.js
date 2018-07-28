@@ -30,12 +30,12 @@ class ContactsScreen extends React.Component {
 
   render() {
     const {navigateToContactDetails} = this.props;
-
     return (
       <View style={commonStyles.container}>
         <ContactList
           onContactPressed={navigateToContactDetails}
-          contacts={this.state.contacts} />
+          contacts={this.state.contacts}
+          hideCreateContact={true} />
       </View>
     );
   }
