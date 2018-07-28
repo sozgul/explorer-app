@@ -2,8 +2,9 @@ import { createStackNavigator } from 'react-navigation';
 import {reduxifyNavigator, createReactNavigationReduxMiddleware} from 'react-navigation-redux-helpers';
 import { connect } from 'react-redux';
 import * as ScreenNames from './screen_names';
-import MainNavigator from './main';
+import HomeScreen from '../containers/Home';
 import SignupNavigator from './signup';
+import MainNavigator from './main';
 import MapNavigator from './map';
 
 const navMiddleware = createReactNavigationReduxMiddleware(
@@ -13,12 +14,13 @@ const navMiddleware = createReactNavigationReduxMiddleware(
 
 const RootNavigator = createStackNavigator(
   {
+    [ScreenNames.HOME_SCREEN]: HomeScreen,
     [ScreenNames.SIGNUP_FLOW]: SignupNavigator,
     [ScreenNames.MAIN_FLOW]: MainNavigator,
     [ScreenNames.MAP_FLOW]: MapNavigator
   },
   {
-    initialRouteName: ScreenNames.SIGNUP_FLOW,
+    initialRouteName: ScreenNames.HOME_SCREEN,
     headerMode: 'none'
   }
 );

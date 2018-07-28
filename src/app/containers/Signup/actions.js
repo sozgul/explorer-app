@@ -9,3 +9,9 @@ export function phoneNumberUpdated(phoneNumber, countryCode, country) {
     country
   };
 }
+
+export function smsVerificationAccepted() {
+  return {
+    type: ActionTypes.SMS_VERIFICATION_CODE_ACCEPTED
+  };
+}

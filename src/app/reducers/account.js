@@ -29,7 +29,7 @@ const accountData = (state = initialState, action = {}) => {
       ...state,
       verificationStatus: 'pending'
     };
-  case ActionTypes.SMS_VERIFICATION_ACCEPTED:
+  case ActionTypes.SMS_VERIFICATION_CODE_ACCEPTED:
     return {
       ...state,
       verificationStatus: 'verified'

@@ -63,17 +63,10 @@ export async function getContactsAsync({sorted=true, checkPermission=true} = {})
  * 
  * sorts the given array of contacts by full name.
  */
-export function sortContactsByName(contacts = [], {ascending=true} = {}) {
-  return contacts.sort((c1, c2) => {
-    const c1Name = getFullName(c1).toLowerCase();
-    const c2Name = getFullName(c2).toLowerCase();
-    if (c1Name < c2Name) {
-      return ascending ? -1 : 1;
-    } else if (c1Name > c2Name) {
-      return ascending ? 1 : -1;
-    }
-    return 0;
-  });
+export function sortContactsByName(contacts = []) {
+  return contacts.sort((a, b) => a.firstName  === b.firstName  ?
+    a.lastName.localeCompare(b.lastName) :
+    a.firstName.localeCompare(b.firstName));
 }
 
 /**

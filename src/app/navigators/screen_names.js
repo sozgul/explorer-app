@@ -1,4 +1,3 @@
-
 export const SIGNUP_FLOW = 'SignupFlow';
 export const MAIN_FLOW = 'MainFlow';
 export const CONTACTS_TAB = 'ContactsTab';
@@ -19,3 +18,4 @@ export const MAP_LIST = 'MapList';
 export const CREATE_GROUP = 'CreateGroup';
 export const CONFIRM_GROUP = 'ConfirmGroup';
 export const DISPLAY_MAP = 'DisplayMap';
+export const HOME_SCREEN = 'HomeScreen';

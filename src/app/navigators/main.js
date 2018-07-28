@@ -33,7 +33,7 @@ export default createBottomTabNavigator({
       [ScreenNames.DISPLAY_MAP]: {screen:DisplayMap}
     },
     {
-      initialRouteName: ScreenNames.MapListScreen,
+      initialRouteName: ScreenNames.DISPLAY_MAP,
       navigationOptions: {
         ...commonStackNavigationOptions
       }
