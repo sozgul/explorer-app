@@ -17,10 +17,6 @@ class WelcomeMapScreen extends React.Component {
     headerTitle: 'Create New Map'
   };
 
-  async continuePressed() {
-    const { navigateToSignup} = this.props;
-    await navigateToSignup();
-  }
   render() {
     return (
       <LinearGradient colors={[LIGHT_YELLOW,LIGHT_PURPLE]}

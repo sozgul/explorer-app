@@ -11,4 +11,3 @@ export const LIGHT_YELLOW = '#FEFAE5';
 export const PURPLE = '#6734a7';
 export const DARK_PURPLE = '#210368';
 export const LIGHT_PURPLE = '#CDCADC';
-export const LIGHT_YELLOW = '#FAFAD2';
