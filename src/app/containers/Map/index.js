@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 //import PropTypes from 'prop-types';
+import {bindActionCreators} from 'redux';
 import MapComponent from '../../components/Map';
 import {connect} from 'react-redux';
+import {getCurrentPositionAsync} from '../../utilities/location';
 
 class MapScreen extends Component {
   static navigationOptions = () => {
@@ -16,11 +18,10 @@ class MapScreen extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(location => {
-      this.setState({
-        userLocation: location.coords
-      });
+  async componentDidMount() {
+    const location = await getCurrentPositionAsync();
+    this.setState({
+      userLocation: location.coords
     });
   }
 
@@ -38,6 +39,6 @@ class MapScreen extends Component {
 MapScreen.propTypes = {};
 
 const mapStateToProps = state => (state);
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapScreen);

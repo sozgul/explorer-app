@@ -8,6 +8,7 @@ import {navigateToMap} from '../../actions/navigation';
 import {capitalizeString} from '../../utilities';
 import commonStyles from '../../common/styles';
 import styles from './styles';
+import {getFullName} from '../../utilities/contacts';
 
 class ContactDetailsScreen extends Component {
   static navigationOptions = () => {
@@ -29,7 +30,7 @@ class ContactDetailsScreen extends Component {
     return (
       <View>
         <View style={styles.mainContainer}>
-          <Text style={[commonStyles.text, styles.titleWrapper]}>{`${contact.firstName} ${contact.lastName}`}</Text>
+          <Text style={[commonStyles.text, styles.titleWrapper]}>{getFullName(contact)}</Text>
           <TouchableOpacity
             style={styles.iconButtonWrapper}
             onPress={() => this._directToMap()}

@@ -1,18 +1,19 @@
 import ActionTypes from '../actions/types';
+import uuidV4 from 'uuid/v4';
 
 let initialState = {
   mapList: [],
 };
 
-function addMapToState(state, {id, ownerUserID, contactIDs, subject, lastContact, messages}) {
+function addMapToState(state, {ownerUserID, contactIDs, subject}) {
   const {mapList} = state;
   const newMap = {
-    id, // id will be provided by API response
-    ownerUserID, // ownerUserID will be provided in API response
+    id: uuidV4(),
+    ownerUserID,
     contactIDs,
-    lastContact,
     subject,
-    messages
+    lastContact: null,
+    messages: []
   };
   mapList.unshift(newMap);
   return {
