@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import commonStyles from '../../common/styles';
 import styles from './styles';
 import {navigateToSignupVerify} from '../../actions/navigation';
-import {phoneNumberUpdated} from './actions';
+import {phoneNumberUpdated, requestSMSCode} from './actions';
 import {getCountryCallingCode, AsYouType, isValidNumber, parseNumber, formatNumber} from 'libphonenumber-js';
 import LoadingOverlay from '../../components/LoadingOverlay';
 
@@ -54,11 +54,21 @@ class SignupScreen extends React.Component {
     }
   }
 
-  onPhoneNumberCorrect() {
-    const {phoneNumberUpdated, navigateToSignupVerify} = this.props;
+  async onPhoneNumberCorrect() {
+    const {phoneNumberUpdated, navigateToSignupVerify, requestSMSCode} = this.props;
     const phoneNumber = parseNumber(this.state.phoneNumber, this.state.country);
-    phoneNumberUpdated(phoneNumber.phone, this.state.countryCode, phoneNumber.country);
-    navigateToSignupVerify();
+    this.setState({initiatingAccount: true});
+    requestSMSCode({
+      phoneNumber: phoneNumber.phone,
+      countryCode: this.state.countryCode,
+      country: phoneNumber.country
+    }).then(() => {
+      phoneNumberUpdated(phoneNumber.phone, this.state.countryCode, phoneNumber.country);
+      navigateToSignupVerify();
+      this.setState({initiatingAccount: false});
+    }).catch(() => {
+      this.setState({initiatingAccount: false});
+    });
   }
 
   countryChanged(country) {
@@ -139,12 +149,17 @@ const mapStateToProps = state => ({
   account: state.accountData
 });
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({phoneNumberUpdated, navigateToSignupVerify}, dispatch);
+  bindActionCreators({
+    phoneNumberUpdated,
+    navigateToSignupVerify,
+    requestSMSCode
+  }, dispatch);
 
 SignupScreen.propTypes = {
   phoneNumberUpdated: PropTypes.func.isRequired,
   navigateToSignupVerify: PropTypes.func.isRequired,
-  account: PropTypes.object
+  account: PropTypes.object,
+  requestSMSCode: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);
