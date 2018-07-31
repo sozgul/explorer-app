@@ -20,16 +20,14 @@ const styles = {
     borderColor: 'white'
   },
   outerCircleStyle:{
-    // marginLeft: -10,
-    // marginLeft: 36
-    // borderWidth: 0,
-    // borderColor: 'white'
-
   },
   purple_text: {
     color: DARK_PURPLE,
     fontSize: 18,
-    // marginLeft: -40,
+  },
+  activeText: {
+    color: DARK_PURPLE,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   plus: {
@@ -45,11 +43,14 @@ const styles = {
     borderColor: LIGHT_GREY_2,
     borderBottomWidth: 1
   },
+  inActiveText: {
+    color: DARK_PURPLE,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
   text: {
     color: DARK_PURPLE,
     fontSize: 18,
-    //marginRight:-95,
-    fontWeight: 'bold',
   }
 };
 

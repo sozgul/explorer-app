@@ -4,21 +4,21 @@ import {WHITE, MEDIUM_GREY, LIGHT_GREY} from '../../common/colors';
 
 const padding = 15;
 const fullWidth = Dimensions.get('window').width;
-const pickerHeight = 240;
+const pickerHeight = 190;
 const pickerHeaderHeight = 50;
 
 export default StyleSheet.create({
   wrapper: {
     display: 'flex',
     alignSelf: 'stretch',
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
     width: fullWidth,
     zIndex: 1,
     marginTop: 15
   },
   pickerWrapper: {
     position: 'absolute',
-    top: 150,
+    // top: 150,
     alignSelf: 'stretch',
     width: fullWidth
   },

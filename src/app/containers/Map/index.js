@@ -88,8 +88,8 @@ class GPSSwitch extends Component {
         inActiveText={'GPS muted'}
         circleSize={55}
         barHeight={55}
-        activeTextStyle={styles.purple_text}
-        inactiveTextStyle={styles.text}
+        activeTextStyle={styles.activeText}
+        inactiveTextStyle={styles.inActiveText}
         circleBorderWidth={2}
         backgroundActive={GREEN}
         backgroundInactive={LIGHT_GREY}
