@@ -89,7 +89,7 @@ export const navigateToCreateGroup = params =>
     params
   });
 
-export const navigateToConfirmGroup = params =>
+export const navigateToConfirmGroup = (params = {}) =>
   NavigationActions.navigate({
     routeName: ScreenNames.CONFIRM_GROUP,
     params
@@ -100,7 +100,6 @@ export const navigateToDisplayMap = params =>
     routeName: ScreenNames.DISPLAY_MAP,
     params
   });
-
 
 
 export const exitApp = () => {

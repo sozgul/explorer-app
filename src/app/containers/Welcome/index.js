@@ -29,7 +29,9 @@ class WelcomeScreen extends React.Component {
       <LinearGradient colors={[YELLOW,PURPLE]}
         start={{x: 0.0, y: 0.0}} end={{x: 1.0, y: 1.0}} style = {commonStyles.container_home}
       >
+
         <View style={commonStyles.container}>
+
           <View style={styles.rocketWrapper}>
             <FontAwesome style={[styles.rocketIcon]}>
               {Icons.rocket}

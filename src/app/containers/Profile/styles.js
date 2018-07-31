@@ -5,7 +5,7 @@ import {MEDIUM_GREY} from '../../common/colors';
 const styles = StyleSheet.create({
   title: {
     fontSize: 32,
-    marginTop: 100
+    marginTop: 30
   },
   subTitle: {
     fontSize: 16,

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View} from 'react-native';
 import {connect} from 'react-redux';
-import {navigateToDisplayMap} from '../../actions/navigation';
+import {navigateToMap} from '../../actions/navigation';
 import CustomButton from '../../components/Button';
 import { bindActionCreators } from 'redux';
 import ContactList from '../../components/ContactList';
@@ -12,6 +12,7 @@ import commonStyles from '../../common/styles';
 import {createMap} from '../Map/actions';
 import {navigateToConfirmGroup} from '../../actions/navigation';
 import {getContactsAsync, getFullName } from '../../utilities/contacts';
+import uuidV4 from 'uuid/v4';
 
 class CreateGroupScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
@@ -47,17 +48,18 @@ class CreateGroupScreen extends React.Component {
   }
 
   _continuePressed() {
-    const {navigateToDisplayMap, profile, createMap} = this.props;
+    const {navigateToMap, profile, createMap} = this.props;
     if (this.state.selectedContacts.length > 1) {
       const {navigateToConfirmGroup} = this.props;
-      navigateToConfirmGroup(this.state.selectedContacts);
+      navigateToConfirmGroup();
     } else if (this.state.selectedContacts.length === 1) {
-      let subject = getFullName(this.state.selectedContacts[0]);
-      createMap({ownerUserID: profile.displayUserName, contactIDs: this.state.selectedContacts[0].id, subject: subject});
-      navigateToDisplayMap();
+      const subject = getFullName(this.state.selectedContacts[0]);
+      const mapID = uuidV4();
+      createMap({id: mapID, ownerUserID: profile.displayUserName, contactIDs: this.state.selectedContacts[0].id, subject: subject});
+      navigateToMap({mapID});
     }
   }
-  
+
   sortContacts(contacts) {
     return contacts.sort((a, b) => a.firstName  === b.firstName  ?
       a.lastName.localeCompare(b.lastName) :
@@ -107,7 +109,7 @@ class CreateGroupScreen extends React.Component {
 
 CreateGroupScreen.propTypes = {
   navigateToConfirmGroup: PropTypes.func.isRequired,
-  navigateToDisplayMap: PropTypes.func.isRequired,
+  navigateToMap: PropTypes.func.isRequired,
   createMap: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -117,6 +119,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({navigateToDisplayMap, createMap, navigateToConfirmGroup}, dispatch);
+  bindActionCreators({navigateToMap, createMap, navigateToConfirmGroup}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateGroupScreen);

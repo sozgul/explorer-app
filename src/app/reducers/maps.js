@@ -1,14 +1,13 @@
 import ActionTypes from '../actions/types';
-import uuidV4 from 'uuid/v4';
 
 let initialState = {
-  mapList: [],
+  mapList: []
 };
 
-function addMapToState(state, {ownerUserID, contactIDs, subject}) {
+function addMapToState(state, {id, ownerUserID, contactIDs, subject}) {
   const {mapList} = state;
   const newMap = {
-    id: uuidV4(),
+    id,
     ownerUserID,
     contactIDs,
     subject,
@@ -32,12 +31,35 @@ function deleteMapFromState(state, mapID) {
   };
 }
 
+function toggleGPS(state, {mapID, gpsEnabled, gpsEnabledAt}) {
+  const {mapList} = state;
+  mapList.some(m => {
+    if (m.id === mapID) {
+      m.gpsEnabled = gpsEnabled;
+      m.gpsEnabledAt = gpsEnabledAt;
+      return true;
+    }
+    return false;
+  });
+
+  return {
+    ...state,
+    mapList
+  };
+}
+
 const mapsData = (state = initialState, action) => {
   switch (action.type) {
   case ActionTypes.MAP_CREATED:
     return addMapToState(state, action.map);
   case ActionTypes.MAP_DELETED:
     return deleteMapFromState(state, action.mapID);
+  case ActionTypes.MAP_GPS_TOGGLED:
+    return toggleGPS(state, {
+      mapID: action.mapID,
+      gpsEnabled: action.gpsEnabled,
+      gpsEnabledAt: action.gpsEnabledAt
+    });
   default:
     break;
   }

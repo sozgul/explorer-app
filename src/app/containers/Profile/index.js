@@ -12,8 +12,6 @@ import CustomButton from '../../components/Button';
 import {profileUpdated} from './actions';
 import LoadingOverlay from '../../components/LoadingOverlay';
 import {formatNumber} from 'libphonenumber-js';
-import {requestLocationPermissionAsync} from '../../utilities/location';
-import {requestContactsPermissionAsync} from '../../utilities/contacts';
 
 class ProfileScreen extends React.Component {
   static navigationOptions = {
@@ -33,14 +31,9 @@ class ProfileScreen extends React.Component {
     };
   }
 
-  async continuePressed() {
+  continuePressed() {
     const {profileUpdated, navigateToMainFlow} = this.props;
     profileUpdated(this.state.gpsTimeLimit, this.state.displayUserName, this.state.phoneNumber);
-
-    // Prompt user for necessary permissions.
-    await requestContactsPermissionAsync();
-    await requestLocationPermissionAsync();
-
     navigateToMainFlow();
   }
 
@@ -87,7 +80,7 @@ class ProfileScreen extends React.Component {
           />
           <CustomButton
             text="Continue"
-            onPress={() => this.continuePressed()}
+            onPress={this.continuePressed.bind(this)}
             disabled={!this._isProfileValid()}
           />
 
