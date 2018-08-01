@@ -1,5 +1,5 @@
 import {StyleSheet } from 'react-native';
-import {LIGHT_GREY_2, LIGHTER_GREY, BLACK, MEDIUM_GREY, LIGHT_YELLOW } from '../../common/colors';
+import {LIGHT_GREY_2, LIGHTER_GREY, BLACK, MEDIUM_GREY, LIGHT_YELLOW ,WHITE} from '../../common/colors';
 
 const styles = StyleSheet.create({
   listItem: {
@@ -39,7 +39,16 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'stretch'
-  }
+    alignItems: 'stretch',
+    backgroundColor:WHITE
+  },
+  containerCenter: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor:WHITE
+  },
+  button: {
+    paddingBottom: 30
+  },
 });
 export default styles;
