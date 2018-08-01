@@ -13,6 +13,8 @@ import {createMap} from '../Map/actions';
 import {navigateToConfirmGroup} from '../../actions/navigation';
 import {getContactsAsync, getFullName } from '../../utilities/contacts';
 import uuidV4 from 'uuid/v4';
+import styles from './styles';
+
 
 class CreateGroupScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
@@ -91,7 +93,7 @@ class CreateGroupScreen extends React.Component {
 
   render() {
     return (
-      <View style={commonStyles.container}>
+      <View style={styles.containerCenter}>
         <ContactList
           onContactPressed= {(contact) => this._onContactItemPressed(contact)}
           contacts={this.state.contacts}
@@ -99,10 +101,12 @@ class CreateGroupScreen extends React.Component {
           showSelectedContacts={true}
           selectedContacts={this.state.selectedContacts}
         />
-        <CustomButton
-          text="Continue"
-          onPress={this._continuePressed.bind(this)}
-        />
+        <View style={styles.button}>
+          <CustomButton
+            text="Continue"
+            onPress={this._continuePressed.bind(this)}
+          />
+        </View>
       </View>
     );
   }
