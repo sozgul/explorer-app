@@ -9,6 +9,8 @@ import {capitalizeString} from '../../utilities';
 import commonStyles from '../../common/styles';
 import styles from './styles';
 import {getFullName} from '../../utilities/contacts';
+import {createMap} from '../Map/actions';
+import uuidV4 from 'uuid/v4';
 
 class ContactDetailsScreen extends Component {
   static navigationOptions = () => {
@@ -16,8 +18,20 @@ class ContactDetailsScreen extends Component {
       headerTitle: ''
     };
   };
+
   _directToMap() {
     const {params: contact} = this.props.navigation.state;
+    const {maps, account, createMap} = this.props;
+     
+    const existingMap = maps && maps.mapList.find(m => {
+      return (m.contactIDs.length === 1) && (m.contactIDs[0] === contact.id);
+    });
+    
+    if (!existingMap) {
+      const mapID = uuidV4();
+      createMap({id: mapID, ownerUserID: account.userId, contactIDs: [contact.id], subject: getFullName(contact)});
+    }
+
     this.props.navigateToMap(contact);
   }
 
@@ -45,15 +59,10 @@ class ContactDetailsScreen extends Component {
             <Text style = {[commonStyles.text, styles.containerValue]}>{item.number}</Text>
           </View>
         ))}
-        <View style = {styles.lastcontactWrapper}>
-          <Text style = {[commonStyles.text, styles.containerText]}>Last Contact</Text>
-          <Text style = {[commonStyles.text, styles.containerValue]}></Text>
-        </View>
-
-        
         <TouchableOpacity
           style={styles.iconButtonWrapper}
           onPress={() => this._blockUser()}
+          disabled={true}
         >
           <FontAwesome style={[styles.icon, styles.blockText]}>{Icons.ban}</FontAwesome>
           <Text style={[commonStyles.text, styles.textWrapper, styles.blockText]}>block user</Text>
@@ -64,12 +73,18 @@ class ContactDetailsScreen extends Component {
 }
 
 ContactDetailsScreen.propTypes = {
-  navigateToMap: PropTypes.func.isRequired
+  navigateToMap: PropTypes.func.isRequired,
+  maps: PropTypes.object.isRequired,
+  account: PropTypes.object.isRequired,
+  createMap: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => (state);
+const mapStateToProps = state => ({
+  maps: state.mapsData,
+  account: state.accountData
+});
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({navigateToMap}, dispatch);
+  bindActionCreators({navigateToMap, createMap}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactDetailsScreen);

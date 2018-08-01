@@ -4,10 +4,12 @@ import CreateGroupScreen from '../containers/ConfigureGroup';
 import ConfirmGroupScreen from '../containers/ConfigureGroup/confirm';
 import {commonStackNavigationOptions} from './options';
 import React from 'react';
+import MapScreen from '../containers/Map';
 
 export default createStackNavigator({
   [ScreenNames.CREATE_GROUP]: {screen:CreateGroupScreen},
-  [ScreenNames.CONFIRM_GROUP]: {screen:ConfirmGroupScreen}
+  [ScreenNames.CONFIRM_GROUP]: {screen:ConfirmGroupScreen},
+  [ScreenNames.MAP]: {screen:MapScreen}
 },
 {
   initialRouteName: ScreenNames.CREATE_GROUP,

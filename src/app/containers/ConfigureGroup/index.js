@@ -8,7 +8,6 @@ import { bindActionCreators } from 'redux';
 import ContactList from '../../components/ContactList';
 import * as ScreenNames from '../../navigators/screen_names';
 import {HeaderBackButton} from 'react-navigation';
-import commonStyles from '../../common/styles';
 import {createMap} from '../Map/actions';
 import {navigateToConfirmGroup} from '../../actions/navigation';
 import {getContactsAsync, getFullName } from '../../utilities/contacts';
@@ -50,14 +49,15 @@ class CreateGroupScreen extends React.Component {
   }
 
   _continuePressed() {
-    const {navigateToMap, profile, createMap} = this.props;
+    const {navigateToMap, account, createMap} = this.props;
     if (this.state.selectedContacts.length > 1) {
       const {navigateToConfirmGroup} = this.props;
-      navigateToConfirmGroup();
+      navigateToConfirmGroup(this.state.selectedContacts);
     } else if (this.state.selectedContacts.length === 1) {
       const subject = getFullName(this.state.selectedContacts[0]);
+      // TODO: Remove UUID and get from API when Maps API is hooked up
       const mapID = uuidV4();
-      createMap({id: mapID, ownerUserID: profile.displayUserName, contactIDs: this.state.selectedContacts[0].id, subject: subject});
+      createMap({id: mapID, ownerUserID: account.userId, contactIDs: this.state.selectedContacts[0].id, subject: subject});
       navigateToMap({mapID});
     }
   }
@@ -115,11 +115,11 @@ CreateGroupScreen.propTypes = {
   navigateToConfirmGroup: PropTypes.func.isRequired,
   navigateToMap: PropTypes.func.isRequired,
   createMap: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  account: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.userProfileData
+  account: state.accountData
 });
 
 const mapDispatchToProps = (dispatch) =>
