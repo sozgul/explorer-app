@@ -51,6 +51,9 @@ const styles = {
   text: {
     color: DARK_PURPLE,
     fontSize: 18,
+  },
+  containerRelative:{
+    position: 'relative',
   }
 };
 
