@@ -35,9 +35,16 @@ class MapListScreen extends React.Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <View style = {listStyles.wrapper}>
         <View style={[commonStyles.wrapper_button,styles.memberWrapper]}>
           <Text style={[commonStyles.purple_text]} onPress={() => this._continuePressed()}>create new group
+=======
+      <View style = {styles.container}>
+        <View style={styles.wrapper}>
+          <Text style={[commonStyles.text, styles.purple_text]} onPress={() => this._continuePressed()}>
+            create new group
+>>>>>>> Associating contactIDs with userIDs
           </Text>
           <FontAwesome style={[commonStyles.plus]}>
             {Icons.plus}

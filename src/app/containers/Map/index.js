@@ -134,6 +134,8 @@ const gpsSwitchMapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 const ConnectedGPSSwitch = connect(gpsSwitchMapStateToProps, gpsSwitchMapDispatchToProps)(GPSSwitch);
 
+
+
 class MapScreen extends Component {
   static navigationOptions = ({navigation}) => {
     const {params} = navigation.state;

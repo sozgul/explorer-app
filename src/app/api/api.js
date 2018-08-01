@@ -2,6 +2,8 @@
 import axios from 'axios';
 import {getAPIHost} from '../environment/hosts';
 import Logger from '../utilities/logger';
+import { getContactsAsync } from '../utilities/contacts';
+import {getCountryCallingCode} from 'libphonenumber-js';
 
 const logger = new Logger({name: 'APIClient'});
 
@@ -49,6 +51,26 @@ class APIClient {
     };
     logger.info('sending verifySMSToken request', payload);
 
+    return axios.post(this._buildURL(endpoint), payload);
+  }
+
+  async matchContactsUserIDs() {
+    const endpoint = '/match-contacts';
+    const contacts = await getContactsAsync();
+    const contactDetailsList = contacts.map(c => {
+      return {
+        contactId: c.id,
+        phoneNumbers: c.phoneNumbers.map(p => {
+          return {
+            countryCallingCode: getCountryCallingCode(p.countryCode.toUpperCase()),
+            phoneNumber: p.digits
+          };
+        })
+      };
+    });
+    const payload = {
+      contactDetailsList
+    };
     return axios.post(this._buildURL(endpoint), payload);
   }
 
