@@ -36,11 +36,11 @@ class ConfirmGroupScreen extends React.Component {
 
 
   _createMapPressed() {
-    const {navigateToMap, profile, createMap} = this.props;
+    const {navigateToMap, account, createMap} = this.props;
     const {params: contactsSelected} = this.props.navigation.state;
     const contactIDs = contactsSelected.map(item => item.id);
     const subject = this.state.groupName;
-    const ownerUserID = profile.displayUserName;
+    const ownerUserID = account.userId;
     const mapID = uuidV4();
     createMap({id: mapID, ownerUserID, contactIDs, subject});
     navigateToMap({mapID});
@@ -82,11 +82,11 @@ class ConfirmGroupScreen extends React.Component {
 ConfirmGroupScreen.propTypes = {
   navigateToMap: PropTypes.func.isRequired,
   createMap: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  account: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.userProfileData
+  account: state.accountData
 });
 
 const mapDispatchToProps = (dispatch) =>

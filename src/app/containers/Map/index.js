@@ -148,23 +148,33 @@ class MapScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
-  }
-
-  async componentDidMount() {
-    const location = await getCurrentPositionAsync();
-    this.setState({
-      userLocation: location.coords
-    });
+    this.state={
+      markers:[{
+        coordinate:{
+          latitude: 37.0065,
+          longitude: -121.5632
+        }
+      },
+      {
+        coordinate:{
+          latitude: 37.3856,
+          longitude: -122.082
+        }
+      },
+      {
+        coordinate:{
+          latitude: 37.7648,
+          longitude: -122.463
+        }
+      }]
+    };
   }
 
   render() {
-    const {userLocation} = this.state;
-
     return (
       <View style={styles.containerRelative}>
         <MapComponent
-          userLocation={userLocation}
+          markerLocations={this.state.markers}
         />
         <MessageComponent
         />

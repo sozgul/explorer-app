@@ -7,6 +7,7 @@ import ProfileScreen from '../containers/Profile';
 import NavTabItem from '../components/NavTabItem';
 import {commonStackNavigationOptions, commonTabBarOptions} from './options';
 import DisplayMap from '../containers/Map/main';
+import MapScreen from '../containers/Map';
 
 const tabTitles = {
   [ScreenNames.CONTACTS_TAB]: 'contacts',
@@ -19,6 +20,7 @@ export default createBottomTabNavigator({
     {
       [ScreenNames.CONTACTS]: {screen:ContactsScreen},
       [ScreenNames.CONTACT_DETAILS]: {screen:ContactDetailsScreen},
+      [ScreenNames.MAP]: {screen:MapScreen},
     },
     {
       initialRouteName: ScreenNames.CONTACTS,

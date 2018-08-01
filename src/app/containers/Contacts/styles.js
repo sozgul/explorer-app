@@ -5,12 +5,12 @@ const styles = StyleSheet.create({
   mainContainer: {
     marginTop: 50,
     marginBottom: 30,
-    borderBottomWidth: 1,
-    borderBottomColor: LIGHT_GREY,
     paddingBottom: 10
   },
   phoneContainer: {
-    padding: 10
+    padding: 10,
+    borderWidth: 1,
+    borderColor: LIGHT_GREY
   },
   titleWrapper: {
     fontSize: 32,
@@ -28,11 +28,6 @@ const styles = StyleSheet.create({
     padding: 5,
     fontSize: 16,
     color: BLACK
-  },
-  lastcontactWrapper: {
-    padding: 15,
-    borderWidth: 1,
-    borderColor: LIGHT_GREY
   },
   iconButtonWrapper: {
     display: 'flex',
