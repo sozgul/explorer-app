@@ -32,13 +32,17 @@ export default StyleSheet.create({
   inputWrapper: {
     display: 'flex',
     flexDirection: 'row',
-    alignSelf: 'center'
+    alignSelf: 'center',
+  },
+  inputWrapperLeft: {
+    alignSelf: 'flex-start'
   },
   textInput: {
     minWidth: 200,
     maxWidth: 280,
     borderColor: MEDIUM_GREY,
     borderBottomWidth: 1,
+
   },
   pickerHeader: {
     display: 'flex',

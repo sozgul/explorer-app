@@ -3,7 +3,7 @@ import {MEDIUM_GREY} from '../../common/colors';
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 100
+    paddingTop: 60
   },
   phoneWrapper: {
     display: 'flex',

@@ -36,7 +36,7 @@ const styles = {
   },
   container: {
     flex: 1,
-    alignItems: 'stretch'
+    alignItems: 'stretch',
   },
   memberWrapper: {
     padding: 10,
