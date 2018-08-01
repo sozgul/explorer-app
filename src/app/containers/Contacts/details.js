@@ -22,7 +22,6 @@ class ContactDetailsScreen extends Component {
   _directToMap() {
     const {params: contact} = this.props.navigation.state;
     const {maps, account, createMap} = this.props;
-    console.log('MAPS DATA', maps);
      
     const existingMap = maps && maps.mapList.find(m => {
       return (m.contactIDs.length === 1) && (m.contactIDs[0] === contact.id);
