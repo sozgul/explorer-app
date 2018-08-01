@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
     paddingTop:1,
     paddingBottom:1
   },
+  wrapperPaddingLeft: {
+    paddingLeft:50,
+  },
+
   container: {
     flex: 1,
     alignItems: 'stretch',

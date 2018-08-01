@@ -40,12 +40,14 @@ class PickerInputComponent extends Component {
 
   render() {
     const {options} = this.props;
-    const {inputTextStyle, inputHorizontalAlignment,textInputWidth} = this.props;
+    const {inputTextStyle, inputHorizontalAlignment,textInputWidth,wrapperPadding} = this.props;
     const {pickerOpen, selectedValue} = this.state;
     const selectedItem = options.find(item => item.value === selectedValue) || {};
     const additonalTextStyle = [commonStyles.text, styles.dropdown];
     const inputWrapperStyles = [styles.inputWrapper];
     const pickerTextInput = [styles.textInput];
+    const wrapperStyles = [styles.wrapper];
+
     if (inputTextStyle) {
       additonalTextStyle.push(inputTextStyle);
     }
@@ -55,9 +57,12 @@ class PickerInputComponent extends Component {
     if (textInputWidth) {
       pickerTextInput.push(textInputWidth);
     }
+    if (wrapperPadding) {
+      wrapperStyles.push(wrapperPadding);
+    }
 
     return (
-      <View style={styles.wrapper}>
+      <View style={wrapperStyles}>
         <View style={inputWrapperStyles}>
           <TouchableOpacity
             style={pickerTextInput}
@@ -108,7 +113,8 @@ PickerInputComponent.propTypes = {
   onFocus: PropTypes.func,
   inputTextStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array,PropTypes.number]),
   inputHorizontalAlignment: PropTypes.oneOf(['left', 'center']),
-  textInputWidth:PropTypes.oneOfType([PropTypes.object, PropTypes.array,PropTypes.number])
+  textInputWidth:PropTypes.oneOfType([PropTypes.object, PropTypes.array,PropTypes.number]),
+  wrapperPadding:PropTypes.oneOfType([PropTypes.object, PropTypes.array,PropTypes.number]),
 };
 PickerInputComponent.defaultProps = {
   inputHorizontalAlignment: 'center'

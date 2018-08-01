@@ -14,7 +14,8 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
     width: fullWidth,
     zIndex: 1,
-    marginTop: 15
+    marginTop: 15,
+    paddingLeft:50
   },
   pickerWrapper: {
     position: 'absolute',
