@@ -58,7 +58,7 @@ class CreateGroupScreen extends React.Component {
       // TODO: Remove UUID and get from API when Maps API is hooked up
       const mapID = uuidV4();
       createMap({id: mapID, ownerUserID: account.userId, contactIDs: this.state.selectedContacts[0].id, subject: subject});
-      navigateToMap({mapID});
+      navigateToMap({mapID, subject});
     }
   }
 

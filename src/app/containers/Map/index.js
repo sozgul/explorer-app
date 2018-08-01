@@ -14,6 +14,8 @@ import {mapGPSToggled} from './actions';
 import {secondsToHms} from '../../utilities/time';
 import reactMixin from 'react-mixin';
 import TimerMixin from 'react-timer-mixin';
+import {HeaderBackButton} from 'react-navigation';
+import * as ScreenNames from '../../navigators/screen_names';
 
 class GPSSwitch extends Component {
   constructor(props) {
@@ -138,6 +140,13 @@ class MapScreen extends Component {
     let mapID = params ? params.mapID : null;
     // TODO: Customize the header title for map based on contact/group.
     return {
+      headerLeft: (
+        <HeaderBackButton
+          onPress={() => navigation.navigate(ScreenNames.MAPS_TAB)}
+          title = {params.subject}
+          tintColor= '#FFF'
+        />
+      ),
       headerTitle: (<ConnectedGPSSwitch mapID={mapID} />),
       headerStyle: {
         ...commonStackNavigationOptions.headerStyle,

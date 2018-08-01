@@ -43,7 +43,7 @@ class ConfirmGroupScreen extends React.Component {
     const ownerUserID = account.userId;
     const mapID = uuidV4();
     createMap({id: mapID, ownerUserID, contactIDs, subject});
-    navigateToMap({mapID});
+    navigateToMap({mapID, subject});
   }
 
   render() {

@@ -32,7 +32,7 @@ class ContactDetailsScreen extends Component {
       createMap({id: mapID, ownerUserID: account.userId, contactIDs: [contact.id], subject: getFullName(contact)});
     }
 
-    this.props.navigateToMap(contact);
+    this.props.navigateToMap(contact, getFullName(contact));
   }
 
   _blockUser() {
