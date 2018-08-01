@@ -46,8 +46,9 @@ const styles = StyleSheet.create({
   wrapper: {
     textAlign: 'left'
   },
-  pickerTextInput:{
-    minWidth:260,
+  pickerTextInput: {
+    flex: 1,
+    flexDirection: 'row'
   }
 });
 
