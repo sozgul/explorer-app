@@ -14,18 +14,22 @@ class MessageComponent extends Component {
       <View style={styles.contentContainer}>
         <ScrollView>
 
-          <Text style= {[commonStyles.text,styles.textRight]}>name</Text>
+          <Text style= {[commonStyles.text,styles.textRight]}>Meenu</Text>
           <View style={styles.bubbles}>
             <LinearGradient colors={[TRANSPARENT,'rgba(255,255,255,0.5)','rgba(255,255,255,0.6)']}
               start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}} style = {styles.bubbles}
             >
-              <Text style= {[commonStyles.text,styles.text]}>erjhdfvr fbfi jdfvebcj</Text>
+              <Text style= {[commonStyles.text,styles.text]}>Hi Serhan!!</Text>
             </LinearGradient>
 
           </View>
-          <View style={styles.bubbles1}>
-            <Text style= {[commonStyles.text,styles.text]}>erjh gdt fdsgrthg dfgrsfdg dfvr fbfi jdfvebcj</Text>
-          </View>
+          <Text style= {[commonStyles.text,styles.textRight]}>Serhan</Text>
+
+          <LinearGradient colors={[TRANSPARENT,'rgba(255,255,255,0.5)','rgba(255,255,255,0.6)']}
+            start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}} style = {styles.bubbles}
+          >
+            <Text style= {[commonStyles.text,styles.text]}>Hello Meenu How are you</Text>
+          </LinearGradient>
         </ScrollView>
       </View>
     );

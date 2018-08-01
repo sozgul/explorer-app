@@ -2,7 +2,6 @@ import React from 'react';
 import * as ScreenNames from './screen_names';
 import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 import ContactsScreen from '../containers/Contacts';
-import MapScreen from '../containers/Map';
 import ContactDetailsScreen from '../containers/Contacts/details';
 import ProfileScreen from '../containers/Profile';
 import NavTabItem from '../components/NavTabItem';
@@ -18,12 +17,11 @@ const tabTitles = {
 export default createBottomTabNavigator({
   [ScreenNames.CONTACTS_TAB]: createStackNavigator(
     {
-      [ScreenNames.MAP]: {screen:MapScreen},
       [ScreenNames.CONTACTS]: {screen:ContactsScreen},
       [ScreenNames.CONTACT_DETAILS]: {screen:ContactDetailsScreen},
     },
     {
-      initialRouteName: ScreenNames.MAP,
+      initialRouteName: ScreenNames.CONTACTS,
       navigationOptions: {
         ...commonStackNavigationOptions
       }
