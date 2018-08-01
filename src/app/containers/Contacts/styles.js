@@ -1,11 +1,15 @@
 import {StyleSheet} from 'react-native';
-import {LIGHT_GREY, MEDIUM_GREY, PURPLE, BLACK} from '../../common/colors';
+import {LIGHT_GREY, MEDIUM_GREY, PURPLE, BLACK,WHITE} from '../../common/colors';
 
 const styles = StyleSheet.create({
   mainContainer: {
     marginTop: 50,
     marginBottom: 30,
     paddingBottom: 10
+  },
+  container: {
+    flex:1,
+    backgroundColor:WHITE,
   },
   phoneContainer: {
     padding: 10,

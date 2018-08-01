@@ -70,15 +70,20 @@ class ProfileScreen extends React.Component {
           <View style = {styles.container1}>
 
             <Text style={[styles.textBox]}>GPS permissions default expiration</Text>
-            <PickerInput
-              ref={ref => this._gpsTimeLimit = ref}
-              options={gpsExpirationTimes}
-              onChange={this.gpsValueChanged.bind(this)}
-              selectedValue={this.state.gpsTimeLimit}
-              inputTextStyle={styles.wrapper}
-              inputHorizontalAlignment="left"
-              textInputWidth={styles.pickerTextInput}
-            />
+          </View>
+          <PickerInput
+            ref={ref => this._gpsTimeLimit = ref}
+            options={gpsExpirationTimes}
+            onChange={this.gpsValueChanged.bind(this)}
+            selectedValue={this.state.gpsTimeLimit}
+            inputTextStyle={styles.wrapper}
+            inputHorizontalAlignment="left"
+            textInputWidth={styles.pickerTextInput}
+            wrapperPadding={styles.wrapperPaddingLeft}
+
+          />
+          <View style = {styles.container1}>
+
             <Text style={[styles.textBox]}>Paired phone number</Text>
             <TextInput
               style={styles.textInput}
