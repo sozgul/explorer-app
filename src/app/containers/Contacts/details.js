@@ -28,7 +28,7 @@ class ContactDetailsScreen extends Component {
   render() {
     const {params: contact} = this.props.navigation.state;
     return (
-      <View>
+      <View style={styles.container}>
         <View style={styles.mainContainer}>
           <Text style={[commonStyles.text, styles.titleWrapper]}>{getFullName(contact)}</Text>
           <TouchableOpacity
