@@ -39,7 +39,7 @@ const styles = {
     alignItems: 'stretch',
   },
   memberWrapper: {
-    padding: 10,
+    paddingBottom: 15,
     borderColor: LIGHT_GREY_2,
     borderBottomWidth: 1
   },
@@ -51,6 +51,9 @@ const styles = {
   text: {
     color: DARK_PURPLE,
     fontSize: 18,
+  },
+  containerRelative:{
+    position: 'relative',
   }
 };
 

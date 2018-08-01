@@ -27,7 +27,7 @@ export default createBottomTabNavigator({
       }
     }
   ),
- 
+
   [ScreenNames.MAPS_TAB]: createStackNavigator(
     {
       [ScreenNames.DISPLAY_MAP]: {screen:DisplayMap}

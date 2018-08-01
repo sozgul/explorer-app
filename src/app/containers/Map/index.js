@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import MapComponent from '../../components/Map';
+import MessageComponent from '../../components/Message';
 import {connect} from 'react-redux';
 import {getCurrentPositionAsync} from '../../utilities/location';
 import Switch  from '../../components/Switch';
@@ -160,9 +162,14 @@ class MapScreen extends Component {
     const {userLocation} = this.state;
 
     return (
-      <MapComponent
-        userLocation={userLocation}
-      />
+      <View style={styles.containerRelative}>
+        <MapComponent
+          userLocation={userLocation}
+        />
+        <MessageComponent
+        />
+
+      </View>
     );
   }
 }
