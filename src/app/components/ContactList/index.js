@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {View, FlatList, Text} from 'react-native';
 import ContactListItem from './item';
-import {listStyles} from './styles';
+import {listStyles} from '../../common/styles';
 import commonStyles from '../../common/styles';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 
@@ -16,8 +16,8 @@ class ContactList extends Component {
   _renderContactItem({item}) {
     const {selectedContacts, showSelectedContacts} = this.props;
 
-    const isSelected = showSelectedContacts ? 
-      selectedContacts.some((contact) => (item.id === contact.id)) 
+    const isSelected = showSelectedContacts ?
+      selectedContacts.some((contact) => (item.id === contact.id))
       : false;
     return (
       <ContactListItem

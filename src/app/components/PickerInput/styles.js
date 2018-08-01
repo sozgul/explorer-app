@@ -42,7 +42,6 @@ export default StyleSheet.create({
     maxWidth: 280,
     borderColor: MEDIUM_GREY,
     borderBottomWidth: 1,
-
   },
   pickerHeader: {
     display: 'flex',

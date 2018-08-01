@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, FlatList, TouchableHighlight } from 'react-native';
 import {connect} from 'react-redux';
 import {navigateToCreateGroup, navigateToMap} from '../../actions/navigation';
 import { bindActionCreators } from 'redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import styles from './styles';
 import commonStyles from '../../common/styles';
+import {listStyles,listItemStyles} from '../../common/styles';
+
 
 class MapListScreen extends React.Component {
   static navigationOptions = () => {
@@ -33,23 +35,28 @@ class MapListScreen extends React.Component {
 
   render() {
     return (
-      <View style = {styles.container}>
-        <View style={styles.wrapper}>
-          <Text style={[commonStyles.text, styles.purple_text]} onPress={() => this._continuePressed()}>create new group
+      <View style = {listStyles.wrapper}>
+        <View style={[commonStyles.wrapper_button,styles.memberWrapper]}>
+          <Text style={[commonStyles.purple_text]} onPress={() => this._continuePressed()}>create new group
           </Text>
-          <FontAwesome style={[styles.plus]}>
+          <FontAwesome style={[commonStyles.plus]}>
             {Icons.plus}
           </FontAwesome>
         </View>
         <FlatList
+          style={listStyles.list}
           data = {this.state.maps.mapList}
           keyExtractor={item => item.id}
           renderItem={({item}) =>
-            <TouchableWithoutFeedback onPress = {() => this._openMapPressed(item)}>
-              <View style = {styles.memberWrapper}>
-                <Text style = {[commonStyles.text, styles.text]}>{`${item.subject}`}</Text>
+            <TouchableHighlight
+              style={listItemStyles.listItem}
+              onPress = {() => this._openMapPressed(item)}
+              underlayColor="#fff"
+            >
+              <View style = {listItemStyles.listItemContent}>
+                <Text style = {[commonStyles.text, listItemStyles.itemText]}>{`${item.subject}`}</Text>
               </View>
-            </TouchableWithoutFeedback>
+            </TouchableHighlight>
           }
         />
       </View>

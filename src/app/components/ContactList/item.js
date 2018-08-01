@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {View, Text, TouchableHighlight} from 'react-native';
-import {listItemStyles} from './styles';
+import {listItemStyles} from '../../common/styles';
 import commonStyles from '../../common/styles';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 
