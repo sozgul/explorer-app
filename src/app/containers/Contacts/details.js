@@ -22,11 +22,11 @@ class ContactDetailsScreen extends Component {
   _directToMap() {
     const {params: contact} = this.props.navigation.state;
     const {maps, account, createMap} = this.props;
-     
+
     const existingMap = maps && maps.mapList.find(m => {
       return (m.contactIDs.length === 1) && (m.contactIDs[0] === contact.id);
     });
-    
+
     if (!existingMap) {
       const mapID = uuidV4();
       createMap({id: mapID, ownerUserID: account.userId, contactIDs: [contact.id], subject: getFullName(contact)});
@@ -42,7 +42,7 @@ class ContactDetailsScreen extends Component {
   render() {
     const {params: contact} = this.props.navigation.state;
     return (
-      <View>
+      <View style={styles.container}>
         <View style={styles.mainContainer}>
           <Text style={[commonStyles.text, styles.titleWrapper]}>{getFullName(contact)}</Text>
           <TouchableOpacity
