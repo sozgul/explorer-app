@@ -5,7 +5,6 @@ import {bindActionCreators} from 'redux';
 import MapComponent from '../../components/Map';
 import MessageComponent from '../../components/Message';
 import {connect} from 'react-redux';
-import {getCurrentPositionAsync} from '../../utilities/location';
 import Switch  from '../../components/Switch';
 import { WHITE,GREEN,LIGHT_GREY} from '../../common/colors';
 import styles from './styles';
