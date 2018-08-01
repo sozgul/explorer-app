@@ -55,34 +55,45 @@ class ProfileScreen extends React.Component {
 
     return (
       <TouchableWithoutFeedback onPress={this.viewTapped.bind(this)}>
-        <View style = {commonStyles.container}>
+        <View style = {styles.container}>
           <Text style={[commonStyles.text, styles.title]}>Profile Settings</Text>
           <Text style={[commonStyles.text, styles.subTitle]}>Enter your name for others to see,{'\n'}and confirm your privacy settings</Text>
-          <Text style={[styles.textBox]}>Display Name</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="display name"
-            onChangeText={value => this.setState({displayUserName:value})}
-            value={this.state.displayUserName}
-          />
-          <Text style={[styles.textBox]}>GPS permissions default expiration</Text>
-          <PickerInput
-            ref={ref => this._gpsTimeLimit = ref}
-            options={gpsExpirationTimes}
-            onChange={this.gpsValueChanged.bind(this)}
-            selectedValue={this.state.gpsTimeLimit}
-          />
-          <Text style={[styles.textBox]}>Paired phone number</Text>
-          <TextInput
-            style={styles.textInput}
-            value={phoneNumber}
-            editable={false}
-          />
-          <CustomButton
-            text="Continue"
-            onPress={this.continuePressed.bind(this)}
-            disabled={!this._isProfileValid()}
-          />
+          <View style = {styles.container1}>
+            <Text style={[styles.textBox]}>Display Name</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="display name"
+              onChangeText={value => this.setState({displayUserName:value})}
+              value={this.state.displayUserName}
+            />
+          </View>
+          <View style = {styles.container1}>
+
+            <Text style={[styles.textBox]}>GPS permissions default expiration</Text>
+            <PickerInput
+              ref={ref => this._gpsTimeLimit = ref}
+              options={gpsExpirationTimes}
+              onChange={this.gpsValueChanged.bind(this)}
+              selectedValue={this.state.gpsTimeLimit}
+              inputTextStyle={styles.wrapper}
+              inputHorizontalAlignment="left"
+              textInputWidth={styles.pickerTextInput}
+            />
+            <Text style={[styles.textBox]}>Paired phone number</Text>
+            <TextInput
+              style={styles.textInput}
+              value={phoneNumber}
+              editable={false}
+            />
+          </View>
+          <View style = {styles.container_button}>
+
+            <CustomButton
+              text="Continue"
+              onPress={this.continuePressed.bind(this)}
+              disabled={!this._isProfileValid()}
+            />
+          </View>
 
           {this.state.saveInProgress && (
             <LoadingOverlay message="saving profile" />

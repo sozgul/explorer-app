@@ -40,19 +40,32 @@ class PickerInputComponent extends Component {
 
   render() {
     const {options} = this.props;
+    const {inputTextStyle, inputHorizontalAlignment,textInputWidth} = this.props;
     const {pickerOpen, selectedValue} = this.state;
     const selectedItem = options.find(item => item.value === selectedValue) || {};
+    const additonalTextStyle = [commonStyles.text, styles.dropdown];
+    const inputWrapperStyles = [styles.inputWrapper];
+    const pickerTextInput = [styles.textInput];
+    if (inputTextStyle) {
+      additonalTextStyle.push(inputTextStyle);
+    }
+    if (inputHorizontalAlignment === 'left') {
+      inputWrapperStyles.push(styles.inputWrapperLeft);
+    }
+    if (textInputWidth) {
+      pickerTextInput.push(textInputWidth);
+    }
 
     return (
       <View style={styles.wrapper}>
-        <View style={styles.inputWrapper}>
+        <View style={inputWrapperStyles}>
           <TouchableOpacity
-            style={[styles.textInput]}
+            style={pickerTextInput}
             onPress={this.onFocusInput.bind(this)}
             caretHidden={true}
             editable={false}
           >
-            <Text style={[commonStyles.text, styles.dropdown]}>{selectedItem.label}</Text>
+            <Text style={additonalTextStyle}>{selectedItem.label}</Text>
           </TouchableOpacity>
           <FontAwesome style={styles.dropdownIcon}>
             {Icons.angleDown}
@@ -92,7 +105,13 @@ PickerInputComponent.propTypes = {
   options: PropTypes.array.isRequired,
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
-  onFocus: PropTypes.func
+  onFocus: PropTypes.func,
+  inputTextStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array,PropTypes.number]),
+  inputHorizontalAlignment: PropTypes.oneOf(['left', 'center']),
+  textInputWidth:PropTypes.oneOfType([PropTypes.object, PropTypes.array,PropTypes.number])
+};
+PickerInputComponent.defaultProps = {
+  inputHorizontalAlignment: 'center'
 };
 
 export default PickerInputComponent;
