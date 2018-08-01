@@ -8,7 +8,6 @@ import { bindActionCreators } from 'redux';
 import ContactList from '../../components/ContactList';
 import * as ScreenNames from '../../navigators/screen_names';
 import {HeaderBackButton} from 'react-navigation';
-import commonStyles from '../../common/styles';
 import {createMap} from '../Map/actions';
 import {navigateToConfirmGroup} from '../../actions/navigation';
 import {getContactsAsync, getFullName } from '../../utilities/contacts';
