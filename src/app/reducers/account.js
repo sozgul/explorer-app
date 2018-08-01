@@ -1,8 +1,7 @@
 import ActionTypes from '../actions/types';
-import uuidV4 from 'uuid/v4';
 
 let initialState = {
-  userId: uuidV4(),
+  userId: null,
   country: null,
   countryCode: null,
   phoneNumber: null,
@@ -32,7 +31,8 @@ const accountData = (state = initialState, action = {}) => {
   case ActionTypes.SMS_VERIFICATION_CODE_ACCEPTED:
     return {
       ...state,
-      verificationStatus: 'verified'
+      verificationStatus: 'verified',
+      userId: action.userId
     };
   case ActionTypes.SMS_VERIFICATION_REJECTED:
     return {

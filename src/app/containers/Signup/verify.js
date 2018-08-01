@@ -9,7 +9,7 @@ import styles from './styles';
 import commonStyles from '../../common/styles';
 import {formatNumber} from 'libphonenumber-js';
 import LoadingOverlay from '../../components/LoadingOverlay';
-import {smsVerificationAccepted} from './actions';
+import {sendSMSCode} from './actions';
 
 const VALID_CODE_PATTERN = /^\d{4}$/;
 
@@ -34,10 +34,29 @@ class SignupVerifyScreen extends React.Component {
   validate() {
     // TODO: Validate the code & then go to the profile settings page.
     // Setting the verification to accepted to continue set up till we have the twilio hookup.
-    const {smsVerificationAccepted} = this.props;
-    smsVerificationAccepted();
-
-    this.props.navigateToProfile();
+    const {sendSMSCode, account} = this.props;
+    const {phoneNumber, countryCode, country} = account;
+    const smsCode = this._buildCode();
+    
+    this.setState({
+      validationInProgress: true
+    });
+    
+    sendSMSCode({
+      phoneNumber,
+      countryCode,
+      country,
+      smsCode
+    }).then(() => {
+      this.setState({
+        validationInProgress: false
+      });
+      this.props.navigateToProfile();
+    }).catch(() => {
+      this.setState({
+        validationInProgress: false
+      });
+    });
   }
 
   _codeInputChanged(inputID, num) {
@@ -127,13 +146,13 @@ class SignupVerifyScreen extends React.Component {
 SignupVerifyScreen.propTypes = {
   account: PropTypes.object.isRequired,
   navigateToProfile: PropTypes.func.isRequired,
-  smsVerificationAccepted: PropTypes.func.isRequired
+  sendSMSCode: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   account: state.accountData
 });
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({navigateToProfile, smsVerificationAccepted}, dispatch);
+  bindActionCreators({navigateToProfile, sendSMSCode}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupVerifyScreen);
