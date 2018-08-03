@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ScreenNames from './screen_names';
-import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
 import ContactsScreen from '../containers/Contacts';
 import ContactDetailsScreen from '../containers/Contacts/details';
 import ProfileScreen from '../containers/Profile';
@@ -8,6 +8,7 @@ import NavTabItem from '../components/NavTabItem';
 import {commonStackNavigationOptions, commonTabBarOptions} from './options';
 import DisplayMap from '../containers/Map/main';
 import MapScreen from '../containers/Map';
+import {createCustomBottomTabNavigator} from '../components/NavBottomTabBar';
 
 const tabTitles = {
   [ScreenNames.CONTACTS_TAB]: 'contacts',
@@ -15,7 +16,7 @@ const tabTitles = {
   [ScreenNames.PROFILE_TAB]: 'profile'
 };
 
-export default createBottomTabNavigator({
+export default createCustomBottomTabNavigator({
   [ScreenNames.CONTACTS_TAB]: createStackNavigator(
     {
       [ScreenNames.CONTACTS]: {screen:ContactsScreen},

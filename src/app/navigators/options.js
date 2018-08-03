@@ -17,14 +17,12 @@ export const commonStackNavigationOptions = {
 
 export const commonTabBarOptions = {
   style: {
-    backgroundColor: LIGHTER_GREY,
-    height: 60
+    backgroundColor: LIGHTER_GREY
   },
   labelStyle: {
     fontFamily: REGULAR_FONT,
     fontSize: 12,
-    fontWeight: '600',
-    //marginBottom: -12
+    fontWeight: '600'
   },
   inactiveTintColor: MEDIUM_GREY,
   activeTintColor: PURPLE
