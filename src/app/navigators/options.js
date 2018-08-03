@@ -4,13 +4,8 @@ import {REGULAR_FONT} from '../common/fonts';
 export const commonStackNavigationOptions = {
   headerStyle: {
     backgroundColor: DARK_PURPLE,
-    height: 30,
-  },
-  headerTitleStyle: {
-    marginTop:-20,
-  },
-  headerBackTitleStyle: {
-    // marginTop:-20,
+    marginTop: -35,
+    paddingBottom: 15
   },
   headerTintColor: WHITE
 };
