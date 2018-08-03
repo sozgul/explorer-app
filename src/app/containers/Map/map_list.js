@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, FlatList, TouchableHighlight } from 'react-native';
+import { Text, View, FlatList, TouchableHighlight, TouchableOpacity } from 'react-native';
 import {connect} from 'react-redux';
 import {navigateToCreateGroup, navigateToMap} from '../../actions/navigation';
 import { bindActionCreators } from 'redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
-import styles from './styles';
+import {mapListStyles} from './styles';
 import commonStyles from '../../common/styles';
 import {listStyles,listItemStyles} from '../../common/styles';
-
 
 class MapListScreen extends React.Component {
   static navigationOptions = () => {
     return {
-      headerTitle: 'select a contact to start a map'
+      headerTitle: 'select a map'
     };
   }
+
   constructor(props) {
     super(props);
     const { mapList } = this.props;
@@ -35,17 +35,19 @@ class MapListScreen extends React.Component {
 
   render() {
     return (
-      <View style = {listStyles.wrapper}>
-        <View style={[commonStyles.wrapper_button,styles.memberWrapper]}>
-          <Text style={[commonStyles.purple_text]} onPress={() => this._continuePressed()}>create new group
-          </Text>
-          <FontAwesome style={[commonStyles.plus]}>
-            {Icons.plus}
-          </FontAwesome>
-        </View>
+      <View style={mapListStyles.container}>
+        
+        <TouchableOpacity
+          style={mapListStyles.createGroupButton}
+          onPress={() => this._continuePressed()}
+        >
+          <Text style={[commonStyles.text, mapListStyles.createGroupButtonText]}>create new group</Text>
+          <FontAwesome style={[commonStyles.plus, mapListStyles.createGroupButtonIcon]}>{Icons.plus}</FontAwesome>
+        </TouchableOpacity>
+
         <FlatList
           style={listStyles.list}
-          data = {this.state.maps.mapList}
+          data={this.state.maps.mapList}
           keyExtractor={item => item.id}
           renderItem={({item}) =>
             <TouchableHighlight
@@ -53,8 +55,8 @@ class MapListScreen extends React.Component {
               onPress = {() => this._openMapPressed(item)}
               underlayColor="#fff"
             >
-              <View style = {listItemStyles.listItemContent}>
-                <Text style = {[commonStyles.text, listItemStyles.itemText]}>{`${item.subject}`}</Text>
+              <View style={listItemStyles.listItemContent}>
+                <Text style={[commonStyles.text, listItemStyles.itemText]}>{`${item.subject}`}</Text>
               </View>
             </TouchableHighlight>
           }

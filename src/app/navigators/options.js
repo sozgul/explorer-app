@@ -4,27 +4,20 @@ import {REGULAR_FONT} from '../common/fonts';
 export const commonStackNavigationOptions = {
   headerStyle: {
     backgroundColor: DARK_PURPLE,
-    height: 30,
-  },
-  headerTitleStyle: {
-    marginTop:-20,
-  },
-  headerBackTitleStyle: {
-    // marginTop:-20,
+    marginTop: -35,
+    paddingBottom: 15
   },
   headerTintColor: WHITE
 };
 
 export const commonTabBarOptions = {
   style: {
-    backgroundColor: LIGHTER_GREY,
-    height: 60
+    backgroundColor: LIGHTER_GREY
   },
   labelStyle: {
     fontFamily: REGULAR_FONT,
     fontSize: 12,
-    fontWeight: '600',
-    //marginBottom: -12
+    fontWeight: '600'
   },
   inactiveTintColor: MEDIUM_GREY,
   activeTintColor: PURPLE

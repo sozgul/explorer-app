@@ -12,6 +12,9 @@ import CustomButton from '../../components/Button';
 import {profileUpdated} from './actions';
 import LoadingOverlay from '../../components/LoadingOverlay';
 import {formatNumber} from 'libphonenumber-js';
+import {syncUserIds} from '../../actions/users';
+import {requestContactsPermissionAsync} from '../../utilities/contacts';
+import {requestLocationPermissionAsync} from '../../utilities/location';
 
 class ProfileScreen extends React.Component {
   static navigationOptions = {
@@ -32,8 +35,17 @@ class ProfileScreen extends React.Component {
   }
 
   continuePressed() {
-    const {profileUpdated, navigateToMainFlow} = this.props;
+    const {profileUpdated, navigateToMainFlow, syncUserIds} = this.props;
     profileUpdated(this.state.gpsTimeLimit, this.state.displayUserName, this.state.phoneNumber);
+    
+    // Request app permissions...
+    requestContactsPermissionAsync();
+    requestLocationPermissionAsync();
+
+    // Sync contacts with userID's from API.
+    syncUserIds();
+
+    // Head to the app's main flow!
     navigateToMainFlow();
   }
 
@@ -113,7 +125,8 @@ ProfileScreen.propTypes = {
   navigateToMainFlow: PropTypes.func.isRequired,
   profileUpdated: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  account: PropTypes.object.isRequired
+  account: PropTypes.object.isRequired,
+  syncUserIds: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -122,7 +135,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({profileUpdated, navigateToMainFlow}, dispatch);
+  bindActionCreators({
+    profileUpdated,
+    navigateToMainFlow,
+    syncUserIds
+  }, dispatch);
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);

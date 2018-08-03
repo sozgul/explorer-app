@@ -1,3 +1,9 @@
 {
-  "presets": ["react-native", "react-native-dotenv"]
+  "presets": ["react-native", "react-native-dotenv"],
+  "plugins": [
+    [
+      "transform-inline-environment-variables",
+      {"include": ["NODE_ENV", "APP_ENVIRONMENT"]}
+    ]
+  ]
 }

@@ -5,6 +5,8 @@ import {mirrorKeys} from '../utilities';
 export default mirrorKeys([
   'AUTH_TOKENS_UPDATED',
 
+  'USERIDS_SYNC_UPDATED',
+
   'USER_ACCEPTED_TERMS',
 
   'PHONE_NUMBER_UPDATED',

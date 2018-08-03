@@ -2,9 +2,8 @@ import { createStackNavigator } from 'react-navigation';
 import * as ScreenNames from './screen_names';
 import CreateGroupScreen from '../containers/ConfigureGroup';
 import ConfirmGroupScreen from '../containers/ConfigureGroup/confirm';
-import {commonStackNavigationOptions} from './options';
-import React from 'react';
 import MapScreen from '../containers/Map';
+import {commonStackNavigationOptions} from './options';
 
 export default createStackNavigator({
   [ScreenNames.CREATE_GROUP]: {screen:CreateGroupScreen},
@@ -13,7 +12,7 @@ export default createStackNavigator({
 },
 {
   initialRouteName: ScreenNames.CREATE_GROUP,
-  navigationOptions: () => ({
-    ...commonStackNavigationOptions
-  }),
+  navigationOptions: {
+    ...commonStackNavigationOptions  
+  },
 });

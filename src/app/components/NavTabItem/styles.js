@@ -8,9 +8,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: 32,
-    maxHeight: 32,
-    marginTop: 8,
-    marginBottom: 4
+    height: 32
   },
   icon: {
     fontSize: 18
