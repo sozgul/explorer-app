@@ -38,6 +38,12 @@ There are several different methods of debugging & obtaining logs while developi
   - `react-native log-ios`
   - `react-native log-android`
 
+#### "Full-Stack" Debugging
+Starts the app in the simulator with `APP_ENVIRONMENT=debug`.  This configures the app to hit our explorer services on `localhost` instead of the remote hosts used in normal "development" mode.  
+***NOTE:** You must be running the services (`explorer-api`, `explorer-gps`, `exploer-messenger`) on `localhost` to use this mode.*
+  - `npm run ios-debug`
+  - `npm run android-debug`
+
 ### Running Tests
 - `npm run test`
 

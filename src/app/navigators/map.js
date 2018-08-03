@@ -5,7 +5,7 @@ import ConfirmGroupScreen from '../containers/ConfigureGroup/confirm';
 import MapScreen from '../containers/Map';
 import {commonStackNavigationOptions} from './options';
 import React from 'react';
-import MapScreen from '../containers/Map';
+//import MapScreen from '../containers/Map';
 
 export default createStackNavigator({
   [ScreenNames.CREATE_GROUP]: {screen:CreateGroupScreen},

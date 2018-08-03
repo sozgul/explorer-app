@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "babel-eslint": "^8.2.6",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "eslint": "^4.19.1",
     "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-react": "^7.9.1",
@@ -22,7 +23,9 @@
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
+    "android-debug": "APP_ENVIRONMENT=debug npm run android",
     "ios": "react-native-scripts ios",
+    "ios-debug": "APP_ENVIRONMENT=debug npm run ios",
     "test": "jest",
     "lint": "./node_modules/.bin/eslint *.js **/*.js",
     "devtools": "react-devtools",
