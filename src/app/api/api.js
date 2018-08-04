@@ -1,20 +1,47 @@
 
 import axios from 'axios';
-import {getAPIHost} from '../environment/hosts';
+import {getAPIHost} from '../config/hosts';
 import Logger from '../utilities/logger';
 import { getContactsAsync } from '../utilities/contacts';
 import {getCountryCallingCode} from 'libphonenumber-js';
 
+let client;
 const logger = new Logger({name: 'APIClient'});
 
 class APIClient {
-  constructor({host}) {
+  constructor({host, accessToken}) {
     this._host = host;
-    this._headers = {};
+    this._headers = {accessToken: accessToken};
+    this._createHTTPClient();
   }
 
-  setAccessToken(token) {
+  _createHTTPClient() {
+    this._http = axios.create({
+      baseURL: this._host,
+      headers: this._headers
+    });
+  }
+
+  _setAccessToken(token) {
     this._headers.accessToken = token;
+    this._createHTTPClient();
+  }
+
+  async updateAPIToken({userId, refreshToken}) {
+    const endpoint = '/token';
+    const payload = {
+      userid: userId,
+      refreshToken
+    };
+    logger.info(`requesting new access token for ${userId}`, payload);
+
+    return this._http.post(endpoint, payload).then(response => {
+      logger.info(`received new access token for ${userId}`, response);
+      this._setAccessToken(response);
+      return response;
+    }).catch(error => {
+      logger.error(`request for new access token failed for ${userId}`, error);
+    });
   }
 
   async verifyPhoneNumber({country, countryCode, phoneNumber}) {
@@ -32,7 +59,7 @@ class APIClient {
     };
     logger.info('sending verifyPhoneNumber request', payload);
 
-    return axios.post(this._buildURL(endpoint), payload);
+    return this._http.post(endpoint, payload);
   }
 
   async verifySMSToken({country, countryCode, phoneNumber, smsCode}) {
@@ -51,7 +78,7 @@ class APIClient {
     };
     logger.info('sending verifySMSToken request', payload);
 
-    return axios.post(this._buildURL(endpoint), payload);
+    return this._http.post(endpoint, payload);
   }
 
   async matchContactsUserIDs() {
@@ -71,15 +98,11 @@ class APIClient {
     const payload = {
       contactDetailsList
     };
-    return axios.post(this._buildURL(endpoint), payload);
-  }
-
-  _buildURL(path) {
-    return `${this._host}${path}`;
+    return this._http.post(endpoint, payload);
   }
 }
 
-let client = new APIClient({
+client = new APIClient({
   host: getAPIHost()
 });
 

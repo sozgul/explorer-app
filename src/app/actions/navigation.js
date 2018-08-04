@@ -4,6 +4,12 @@ import RNExitApp from 'react-native-exit-app';
 
 export const navigateBack = () => NavigationActions.back();
 
+export const navigateToAuthFlow = params =>
+  NavigationActions.navigate({
+    routeName: ScreenNames.AUTH_FLOW,
+    params
+  });
+
 export const navigateToMainFlow = params =>
   NavigationActions.navigate({
     routeName: ScreenNames.MAIN_FLOW,

@@ -1,26 +1,24 @@
-import { createStackNavigator } from 'react-navigation';
+import { createSwitchNavigator} from 'react-navigation';
 import {reduxifyNavigator, createReactNavigationReduxMiddleware} from 'react-navigation-redux-helpers';
 import { connect } from 'react-redux';
 import * as ScreenNames from './screen_names';
-import HomeScreen from '../containers/Home';
-import SignupNavigator from './signup';
+import AuthNavigator from './auth';
+import AuthLoadingScreen from '../containers/AuthLoading';
 import MainNavigator from './main';
-import MapNavigator from './map';
 
 const navMiddleware = createReactNavigationReduxMiddleware(
   'root',
   state => state.navigationData
 );
 
-const RootNavigator = createStackNavigator(
+const RootNavigator = createSwitchNavigator(
   {
-    [ScreenNames.HOME_SCREEN]: HomeScreen,
-    [ScreenNames.SIGNUP_FLOW]: SignupNavigator,
-    [ScreenNames.MAIN_FLOW]: MainNavigator,
-    [ScreenNames.MAP_FLOW]: MapNavigator
+    [ScreenNames.AUTH_LOADING]: AuthLoadingScreen,
+    [ScreenNames.AUTH_FLOW]: AuthNavigator,
+    [ScreenNames.MAIN_FLOW]: MainNavigator
   },
   {
-    initialRouteName: ScreenNames.HOME_SCREEN,
+    initialRouteName: ScreenNames.AUTH_LOADING,
     headerMode: 'none'
   }
 );
