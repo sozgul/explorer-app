@@ -9,8 +9,10 @@ export function updateAPIAccessToken({userId, refreshToken}) {
         type: ActionTypes.AUTH_TOKENS_UPDATED,
         accessToken: token
       });
+      return token;
     }).catch(error => {
       dispatch(apiAccessTokenUpdateFailed(error));
+      return error;
     });
   };
 }

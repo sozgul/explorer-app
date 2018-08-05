@@ -4,13 +4,16 @@ let initialState = {
   knownUsers: []
 };
 
-const usersData = (state = initialState, action = {}) => {
-  switch(action.type) {
+const usersData = (
+  state = initialState, 
+  {type, registeredUsers, isFullSync}
+) => {
+  switch(type) {
   case ActionTypes.USERIDS_SYNC_UPDATED:
     return {
       ...state,
-      knownUsers: action.knownUsers,
-      lastFullSync: action.isFullSync ? new Date().getTime() : state.lastFullSync
+      registeredUsers,
+      lastFullSync: isFullSync ? new Date().getTime() : state.lastFullSync
     };
   default:
     break;

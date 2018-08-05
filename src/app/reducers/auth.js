@@ -2,29 +2,19 @@ import ActionTypes from '../actions/types';
 import {getCurrentTimestampSeconds} from '../utilities/time';
 
 let initialState = {
-  credentials: {
-    explorerAPI: {
-      accessToken: null,
-      refreshToken: null,
-      accessTokenIssuedAt: null
-    }
-  }
+  explorerAPIAccessToken: null,
+  explorerAPIRefreshToken: null,
+  explorerAPIAccessTokenIssuedAt: null
 };
 
 function updateExplorerAPICreds(state, newCreds = {}) {
   const {accessToken, refreshToken, accessTokenIssuedAt} = newCreds;
-  const currentRefreshToken = state.refreshToken;
+  const currentRefreshToken = state.explorerAPIRefreshToken;
   return {
     ...state,
-    credentials: {
-      ...state.credentials,
-      explorerAPI: {
-        ...state.credentials.explorerAPI,
-        accessToken,
-        refreshToken: refreshToken || currentRefreshToken, // only update refresh token if provided.
-        accessTokenIssuedAt
-      }
-    }
+    explorerAPIAccessToken: accessToken,
+    explorerAPIRefreshToken: refreshToken || currentRefreshToken,
+    explorerAPIAccessTokenIssuedAt: accessTokenIssuedAt
   };
 }
 

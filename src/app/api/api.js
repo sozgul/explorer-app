@@ -36,9 +36,10 @@ class APIClient {
     logger.info(`requesting new access token for ${userId}`, payload);
 
     return this._http.post(endpoint, payload).then(response => {
-      logger.info(`received new access token for ${userId}`, response);
-      this._setAccessToken(response);
-      return response;
+      const {data: token} = response;
+      logger.info(`received new access token for ${userId}`, token);
+      this._setAccessToken(token);
+      return token;
     }).catch(error => {
       logger.error(`request for new access token failed for ${userId}`, error);
     });

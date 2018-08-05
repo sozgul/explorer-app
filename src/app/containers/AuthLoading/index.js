@@ -4,10 +4,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, ActivityIndicator } from 'react-native';
 import styles from './styles';
+import commonStyles from './styles';
 import {isLoggedInSelector, shouldRefreshExplorerAPITokenSelector} from '../../selectors/auth';
 import {isUserSignedUpSelector} from '../../selectors/account';
 import * as ScreenNames from '../../navigators/screen_names';
 import {updateAPIAccessToken} from '../../actions/auth';
+import Logger from '../../utilities/logger';
+
+const logger = new Logger({name: 'AuthLoadingScreen'});
 
 class AuthLoadingScreen extends Component {
   static navigationOptions = {};
@@ -24,31 +28,41 @@ class AuthLoadingScreen extends Component {
       isUserSignedUp, 
       isUserLoggedIn, 
       shouldRefreshAPIToken,
-      updateAPIAccessToken,
       navigation
     } = this.props;
-    const {refreshToken} = auth;
+    const {explorerAPIRefreshToken: refreshToken} = auth;
     const {userId} = account;
-    // NOTE: destinationRoute will need to change if we implement a signup page.
-    const destinationRoute = isUserSignedUp ? ScreenNames.MAIN_FLOW : ScreenNames.AUTH_FLOW;
-
-    if (!isUserLoggedIn || shouldRefreshAPIToken) {
-      updateAPIAccessToken({userId, refreshToken}).then(() => {
-        navigation.navigate(destinationRoute);  
-      }).catch(() => {
+    
+    if (!isUserSignedUp) {
+      // User is not signed up... Navigate to the 'AUTH_FLOW'
+      logger.info(`no account found on device - navigating to ${ScreenNames.AUTH_FLOW}`);
+      this.props.navigation.navigate(ScreenNames.AUTH_FLOW);
+    
+    } else if (!isUserLoggedIn || shouldRefreshAPIToken) {
+      // User is signed-up, but their token is expired (or about to expire).
+      logger.info('need updated credentials - updating the API access token');
+      this.props.updateAPIAccessToken({userId, refreshToken}).then(response => {
+        logger.info(`received updated credentials - navigating to ${ScreenNames.MAIN_FLOW}`, response);
+        navigation.navigate(ScreenNames.MAIN_FLOW);  
+      }).catch(error => {
         // TODO: navigate to an error route!
+        logger.error('updating API access token failed', error);
       });
+    
     } else {
-      navigation.navigate(destinationRoute);
+      // Otherwise, user is already signed-id, so head to MAIN_FLOW.
+      logger.info(`user has valid credentials - navigating to ${ScreenNames.MAIN_FLOW}`);
+      navigation.navigate(ScreenNames.MAIN_FLOW);
     }
-
-    this.props.navigation.navigate(ScreenNames.AUTH_FLOW);
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <ActivityIndicator />
+      <View style={[commonStyles.container, styles.container]}>
+        <ActivityIndicator
+          animating={true}
+          size="large"
+        />
       </View>
     );
   }
