@@ -13,13 +13,13 @@ import CustomButton from '../../components/Button';
 import {createMap} from '../Map/actions';
 import uuidV4 from 'uuid/v4';
 
-class ConfirmGroupScreen extends React.Component {
+class MapConfigurationScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
     return {
       headerTitle: 'add subject',
       headerLeft: (
         <HeaderBackButton
-          onPress={() => navigation.navigate(ScreenNames.CREATE_GROUP)}
+          onPress={() => navigation.navigate(ScreenNames.MAP_PARTICIPANTS)}
           title ='participants'
           tintColor= '#FFF'
         />
@@ -79,7 +79,7 @@ class ConfirmGroupScreen extends React.Component {
   }
 }
 
-ConfirmGroupScreen.propTypes = {
+MapConfigurationScreen.propTypes = {
   navigateToMap: PropTypes.func.isRequired,
   createMap: PropTypes.func.isRequired,
   account: PropTypes.object.isRequired
@@ -92,4 +92,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({navigateToMap, createMap}, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConfirmGroupScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MapConfigurationScreen);

@@ -89,15 +89,15 @@ export const navigateToMapList = params =>
     params
   });
 
-export const navigateToCreateGroup = params =>
+export const navigateToMapParticipants = params =>
   NavigationActions.navigate({
-    routeName: ScreenNames.CREATE_GROUP,
+    routeName: ScreenNames.MAP_PARTICIPANTS,
     params
   });
 
-export const navigateToConfirmGroup = (params = {}) =>
+export const navigateToMapConfiguration = (params = {}) =>
   NavigationActions.navigate({
-    routeName: ScreenNames.CONFIRM_GROUP,
+    routeName: ScreenNames.MAP_CONFIGURATION,
     params
   });
 

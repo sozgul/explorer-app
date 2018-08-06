@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, FlatList, TouchableHighlight, TouchableOpacity } from 'react-native';
 import {connect} from 'react-redux';
-import {navigateToCreateGroup, navigateToMap} from '../../actions/navigation';
+import {navigateToMapParticipants, navigateToMap} from '../../actions/navigation';
 import { bindActionCreators } from 'redux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import {mapListStyles} from './styles';
@@ -25,8 +25,8 @@ class MapListScreen extends React.Component {
   }
 
   _continuePressed() {
-    const {navigateToCreateGroup} = this.props;
-    navigateToCreateGroup();
+    const {navigateToMapParticipants} = this.props;
+    navigateToMapParticipants();
   }
   _openMapPressed(map) {
     const {navigateToMap} = this.props;
@@ -41,7 +41,7 @@ class MapListScreen extends React.Component {
           style={mapListStyles.createGroupButton}
           onPress={() => this._continuePressed()}
         >
-          <Text style={[commonStyles.text, mapListStyles.createGroupButtonText]}>create new group</Text>
+          <Text style={[commonStyles.text, mapListStyles.createGroupButtonText]}>create new map</Text>
           <FontAwesome style={[commonStyles.plus, mapListStyles.createGroupButtonIcon]}>{Icons.plus}</FontAwesome>
         </TouchableOpacity>
 
@@ -67,7 +67,7 @@ class MapListScreen extends React.Component {
 }
 
 MapListScreen.propTypes = {
-  navigateToCreateGroup: PropTypes.func.isRequired,
+  navigateToMapParticipants: PropTypes.func.isRequired,
   mapList: PropTypes.object.isRequired,
   navigateToMap: PropTypes.func.isRequired
 };
@@ -77,6 +77,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({navigateToCreateGroup, navigateToMap}, dispatch);
+  bindActionCreators({navigateToMapParticipants, navigateToMap}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapListScreen);

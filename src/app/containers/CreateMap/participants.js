@@ -9,13 +9,13 @@ import ContactList from '../../components/ContactList';
 import * as ScreenNames from '../../navigators/screen_names';
 import {HeaderBackButton} from 'react-navigation';
 import {createMap} from '../Map/actions';
-import {navigateToConfirmGroup} from '../../actions/navigation';
+import {navigateToMapConfiguration} from '../../actions/navigation';
 import {getContactsAsync, getFullName } from '../../utilities/contacts';
 import uuidV4 from 'uuid/v4';
 import styles from './styles';
 
 
-class CreateGroupScreen extends React.Component {
+class MapParticipantsScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
     return {
       headerTitle: 'add participants',
@@ -51,8 +51,8 @@ class CreateGroupScreen extends React.Component {
   _continuePressed() {
     const {navigateToMap, account, createMap} = this.props;
     if (this.state.selectedContacts.length > 1) {
-      const {navigateToConfirmGroup} = this.props;
-      navigateToConfirmGroup(this.state.selectedContacts);
+      const {navigateToMapConfiguration} = this.props;
+      navigateToMapConfiguration(this.state.selectedContacts);
     } else if (this.state.selectedContacts.length === 1) {
       const subject = getFullName(this.state.selectedContacts[0]);
       // TODO: Remove UUID and get from API when Maps API is hooked up
@@ -111,8 +111,8 @@ class CreateGroupScreen extends React.Component {
   }
 }
 
-CreateGroupScreen.propTypes = {
-  navigateToConfirmGroup: PropTypes.func.isRequired,
+MapParticipantsScreen.propTypes = {
+  navigateToMapConfiguration: PropTypes.func.isRequired,
   navigateToMap: PropTypes.func.isRequired,
   createMap: PropTypes.func.isRequired,
   account: PropTypes.object.isRequired
@@ -123,6 +123,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({navigateToMap, createMap, navigateToConfirmGroup}, dispatch);
+  bindActionCreators({navigateToMap, createMap, navigateToMapConfiguration}, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateGroupScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MapParticipantsScreen);
