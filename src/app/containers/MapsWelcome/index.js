@@ -12,9 +12,9 @@ import { LinearGradient } from 'expo';
 import {LIGHT_PURPLE, LIGHT_YELLOW} from '../../common/colors';
 
 
-class WelcomeMapScreen extends React.Component {
+class MapWelcomeScreen extends React.Component {
   static navigationOptions = {
-    headerTitle: 'Create New Map'
+    headerTitle: 'Get Started'
   };
 
   _continuePressed() {
@@ -50,7 +50,7 @@ class WelcomeMapScreen extends React.Component {
   }
 }
 
-WelcomeMapScreen.propTypes = {
+MapWelcomeScreen.propTypes = {
   account: PropTypes.object,
   navigateToCreateGroup: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
@@ -64,4 +64,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   navigateToCreateGroup,
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomeMapScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MapWelcomeScreen);
