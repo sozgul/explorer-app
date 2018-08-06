@@ -43,7 +43,6 @@
     "react-devtools": "^3.2.3",
     "react-mixin": "^2.0.2",
     "react-native": "0.55.2",
-    "react-native-config": "^0.11.5",
     "react-native-exit-app": "^1.0.0",
     "react-native-fontawesome": "^5.7.0",
     "react-native-maps": "^0.21.0",
