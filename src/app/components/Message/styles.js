@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {BLUE} from '../../common/colors';
+import {BLUE,LIGHT_GREY_2,LIGHT_GREY} from '../../common/colors';
 
 const styles = StyleSheet.create({
   contentContainer:{
@@ -8,30 +8,40 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     width:160,
-    paddingRight:8
+    paddingRight:5
   },
   bubbles:{
     paddingTop:1,
     borderRadius: 20,
-    backgroundColor : 'transparent',
-
-  },
-  bubbles1:{
-    marginTop:5,
-    paddingBottom:2,
-    borderRadius: 10,
-    backgroundColor: BLUE,
-
+    backgroundColor: LIGHT_GREY_2,
   },
   text:{
     padding:1,
-    textAlign:'center'
+    textAlign:'center',
   },
   textRight:{
     textAlign:'right',
-    paddingRight: 2
-  }
-
+    paddingRight: 8,
+  },
+  buttonContainer: {
+    borderRadius: 10,
+    padding: 8,
+    shadowColor: LIGHT_GREY,
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowRadius: 10,
+    shadowOpacity: 0.8,
+    marginTop:10
+  },
+  dot: {
+    alignSelf: 'flex-end',
+    width: 7.5,
+    height: 7.5,
+    borderRadius: 5,
+    backgroundColor:BLUE
+  },
 });
 
 

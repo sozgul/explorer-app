@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import MapComponent from '../../components/Map';
-import MessageComponent from '../../components/Message';
+import MessageList from '../../components/Message';
 import {connect} from 'react-redux';
 import {mapStyles} from './styles';
 import {commonStackNavigationOptions} from '../../navigators/options';
@@ -56,13 +56,26 @@ class MapScreen extends Component {
   }
 
   render() {
+    const fakeMessages = [
+      {id: '1', senderID: '1', content: 'Hello Meenu!'},
+      {id: '2', senderID: '2', content: 'Well hello, Sri.'},
+      {id: '3', senderID: '4', content: 'Hi there, Meenu and Sri. Its me, Serhan.'},
+      {id: '4', senderID: '3', content: 'Hey, Meenu, Sri, and Serhan! What\'s going on?'}
+    ];
+    const fakeColors = [
+      {senderID: '1', color: 'cornflowerblue'},
+      {senderID: '2', color: 'hotpink'},
+      {senderID: '3', color: 'limegreen'},
+      {senderID: '4', color: 'violet'}
+    ];
     return (
       <View style={mapStyles.container}>
         <MapComponent
           markerLocations={this.state.markers}
         />
-        <MessageComponent
-        />
+        <MessageList
+          messages={fakeMessages}
+          colors={fakeColors} />
 
       </View>
     );
