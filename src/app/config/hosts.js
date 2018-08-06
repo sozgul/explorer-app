@@ -1,6 +1,6 @@
 import {environments, getEnvironment, isExplorerDebugEnabled} from './env';
 
-const env = isExplorerDebugEnabled() ? getEnvironment() : environments.debug;
+const env = isExplorerDebugEnabled() ? environments.debug : getEnvironment();
 const hosts = {
   API: {
     [environments.debug]: 'http://localhost:8001',

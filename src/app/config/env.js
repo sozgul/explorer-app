@@ -25,5 +25,5 @@ export function getEnvironment() {
 // (this is useful for API integration & full-stack development)
 // ----------------------------------------------------------------------------
 export function isExplorerDebugEnabled() {
-  return process.env.REACT_NATIVE_EXPLORER_DEBUG === 1;
+  return [1, '1', 'true'].includes(process.env.REACT_NATIVE_EXPLORER_DEBUG);
 }
