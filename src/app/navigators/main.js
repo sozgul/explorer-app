@@ -16,7 +16,7 @@ const tabTitles = {
   [ScreenNames.PROFILE_TAB]: 'profile'
 };
 
-const tabNavigator = createCustomBottomTabNavigator({
+const MainNavigator = createCustomBottomTabNavigator({
   [ScreenNames.CONTACTS_TAB]: createStackNavigator(
     {
       [ScreenNames.CONTACTS]: {screen:ContactsScreen},
@@ -67,9 +67,8 @@ const tabNavigator = createCustomBottomTabNavigator({
   tabBarOptions: commonTabBarOptions
 });
 
+
 export default createSwitchNavigator({
-  [ScreenNames.MAIN_FLOW]: tabNavigator,
-  [ScreenNames.MAPS]: MapNavigator
-}, {
-  
+  [ScreenNames.MAIN_FLOW]: MainNavigator,
+  [ScreenNames.MAPS_FLOW]: MapNavigator
 });

@@ -77,12 +77,6 @@ export const navigateToProfile = params =>
     params
   });
 
-export const navigateToCreateMap = params =>
-  NavigationActions.navigate({
-    routeName: ScreenNames.CREATE_MAP,
-    params
-  });
-
 export const navigateToMapList = params =>
   NavigationActions.navigate({
     routeName: ScreenNames.MAP_LIST,

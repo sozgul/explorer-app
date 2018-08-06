@@ -6,6 +6,7 @@
 export const AUTH_FLOW = 'AuthFlow';
 export const SIGNUP_FLOW = 'SignupFlow';
 export const MAIN_FLOW = 'MainFlow';
+export const MAPS_FLOW = 'Maps';
 
 // ----------------------------------------------------------------------------
 // TABS (grouping of screens shown under a navigation tab)
@@ -18,8 +19,7 @@ export const PROFILE_TAB = 'ProfileTab';
 // SCREENS & ROUTES
 // ----------------------------------------------------------------------------
 
-// Welcome/Home
-export const HOME_SCREEN = 'HomeScreen';
+// Welcome
 export const WELCOME = 'Welcome';
 
 // User Profile
@@ -34,11 +34,9 @@ export const CONTACTS = 'Contacts';
 export const CONTACT_DETAILS = 'ContactDetails';
 
 // Maps/Groups
-export const MAP = 'Map';
-export const MAPS = 'Maps';
-export const MAP_LIST = 'MapList';
 export const MAP_WELCOME = 'MapWelcome';
-export const CREATE_MAP = 'CreateMap';
+export const MAP_LIST = 'MapList';
+export const MAP = 'Map';
 export const DISPLAY_MAP = 'DisplayMap';
 export const MAP_PARTICIPANTS = 'MapParticipants';
 export const MAP_CONFIGURATION = 'MapConfiguration';
