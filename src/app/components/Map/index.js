@@ -64,12 +64,9 @@ class MapComponent extends React.Component {
 
   _getColorForSender(senderID) {
     let dotStyles = [styles.markerStyle, {backgroundColor:MEDIUM_GREY}];
-    console.log('SENDER COLORS: ', this.props.senderColors);
     const senderColorItem = this.props.senderColors.find(item => item.senderID === senderID);
     if (senderColorItem) 
       dotStyles = [styles.markerStyle, {backgroundColor:senderColorItem.color}];
-
-    console.log('DOT STYLES: ', dotStyles);
     return dotStyles;
   }
 
