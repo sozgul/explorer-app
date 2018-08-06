@@ -35,9 +35,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     marginTop:10
   },
-  height:{
-    height:700,
-  },
   dot: {
     alignSelf: 'flex-end',
     width: 7.5,

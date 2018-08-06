@@ -9,14 +9,11 @@ import { LinearGradient } from 'expo';
 class MessageListItem extends Component {
   render() {
     const {message,senderColor} = this.props;
-    const {content, sender} = message;
-    const dotStyles = [styles.dot];
-    if (senderColor) {
-      dotStyles.push({backgroundColor:senderColor});
-    }
+    const {content} = message;
+    const dotStyles = [styles.dot, {backgroundColor:senderColor}];
+
     return (
       <View>
-        <Text style= {[commonStyles.text,styles.textRight]}>{sender}</Text>
         <LinearGradient colors={['rgba(255,255,255,0.7)','rgba(255,255,255,0.9)']}
           start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}} style = {styles.buttonContainer}
         >
