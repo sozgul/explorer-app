@@ -1,19 +1,32 @@
 import ActionTypes from '../actions/types';
+import {getCurrentTimestampSeconds} from '../utilities/time';
 
 let initialState = {
-  API_AUTH_ACCESS_TOKEN: null,
-  API_AUTH_REFRESH_TOKEN: null
+  explorerAPIAccessToken: null,
+  explorerAPIRefreshToken: null,
+  explorerAPIAccessTokenIssuedAt: null
 };
+
+function updateExplorerAPICreds(state, newCreds = {}) {
+  const {accessToken, refreshToken, accessTokenIssuedAt} = newCreds;
+  const currentRefreshToken = state.explorerAPIRefreshToken;
+  return {
+    ...state,
+    explorerAPIAccessToken: accessToken,
+    explorerAPIRefreshToken: refreshToken || currentRefreshToken,
+    explorerAPIAccessTokenIssuedAt: accessTokenIssuedAt
+  };
+}
 
 const authData = (state = initialState, action = {}) => {
   switch(action.type) {
   case ActionTypes.AUTH_TOKENS_UPDATED:
   case ActionTypes.SMS_VERIFICATION_CODE_ACCEPTED:
-    return {
-      ...state,
-      API_AUTH_ACCESS_TOKEN: action.accessToken,
-      API_AUTH_REFRESH_TOKEN: action.refreshToken
-    };
+    return updateExplorerAPICreds(state, {
+      accessToken: action.accessToken,
+      refreshToken: action.refreshToken,
+      accessTokenIssuedAt: getCurrentTimestampSeconds()
+    });
   default:
     break;
   }

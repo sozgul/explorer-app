@@ -4,6 +4,12 @@ import RNExitApp from 'react-native-exit-app';
 
 export const navigateBack = () => NavigationActions.back();
 
+export const navigateToAuthFlow = params =>
+  NavigationActions.navigate({
+    routeName: ScreenNames.AUTH_FLOW,
+    params
+  });
+
 export const navigateToMainFlow = params =>
   NavigationActions.navigate({
     routeName: ScreenNames.MAIN_FLOW,
@@ -71,27 +77,21 @@ export const navigateToProfile = params =>
     params
   });
 
-export const navigateToCreateMap = params =>
-  NavigationActions.navigate({
-    routeName: ScreenNames.CREATE_MAP,
-    params
-  });
-
 export const navigateToMapList = params =>
   NavigationActions.navigate({
     routeName: ScreenNames.MAP_LIST,
     params
   });
 
-export const navigateToCreateGroup = params =>
+export const navigateToMapParticipants = params =>
   NavigationActions.navigate({
-    routeName: ScreenNames.CREATE_GROUP,
+    routeName: ScreenNames.MAP_PARTICIPANTS,
     params
   });
 
-export const navigateToConfirmGroup = (params = {}) =>
+export const navigateToMapConfiguration = (params = {}) =>
   NavigationActions.navigate({
-    routeName: ScreenNames.CONFIRM_GROUP,
+    routeName: ScreenNames.MAP_CONFIGURATION,
     params
   });
 

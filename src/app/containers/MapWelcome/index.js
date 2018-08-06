@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Text } from 'react-native';
 import CustomButton from '../../components/Button';
-import {navigateToCreateGroup} from '../../actions/navigation';
+import {navigateToMapParticipants} from '../../actions/navigation';
 import commonStyles from '../../common/styles';
 import styles from './styles';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
@@ -12,14 +12,14 @@ import { LinearGradient } from 'expo';
 import {LIGHT_PURPLE, LIGHT_YELLOW} from '../../common/colors';
 
 
-class WelcomeMapScreen extends React.Component {
+class MapWelcomeScreen extends React.Component {
   static navigationOptions = {
-    headerTitle: 'Create New Map'
+    headerTitle: 'Get Started'
   };
 
   _continuePressed() {
-    const {navigateToCreateGroup} = this.props;
-    navigateToCreateGroup();
+    const {navigateToMapParticipants} = this.props;
+    navigateToMapParticipants();
   }
 
   render() {
@@ -50,9 +50,9 @@ class WelcomeMapScreen extends React.Component {
   }
 }
 
-WelcomeMapScreen.propTypes = {
+MapWelcomeScreen.propTypes = {
   account: PropTypes.object,
-  navigateToCreateGroup: PropTypes.func.isRequired,
+  navigateToMapParticipants: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -61,7 +61,7 @@ const mapStateToProps = state => ({
   profile: state.userProfileData
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
-  navigateToCreateGroup,
+  navigateToMapParticipants,
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomeMapScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MapWelcomeScreen);

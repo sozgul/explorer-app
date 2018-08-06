@@ -28,20 +28,16 @@ export function sendSMSCode({phoneNumber, countryCode, country, smsCode}) {
       countryCode,
       country,
       smsCode
-    }).then(response => {
-      const {userid, accessToken, refreshToken} = response.data;
-      
-      dispatch({
-        type: ActionTypes.SMS_VERIFICATION_CODE_ACCEPTED,
+    }).then((response = {}) => {
+      const {data = {}} = response;
+      const {userid, accessToken, refreshToken} = data;
+      return dispatch(smsVerificationAccepted({
         userId: userid,
         accessToken,
         refreshToken
-      });
+      }));
     }).catch(error => {
-      dispatch({
-        type: ActionTypes.SMS_VERIFICATION_CODE_REJECTED,
-        error
-      });
+      return dispatch(smsVerificationRejected({error}));
     });
   };
 }
@@ -55,8 +51,18 @@ export function phoneNumberUpdated(phoneNumber, countryCode, country) {
   };
 }
 
-export function smsVerificationAccepted() {
+export function smsVerificationAccepted({userId, accessToken, refreshToken}) {
   return {
-    type: ActionTypes.SMS_VERIFICATION_CODE_ACCEPTED
+    type: ActionTypes.SMS_VERIFICATION_CODE_ACCEPTED,
+    userId,
+    accessToken,
+    refreshToken
+  };
+}
+
+export function smsVerificationRejected({error}) {
+  return {
+    type: ActionTypes.SMS_VERIFICATION_CODE_REJECTED,
+    error
   };
 }

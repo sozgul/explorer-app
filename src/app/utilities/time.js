@@ -10,3 +10,7 @@ export function secondsToHms(d) {
   var sDisplay = s > 0 ? `${s}` : '00';
   return hDisplay + mDisplay + sDisplay;
 }
+
+export function getCurrentTimestampSeconds() {
+  return Math.round((new Date()).getTime() / 1000);
+}

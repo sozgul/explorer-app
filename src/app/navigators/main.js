@@ -1,13 +1,13 @@
 import React from 'react';
 import * as ScreenNames from './screen_names';
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator, createSwitchNavigator} from 'react-navigation';
 import ContactsScreen from '../containers/Contacts';
 import ContactDetailsScreen from '../containers/Contacts/details';
 import ProfileScreen from '../containers/Profile';
 import NavTabItem from '../components/NavTabItem';
 import {commonStackNavigationOptions, commonTabBarOptions} from './options';
 import DisplayMap from '../containers/Map/main';
-import MapScreen from '../containers/Map';
+import MapNavigator from './map';
 import {createCustomBottomTabNavigator} from '../components/NavBottomTabBar';
 
 const tabTitles = {
@@ -16,12 +16,11 @@ const tabTitles = {
   [ScreenNames.PROFILE_TAB]: 'profile'
 };
 
-export default createCustomBottomTabNavigator({
+const MainNavigator = createCustomBottomTabNavigator({
   [ScreenNames.CONTACTS_TAB]: createStackNavigator(
     {
       [ScreenNames.CONTACTS]: {screen:ContactsScreen},
-      [ScreenNames.CONTACT_DETAILS]: {screen:ContactDetailsScreen},
-      [ScreenNames.MAP]: {screen:MapScreen},
+      [ScreenNames.CONTACT_DETAILS]: {screen:ContactDetailsScreen}
     },
     {
       initialRouteName: ScreenNames.CONTACTS,
@@ -66,4 +65,10 @@ export default createCustomBottomTabNavigator({
     title: tabTitles[navigation.state.routeName]
   }),
   tabBarOptions: commonTabBarOptions
+});
+
+
+export default createSwitchNavigator({
+  [ScreenNames.MAIN_FLOW]: MainNavigator,
+  [ScreenNames.MAPS_FLOW]: MapNavigator
 });

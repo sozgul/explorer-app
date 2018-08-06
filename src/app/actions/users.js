@@ -13,7 +13,8 @@ export function syncUserIds() {
       logger.log('Synced userIDs with registered contacts: ', data);
       dispatch({
         type: ActionTypes.USERIDS_SYNC_UPDATED,
-        registeredContacts: data
+        registeredUsers: data,
+        isFullSync: true
       });
     }).catch(error => {
       logger.error('Error while syncing userIDs with contacts: ', error);
