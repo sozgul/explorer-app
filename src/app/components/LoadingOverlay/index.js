@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import {ActivityIndicator} from 'react-native';
 import PropTypes from 'prop-types';
 import {View, Text} from 'react-native';
-import Loader from '../Loader';
 import commonStyles from '../../common/styles';
 import styles from './styles';
 
@@ -12,7 +12,10 @@ class LoadingOverlayComponent extends Component {
     return (
       <View style={styles.overlay}>
         <View style={styles.wrapper}>
-          <Loader style={styles.loader} />
+          <ActivityIndicator
+            animating={true}
+            size="large"
+          />
           <Text style={[commonStyles.text, styles.message]}>{message}</Text>
         </View>
       </View>

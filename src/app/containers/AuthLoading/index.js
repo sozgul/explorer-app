@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, ActivityIndicator } from 'react-native';
-import styles from './styles';
-import commonStyles from './styles';
+import LoadingOverlay from '../../components/LoadingOverlay';
 import {isLoggedInSelector, shouldRefreshExplorerAPITokenSelector} from '../../selectors/auth';
 import {isUserSignedUpSelector} from '../../selectors/account';
 import * as ScreenNames from '../../navigators/screen_names';
@@ -58,12 +56,7 @@ class AuthLoadingScreen extends Component {
 
   render() {
     return (
-      <View style={[commonStyles.container, styles.container]}>
-        <ActivityIndicator
-          animating={true}
-          size="large"
-        />
-      </View>
+      <LoadingOverlay message="Authenticating" />
     );
   }
 }
