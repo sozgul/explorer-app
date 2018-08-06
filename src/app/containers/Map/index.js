@@ -38,19 +38,22 @@ class MapScreen extends Component {
         coordinate:{
           latitude: 37.0065,
           longitude: -121.5632
-        }
+        },
+        title: '1'
       },
       {
         coordinate:{
           latitude: 37.3856,
           longitude: -122.082
-        }
+        },
+        title: '2'
       },
       {
         coordinate:{
           latitude: 37.7648,
           longitude: -122.463
-        }
+        },
+        title: '3'
       }]
     };
   }
@@ -72,6 +75,7 @@ class MapScreen extends Component {
       <View style={mapStyles.container}>
         <MapComponent
           markerLocations={this.state.markers}
+          senderColors = {fakeColors}
         />
         <MessageList
           messages={fakeMessages}

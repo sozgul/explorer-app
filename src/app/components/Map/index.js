@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import MapView, {Marker} from 'react-native-maps';
 import { View, Dimensions} from 'react-native';
 import styles from './styles';
+import { MEDIUM_GREY} from '../../common/colors';
 //import {getRegionForCoordinates} from '../../utilities/location';
 
 let { width, height } = Dimensions.get('window');
@@ -61,6 +62,17 @@ class MapComponent extends React.Component {
     };
   }
 
+  _getColorForSender(senderID) {
+    let dotStyles = [styles.markerStyle, {backgroundColor:MEDIUM_GREY}];
+    console.log('SENDER COLORS: ', this.props.senderColors);
+    const senderColorItem = this.props.senderColors.find(item => item.senderID === senderID);
+    if (senderColorItem) 
+      dotStyles = [styles.markerStyle, {backgroundColor:senderColorItem.color}];
+
+    console.log('DOT STYLES: ', dotStyles);
+    return dotStyles;
+  }
+
   render() {
     const {markerLocations} = this.props;
     return (
@@ -71,7 +83,7 @@ class MapComponent extends React.Component {
           <Marker key ={index}
             coordinate={marker.coordinate}>
             <View style={styles.radius}>
-              <View style={styles.markerStyle}/>
+              <View style={this._getColorForSender(marker.title)}/>
             </View>
           </Marker>
         ))}
@@ -81,10 +93,12 @@ class MapComponent extends React.Component {
 }
 
 MapComponent.propTypes = {
-  markerLocations: PropTypes.array
+  markerLocations: PropTypes.array,
+  senderColors: PropTypes.array.isRequired
 };
 MapComponent.defaultProps = {
-  markerLocations: []
+  markerLocations: [],
+  senderColors: []
 };
 
 
