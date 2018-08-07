@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
     right:0,
   },
   radius:{
-    height:15,
-    width:15,
+    height:12,
+    width:12,
     backgroundColor:'#81BD26',
     overflow:'hidden',
     borderRadius:50/2,
