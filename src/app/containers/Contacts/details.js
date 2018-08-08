@@ -10,7 +10,6 @@ import commonStyles from '../../common/styles';
 import styles from './styles';
 import {getFullName} from '../../utilities/contacts';
 import {createMap} from '../Map/actions';
-import uuidV4 from 'uuid/v4';
 
 class ContactDetailsScreen extends Component {
   static navigationOptions = () => {
@@ -28,8 +27,7 @@ class ContactDetailsScreen extends Component {
     });
 
     if (!existingMap) {
-      const mapID = uuidV4();
-      createMap({id: mapID, ownerUserID: account.userId, contactIDs: [contact.id], subject: getFullName(contact)});
+      createMap({ownerUserID: account.userId, contactIDs: [contact.id], subject: getFullName(contact)});
     }
 
     this.props.navigateToMap(contact, getFullName(contact));

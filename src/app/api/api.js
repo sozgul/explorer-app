@@ -101,6 +101,19 @@ class APIClient {
     };
     return this._http.post(endpoint, payload);
   }
+
+  async createMap({userId, subject, participantIDs}) {
+    const endpoint = '/map';
+    const payload = {
+      creatorID: userId,
+      subject,
+      participants: [
+        {participantID: userId, role: 'admin'}, 
+        ...participantIDs.map(p => ({participantID: p.id, role: 'member'}))
+      ]
+    };
+    return this._http.post(endpoint, payload);
+  }
 }
 
 client = new APIClient({

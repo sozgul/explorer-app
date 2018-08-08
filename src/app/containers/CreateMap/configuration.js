@@ -11,7 +11,6 @@ import commonStyles from '../../common/styles';
 import styles from './styles';
 import CustomButton from '../../components/Button';
 import {createMap} from '../Map/actions';
-import uuidV4 from 'uuid/v4';
 
 class MapConfigurationScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
@@ -41,9 +40,9 @@ class MapConfigurationScreen extends React.Component {
     const contactIDs = contactsSelected.map(item => item.id);
     const subject = this.state.groupName;
     const ownerUserID = account.userId;
-    const mapID = uuidV4();
-    createMap({id: mapID, ownerUserID, contactIDs, subject});
-    navigateToMap({mapID, subject});
+    createMap({ownerUserID, contactIDs, subject}, mapID => {
+      navigateToMap({mapID, subject});
+    });
   }
 
   render() {

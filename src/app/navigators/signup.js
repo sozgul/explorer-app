@@ -1,3 +1,4 @@
+import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import * as ScreenNames from './screen_names';
 import WelcomeScreen from '../containers/Welcome';
@@ -11,7 +12,9 @@ export default createStackNavigator({
   [ScreenNames.WELCOME]: {screen:WelcomeScreen},
   [ScreenNames.SIGNUP]: {screen:SignupScreen},
   [ScreenNames.SIGNUP_VERIFY]: {screen:SignupVerifyScreen},
-  [ScreenNames.USER_PROFILE]: {screen:ProfileScreen},
+  [ScreenNames.USER_PROFILE]: {
+    screen: props => <ProfileScreen {...props} inSignupFlow={true} />
+  },
 },{
   navigationOptions: {
     ...commonStackNavigationOptions

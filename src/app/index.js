@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import Layout from './components/Layout';
-import {AppNavigator} from './navigators';
+import AppContainer from './containers/App';
 import {store, persistor} from './store';
 import { AppLoading, Font } from 'expo';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -29,7 +29,7 @@ export default class App extends React.Component {
 
   _renderApp() {
     return (
-      <AppNavigator />
+      <AppContainer />
     );
   }
 

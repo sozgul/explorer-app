@@ -1,7 +1,7 @@
 import ActionTypes from '../actions/types';
 
 let initialState = {
-  knownUsers: []
+  registeredUsers: []
 };
 
 const usersData = (

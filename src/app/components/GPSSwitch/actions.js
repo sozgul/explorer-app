@@ -5,6 +5,6 @@ export function mapGPSToggled({mapID, gpsEnabled}) {
     type: ActionTypes.MAP_GPS_TOGGLED,
     mapID,
     gpsEnabled,
-    gpsEnabledAt: (new Date().getTime())
+    gpsEnabledAt: gpsEnabled ? (new Date().getTime()) : 0
   };
 }
