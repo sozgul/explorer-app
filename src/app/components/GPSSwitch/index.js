@@ -14,17 +14,26 @@ import styles from './styles';
 class GPSSwitch extends Component {
   constructor(props) {
     super(props);
+
+    const {map} = this.props;
+    let timeLeft = this.props.profile.gpsTimeLimit;
+    let startedTime = 0;
+    if (map.gpsEnabled) {
+      startedTime = Math.round(map.gpsEnabledAt / 1000);
+      timeLeft = props.profile.gpsTimeLimit - (this._getCurrentTimeSec() - startedTime);
+    }
+
+    this.timerStarted = false;
+    this.startedTime = startedTime;
     this.state = {
-      value: props.value,
-      gpsTimeLeft: this.props.profile.gpsTimeLimit
-    };
-    this.timerStarted = props.value;
-    this.startedTime = 0;
+      value: map.gpsEnabled || false,
+      gpsTimeLeft: timeLeft
+    }; 
   }
 
   componentDidMount() {
     if (this.state.value) {
-      this._startTimer();
+      this._resumeTimer();
     }
   }
 
@@ -37,6 +46,20 @@ class GPSSwitch extends Component {
       this._startTimer();
     } else {
       this._stopTimer();
+    }
+  }
+
+  _startTimer() {
+    if (!this.timerStarted) {
+      this.startedTime = Math.round((new Date).getTime() / 1000);
+      this._resumeTimer();
+    }
+  }
+
+  _resumeTimer() {
+    if (!this.timerStarted) {
+      this._timer = this.setInterval(this._onTimerTick.bind(this), 1000);
+      this.timerStarted = true;
     }
   }
 
@@ -53,14 +76,6 @@ class GPSSwitch extends Component {
 
   _getCurrentTimeSec() {
     return Math.round((new Date).getTime() / 1000);
-  }
-
-  _startTimer() {
-    if (!this.timerStarted) {
-      this.startedTime = Math.round((new Date).getTime() / 1000);
-      this._timer = this.setInterval(this._onTimerTick.bind(this), 1000);
-      this.timerStarted = true;
-    }
   }
 
   _onTimerTick() {
@@ -113,17 +128,14 @@ class GPSSwitch extends Component {
 reactMixin(GPSSwitch.prototype, TimerMixin);
 
 GPSSwitch.propTypes = {
-  value: PropTypes.bool,
-  map: PropTypes.object,
   mapID: PropTypes.string,
   mapGPSToggled: PropTypes.func.isRequired,
+  map: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
-GPSSwitch.defaultProps = {
-  value: false
-};
-const gpsSwitchMapStateToProps = state => ({
-  profile: state.userProfileData
+const gpsSwitchMapStateToProps = (state, props) => ({
+  profile: state.userProfileData,
+  map: state.mapsData.mapList.find(m => m.id === props.mapID)
 });
 const gpsSwitchMapDispatchToProps = dispatch => bindActionCreators({
   mapGPSToggled

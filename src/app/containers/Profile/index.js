@@ -26,6 +26,7 @@ class ProfileScreen extends React.Component {
 
     const {profile, account} = this.props;
     const timeLimit = (profile.gpsTimeLimit instanceof Number) ? profile.gpsTimeLimit : gpsExpirationTimes[0].value;
+
     this.state = {
       gpsTimeLimit: timeLimit,
       displayUserName: profile.displayUserName || '',
@@ -35,6 +36,8 @@ class ProfileScreen extends React.Component {
   }
 
   continuePressed() {
+    // continuePressed is triggered during the signup flow.
+
     const {profileUpdated, navigateToMainFlow, syncUserIds} = this.props;
     profileUpdated(this.state.gpsTimeLimit, this.state.displayUserName, this.state.phoneNumber);
     
@@ -49,9 +52,17 @@ class ProfileScreen extends React.Component {
     navigateToMainFlow();
   }
 
+  savePressed() {
+    // savePressed is triggered from the profile tab in the main flow.
+    const {profileUpdated} = this.props;
+    profileUpdated(this.state.gpsTimeLimit, this.state.displayUserName, this.state.phoneNumber);
+    
+  }
+
   gpsValueChanged(time) {
     this.setState({gpsTimeLimit: time});
   }
+
   viewTapped() {
     Keyboard.dismiss();
     this._gpsTimeLimit.blur();
@@ -105,11 +116,19 @@ class ProfileScreen extends React.Component {
           </View>
           <View style = {styles.container_button}>
 
-            <CustomButton
-              text="Continue"
-              onPress={this.continuePressed.bind(this)}
-              disabled={!this._isProfileValid()}
-            />
+            {this.props.inSignupFlow ? (
+              <CustomButton
+                text="Continue"
+                onPress={this.continuePressed.bind(this)}
+                disabled={!this._isProfileValid()}
+              />
+            ) : (
+              <CustomButton
+                text="Save"
+                onPress={this.savePressed.bind(this)}
+                disabled={!this._isProfileValid()}
+              />
+            )}
           </View>
 
           {this.state.saveInProgress && (
@@ -122,6 +141,7 @@ class ProfileScreen extends React.Component {
 }
 
 ProfileScreen.propTypes = {
+  inSignupFlow: PropTypes.bool.isRequired,
   navigateToMainFlow: PropTypes.func.isRequired,
   profileUpdated: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,

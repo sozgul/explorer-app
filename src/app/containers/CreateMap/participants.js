@@ -11,7 +11,7 @@ import {HeaderBackButton} from 'react-navigation';
 import {createMap} from '../Map/actions';
 import {navigateToMapConfiguration} from '../../actions/navigation';
 import {getContactsAsync, getFullName } from '../../utilities/contacts';
-import uuidV4 from 'uuid/v4';
+import {getContactsWithUserIDsSelector} from '../../selectors/contacts_users';
 import styles from './styles';
 
 
@@ -42,7 +42,9 @@ class MapParticipantsScreen extends React.Component {
   }
 
   async getContacts() {
-    const contacts = await getContactsAsync();
+    const {usersData} = this.props;
+    const rawContacts = await getContactsAsync();
+    const contacts = getContactsWithUserIDsSelector(usersData.registeredUsers, rawContacts);
     this.setState({
       contacts
     });
@@ -56,9 +58,9 @@ class MapParticipantsScreen extends React.Component {
     } else if (this.state.selectedContacts.length === 1) {
       const subject = getFullName(this.state.selectedContacts[0]);
       // TODO: Remove UUID and get from API when Maps API is hooked up
-      const mapID = uuidV4();
-      createMap({id: mapID, ownerUserID: account.userId, contactIDs: this.state.selectedContacts[0].id, subject: subject});
-      navigateToMap({mapID, subject});
+      createMap({ownerUserID: account.userId, contactIDs: [this.state.selectedContacts[0].id], subject: subject}, mapID => {
+        navigateToMap({mapID, subject});
+      });
     }
   }
 
@@ -115,11 +117,13 @@ MapParticipantsScreen.propTypes = {
   navigateToMapConfiguration: PropTypes.func.isRequired,
   navigateToMap: PropTypes.func.isRequired,
   createMap: PropTypes.func.isRequired,
-  account: PropTypes.object.isRequired
+  account: PropTypes.object.isRequired,
+  usersData: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  account: state.accountData
+  account: state.accountData,
+  usersData: state.usersData
 });
 
 const mapDispatchToProps = (dispatch) =>

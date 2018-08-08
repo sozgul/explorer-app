@@ -30,7 +30,16 @@ class MapComponent extends React.Component {
   }
 
   _getRegionForCoordinates(points) {
-    var minX, maxX, minY, maxY;
+    let minX, maxX, minY, maxY;
+    
+    if (!points.length) {
+      return {
+        latitude: 0, 
+        longitude: 0,
+        latitudeDelta: 0, 
+        longitudeDelta: 0
+      };
+    }
     
     // init first point
     ((point) => {
@@ -57,8 +66,10 @@ class MapComponent extends React.Component {
     deltaY+= REGION_PADDING;
 
     return {
-      latitude: midX, longitude: midY,
-      latitudeDelta: deltaX, longitudeDelta: deltaY,
+      latitude: midX, 
+      longitude: midY,
+      latitudeDelta: deltaX, 
+      longitudeDelta: deltaY,
     };
   }
 

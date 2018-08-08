@@ -21,5 +21,7 @@ export default mirrorKeys([
 
   'MAP_CREATED',
   'MAP_DELETED',
-  'MAP_GPS_TOGGLED'
+  'MAP_GPS_TOGGLED',
+
+  'LOCATION_DATA_RECEIVED'
 ]);

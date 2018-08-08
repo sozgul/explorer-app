@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import MapComponent from '../../components/Map';
 import MessageList from '../../components/Message';
 import {connect} from 'react-redux';
-import {mapStyles} from './styles';
+import {mapStyles, getNColors} from './styles';
 import {commonStackNavigationOptions} from '../../navigators/options';
 import {HeaderBackButton} from 'react-navigation';
 import * as ScreenNames from '../../navigators/screen_names';
@@ -33,53 +33,48 @@ class MapScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state={
-      markers:[{
-        coordinate:{
-          latitude: 37.0065,
-          longitude: -121.5632
-        },
-        title: '1'
-      },
-      {
-        coordinate:{
-          latitude: 37.3856,
-          longitude: -122.082
-        },
-        title: '2'
-      },
-      {
-        coordinate:{
-          latitude: 37.7648,
-          longitude: -122.463
-        },
-        title: '3'
-      }]
-    };
   }
 
   render() {
-    const fakeMessages = [
-      {id: '1', senderID: '1', content: 'Hello Meenu!'},
-      {id: '2', senderID: '2', content: 'Well hello, Sri.'},
-      {id: '3', senderID: '4', content: 'Hi there, Meenu and Sri. Its me, Serhan.'},
-      {id: '4', senderID: '3', content: 'Hey, Meenu, Sri, and Serhan! What\'s going on?'}
-    ];
-    const fakeColors = [
-      {senderID: '1', color: 'cornflowerblue'},
-      {senderID: '2', color: 'hotpink'},
-      {senderID: '3', color: 'limegreen'},
-      {senderID: '4', color: 'violet'}
-    ];
+    const {map, maps, users} = this.props;
+    const userIDs = map.contactIDs.map(contactId => {
+      const user = users.registeredUsers.find(u => u.contactId === contactId) || {};
+      return user.userId;
+    });
+    const participants = [map.ownerUserID, ...userIDs];
+    const markers = [];
+
+    participants.forEach(userId => {
+      if (maps.locationData[userId] && maps.locationData[userId].location) {
+        const {location = []} = maps.locationData[userId];
+        if (location.length) {
+          const coord = location[location.length - 1];
+          const {longitude, latitude} = coord;
+          markers.push({
+            userId,
+            coordinate: {
+              longitude,
+              latitude
+            }
+          });
+        }
+      }
+    });
+    const colorPalette = getNColors(participants.length);
+    const colors = participants.map((contactID, index) => {
+      const userID = this.props.users.registeredUsers.find(u => u.contactId === contactID);
+      return {senderID: userID, color: colorPalette[index]};
+    });
+    
     return (
       <View style={mapStyles.container}>
         <MapComponent
-          markerLocations={this.state.markers}
-          senderColors = {fakeColors}
+          markerLocations={markers}
+          senderColors={colors}
         />
         <MessageList
-          messages={fakeMessages}
-          colors={fakeColors} />
+          messages={map.messages}
+          colors={colors} />
 
       </View>
     );
@@ -88,11 +83,14 @@ class MapScreen extends Component {
 
 MapScreen.propTypes = {
   map: PropTypes.object,
-  maps: PropTypes.object
+  maps: PropTypes.object,
+  users: PropTypes.object
 };
 
-const mapStateToProps = state => ({
-  maps: state.mapsData
+const mapStateToProps = (state, props) => ({
+  users: state.usersData,
+  maps: state.mapsData,
+  map: state.mapsData.mapList.find(m => m.id === props.navigation.state.params.mapID)
 });
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
 

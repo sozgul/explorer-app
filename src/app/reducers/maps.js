@@ -1,7 +1,8 @@
 import ActionTypes from '../actions/types';
 
 let initialState = {
-  mapList: []
+  mapList: [],
+  locationData: {}
 };
 
 function addMapToState(state, {id, ownerUserID, contactIDs, subject}) {
@@ -12,7 +13,9 @@ function addMapToState(state, {id, ownerUserID, contactIDs, subject}) {
     contactIDs,
     subject,
     lastContact: null,
-    messages: []
+    messages: [],
+    gpsEnabled: false,
+    gpsEnabledAt: null
   };
   mapList.unshift(newMap);
   return {
@@ -48,6 +51,25 @@ function toggleGPS(state, {mapID, gpsEnabled, gpsEnabledAt}) {
   };
 }
 
+function updateUserLocation(state, action) {
+  const {userId, timestamp, location} = action;
+  const {locationData = {}} = state;
+
+  if (!locationData[userId]) {
+    locationData[userId] = {
+      location: []
+    };
+  }
+
+  location.timestamp = timestamp;
+  locationData[userId].location.push(location);
+
+  return {
+    ...state,
+    locationData
+  };
+}
+
 const mapsData = (state = initialState, action) => {
   switch (action.type) {
   case ActionTypes.MAP_CREATED:
@@ -60,6 +82,8 @@ const mapsData = (state = initialState, action) => {
       gpsEnabled: action.gpsEnabled,
       gpsEnabledAt: action.gpsEnabledAt
     });
+  case ActionTypes.LOCATION_DATA_RECEIVED:
+    return updateUserLocation(state, action);
   default:
     break;
   }

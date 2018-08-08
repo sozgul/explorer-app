@@ -29,3 +29,20 @@ export const mapStyles = StyleSheet.create({
     position: 'relative'
   }
 });
+
+const colorPalette = [
+  'cornflowerblue',
+  'goldenrod',
+  'hotpink',
+  'limegreen',
+  'mistyrose',
+  'orangered',
+  'salmon',
+  'turquoise',
+  'tomato',
+  'violet',
+];
+export function getNColors(n) {
+  const colors = [...colorPalette];
+  return colors.slice(0,n);
+}

@@ -44,7 +44,9 @@ const MainNavigator = createCustomBottomTabNavigator({
 
   [ScreenNames.PROFILE_TAB]: createStackNavigator(
     {
-      [ScreenNames.USER_PROFILE]: {screen:ProfileScreen}
+      [ScreenNames.USER_PROFILE]: {
+        screen: props => <ProfileScreen {...props} inSignupFlow={false} />
+      }
     },
     {
       initialRouteName: ScreenNames.USER_PROFILE,

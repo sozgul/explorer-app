@@ -7,6 +7,7 @@ import commonStyles from '../../common/styles';
 import ContactList from '../../components/ContactList';
 import {navigateToContactDetails} from '../../actions/navigation';
 import {getContactsAsync} from '../../utilities/contacts';
+import {getContactsWithUserIDsSelector} from '../../selectors/contacts_users';
 
 class ContactsScreen extends React.Component {
   static navigationOptions = {
@@ -22,7 +23,10 @@ class ContactsScreen extends React.Component {
   }
 
   async getContacts() {
-    const contacts = await getContactsAsync();
+    const {usersData} = this.props;
+    const rawContacts = await getContactsAsync();
+    const contacts = getContactsWithUserIDsSelector(usersData.registeredUsers, rawContacts);
+
     this.setState({
       contacts
     });
@@ -41,10 +45,13 @@ class ContactsScreen extends React.Component {
   }
 }
 ContactsScreen.propTypes = {
-  navigateToContactDetails: PropTypes.func.isRequired
+  navigateToContactDetails: PropTypes.func.isRequired,
+  usersData: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => (state);
+const mapStateToProps = state => ({
+  usersData: state.usersData
+});
 const mapDispatchToProps = dispatch => bindActionCreators({
   navigateToContactDetails
 }, dispatch);
